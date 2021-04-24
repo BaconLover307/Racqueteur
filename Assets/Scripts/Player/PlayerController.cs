@@ -10,6 +10,7 @@ namespace Player
         public float maxLinearSpeed = 100f;
         public float angularForce = 1000f;
         public float maxAngularSpeed = 1000f;
+        public Vector2 centerOfMass;
 
         private Rigidbody2D _rb;
         private Vector2 _movementInput = Vector2.zero;
@@ -19,6 +20,7 @@ namespace Player
         void Start()
         {
             _rb = gameObject.GetComponent<Rigidbody2D>();
+            _rb.centerOfMass = centerOfMass;
             var spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
             spriteRenderer.color = Random.ColorHSV();
         }
