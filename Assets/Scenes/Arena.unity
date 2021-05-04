@@ -1266,6 +1266,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower2
       objectReference: {fileID: 0}
+    - target: {fileID: 6375298864042590540, guid: d2bbb5031676ce44699a2cf4e3be7de6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375298864042590540, guid: d2bbb5031676ce44699a2cf4e3be7de6, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375298864042590540, guid: d2bbb5031676ce44699a2cf4e3be7de6, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7033250364323100073, guid: d2bbb5031676ce44699a2cf4e3be7de6, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1366,6 +1378,18 @@ PrefabInstance:
     - target: {fileID: 1687088218321253784, guid: 5ab6ccd6ab26fc848a0596f8f12d65e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687088218321253787, guid: 5ab6ccd6ab26fc848a0596f8f12d65e5, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687088218321253787, guid: 5ab6ccd6ab26fc848a0596f8f12d65e5, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687088218321253787, guid: 5ab6ccd6ab26fc848a0596f8f12d65e5, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ab6ccd6ab26fc848a0596f8f12d65e5, type: 3}
