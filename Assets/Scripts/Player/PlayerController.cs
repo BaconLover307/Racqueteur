@@ -15,6 +15,7 @@ namespace Player
         private Rigidbody2D _rb;
         private Vector2 _movementInput = Vector2.zero;
         private float _rotationsInput;
+        
     
         #region unity callback
         void Start()
@@ -27,7 +28,7 @@ namespace Player
 
         private void FixedUpdate()
         {
-            _rb.AddForce(_movementInput * (linearForce * Time.fixedDeltaTime));
+            _rb.AddForce(_movementInput * (linearForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
             var velocity = _rb.velocity;
             _rb.velocity = velocity.normalized * Mathf.Clamp(velocity.magnitude, 0, maxLinearSpeed);
             _rb.AddTorque(_rotationsInput * angularForce * Time.fixedDeltaTime);

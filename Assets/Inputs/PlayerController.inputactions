@@ -101,7 +101,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
+                    "name": "positive",
                     "id": "56bf994a-187e-4a16-92e2-a6d9a48dfaf7",
                     "path": "<Keyboard>/q",
                     "interactions": "",
@@ -112,7 +112,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
+                    "name": "negative",
                     "id": "555bebb3-f5bb-4dfa-9d60-2930c2babda8",
                     "path": "<Keyboard>/e",
                     "interactions": "",
@@ -134,7 +134,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
+                    "name": "positive",
                     "id": "6f50d1bc-93c4-4baa-a546-b093d58e8d4e",
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
@@ -145,7 +145,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
+                    "name": "negative",
                     "id": "6dc7e4df-47a7-4b43-9d06-a96edbdc707d",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
