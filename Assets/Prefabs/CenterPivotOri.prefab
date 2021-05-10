@@ -185,7 +185,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 80afc26c08599c6da923d0b1fdc3166c, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &-4277539786278193691
 BoxCollider2D:
@@ -228,4 +228,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.014498681, y: 0}
   serializedVersion: 2
-  m_Radius: 0.45486853
+  m_Radius: 0.6
