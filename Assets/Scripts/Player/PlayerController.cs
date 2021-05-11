@@ -23,7 +23,7 @@ namespace Player
             _rb = gameObject.GetComponent<Rigidbody2D>();
             _rb.centerOfMass = centerOfMass;
             var spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-            spriteRenderer.color = Random.ColorHSV();
+            //spriteRenderer.color = Random.ColorHSV();
         }
 
         private void FixedUpdate()

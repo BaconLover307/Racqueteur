@@ -28,7 +28,7 @@ namespace Arena
         {
             Vector2 direction = pushDirection.position - ball.transform.position;
 
-            ball.gameObject.GetComponent<Rigidbody2D>().AddForce(direction.normalized * pushForce);
+            ball.gameObject.GetComponent<Rigidbody2D>().AddForce(direction.normalized * pushForce, ForceMode2D.Impulse);
         }
 
         #endregion
