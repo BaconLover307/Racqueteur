@@ -997,7 +997,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1133724470}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1306e14b8c5b33d40ad1da45dec8a6aa, type: 3}
   m_Name: 
@@ -1064,7 +1064,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 3620422607196070024, guid: edd83c2ad58b4024083f6a36558d848e, type: 3}
+  m_PlayerPrefab: {fileID: 6125254679274490594, guid: e0854ce649900134e90e85c634d3d72e, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -2565,6 +2565,10 @@ PrefabInstance:
     - target: {fileID: 6766883155833509844, guid: 951c4a392918c8dea9923a98f149060a, type: 3}
       propertyPath: m_Name
       value: Ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766883155833509844, guid: 951c4a392918c8dea9923a98f149060a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6766883155833509849, guid: 951c4a392918c8dea9923a98f149060a, type: 3}
       propertyPath: m_RootOrder

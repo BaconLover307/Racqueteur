@@ -9,14 +9,15 @@ namespace Player
         public float linearForce = 500f;
         public float maxLinearSpeed = 100f;
         public float angularForce = 1000f;
-        public float maxAngularSpeed = 1000f;
+        public float angularSpeedMultiplier = 1000f;
         public Vector2 centerOfMass;
 
         private Rigidbody2D _rb;
         private Vector2 _movementInput = Vector2.zero;
         private float _rotationsInput;
-        
-    
+        private float spamRate = 0f;
+        private float lastTimestamp;
+
         #region unity callback
         void Start()
         {
@@ -31,8 +32,18 @@ namespace Player
             _rb.AddForce(_movementInput * (linearForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
             var velocity = _rb.velocity;
             _rb.velocity = velocity.normalized * Mathf.Clamp(velocity.magnitude, 0, maxLinearSpeed);
-            _rb.AddTorque(_rotationsInput * angularForce * Time.fixedDeltaTime);
-            _rb.angularVelocity = Mathf.Clamp(_rb.angularVelocity, -maxAngularSpeed, maxAngularSpeed);
+            _rb.AddTorque(_rotationsInput * angularForce * spamRate * Time.fixedDeltaTime);
+
+            if (_rotationsInput == 0)
+            {
+                spamRate -= 0.1f;
+            }
+            else
+            {
+                _rb.angularVelocity = Mathf.Clamp(_rb.angularVelocity, -angularSpeedMultiplier * spamRate, angularSpeedMultiplier * spamRate);
+            }
+
+            spamRate = Mathf.Max(0, spamRate);
         }
 
         #endregion
@@ -46,7 +57,17 @@ namespace Player
 
         public void OnRotate(InputAction.CallbackContext context)
         {
+            if (!gameObject.scene.IsValid())
+            {
+                return;
+            }
+
             _rotationsInput = context.ReadValue<float>();
+            if (context.started)
+            {
+                spamRate = 1 / (Time.fixedTime - lastTimestamp);
+                lastTimestamp = Time.fixedTime;
+            }
         }
 
         #endregion

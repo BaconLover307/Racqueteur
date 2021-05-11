@@ -9,7 +9,7 @@
                     "name": "Movement",
                     "type": "PassThrough",
                     "id": "c10f5d71-76e7-490b-86cc-c3bb373d64aa",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
@@ -19,7 +19,7 @@
                     "id": "021b9e92-003f-41e0-b66b-df18ab306d52",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=1)"
                 }
             ],
             "bindings": [

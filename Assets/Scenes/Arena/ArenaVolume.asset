@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Global Volume Profile
+  m_Name: ArenaVolume
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 4203675925154009376}
---- !u!114 &4203675925154009376
+  - {fileID: 3122003948780340012}
+--- !u!114 &3122003948780340012
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -30,11 +30,11 @@ MonoBehaviour:
   m_AdvancedMode: 0
   threshold:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 0.8
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 19
+    m_Value: 3.92
     min: 0
   scatter:
     m_OverrideState: 0
