@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1246205376991888282}
   - component: {fileID: 3852488009082525282}
   - component: {fileID: 1679477096880255294}
-  - component: {fileID: 532958386191323383}
   - component: {fileID: 2662361956720921681}
+  - component: {fileID: 532958386191323383}
   m_Layer: 0
   m_Name: Center3
   m_TagString: Player
@@ -205,22 +205,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!58 &532958386191323383
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3620422607196070024}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.6
 --- !u!60 &2662361956720921681
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -274,3 +258,19 @@ PolygonCollider2D:
       - {x: 0.49962676, y: 1.5058831}
       - {x: 0.7077183, y: 1.6930425}
       - {x: 0.89789397, y: 2.2967494}
+--- !u!58 &532958386191323383
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3620422607196070024}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.6

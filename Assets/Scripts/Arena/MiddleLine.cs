@@ -11,7 +11,9 @@ public class MiddleLine : MonoBehaviour
         {
             Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
-        else if ((collision.gameObject.tag == "Player") && (collision.gameObject.GetComponent<Collider2D>().GetType() == typeof(BoxCollider2D))) 
+        else if ((collision.gameObject.tag == "Player") &&
+            (collision.gameObject.GetComponent<Collider2D>().GetType() == typeof(BoxCollider2D)
+            || collision.gameObject.GetComponent<Collider2D>().GetType() == typeof(PolygonCollider2D))) 
         {
             Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
