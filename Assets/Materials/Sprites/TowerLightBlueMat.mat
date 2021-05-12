@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_TowerLightShader
+  m_Name: TowerLightBlueMat
   m_Shader: {fileID: -6465566751694194690, guid: ffc8f1d1564321748bb15145ea4d1b8a, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -44,10 +44,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_02afae65afca4cc6949177dcdd7e793d: 0.49
-    - Vector1_051cbad31ef24a4da2617cda941c3ce0: 0
+    - Vector1_02afae65afca4cc6949177dcdd7e793d: 0.05
+    - Vector1_051cbad31ef24a4da2617cda941c3ce0: 1.04
     - Vector1_5009135c87154b039e8f619b926ac514: 1
     - Vector1_a8d835cb099c4175adaf4d63c2cbfab4: 0.5
     m_Colors:
-    - Color_bad569be7fba478b9110aa1c78b32969: {r: 0.1647059, g: 0, b: 0, a: 0}
+    - Color_bad569be7fba478b9110aa1c78b32969: {r: 0, g: 0.047058824, b: 0.53333336, a: 0}
   m_BuildTextureStacks: []

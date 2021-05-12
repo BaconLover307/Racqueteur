@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Background
+  m_Name: HealthMat
   m_Shader: {fileID: -6465566751694194690, guid: 21a333740b468d744b47d23bef84fa57, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -37,5 +37,5 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors:
-    - Color_4e6765ed34634ba5b9a0c078e779e8e5: {r: 2.9960785, g: 2.9960785, b: 2.9960785, a: 0}
+    - Color_4e6765ed34634ba5b9a0c078e779e8e5: {r: 1.4142135, g: 1.4142135, b: 1.4142135, a: 0}
   m_BuildTextureStacks: []
