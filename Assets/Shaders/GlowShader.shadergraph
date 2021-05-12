@@ -294,7 +294,7 @@
     },
     "m_Name": "BaseColor",
     "m_DefaultReferenceName": "Color_4e6765ed34634ba5b9a0c078e779e8e5",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_MainColor",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

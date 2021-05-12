@@ -565,7 +565,7 @@
     },
     "m_Name": "MinimumAlpha",
     "m_DefaultReferenceName": "Vector1_0b585ef246fe4e0ca22f9c168907bf1d",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_MinAlpha",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -1435,7 +1435,7 @@
     "m_Guid": {
         "m_GuidSerialized": "f7cf883f-d1de-470e-9ceb-677a2ed35e18"
     },
-    "m_Name": "SwipeTexture",
+    "m_Name": "SweepTexture",
     "m_DefaultReferenceName": "Texture2D_67091527ba094b018c14051c86b9ad9d",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -1527,7 +1527,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "75316550b53949f1b5a78f24790bdf0e",
     "m_Id": 0,
-    "m_DisplayName": "SwipeTexture",
+    "m_DisplayName": "SweepTexture",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2263,7 +2263,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "bf574a56f1fb42529256182215378658",
     "m_Id": 0,
-    "m_DisplayName": "Float",
+    "m_DisplayName": "LightSweep",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2705,9 +2705,9 @@
     "m_Guid": {
         "m_GuidSerialized": "5b53d132-7f4b-4f9c-9d2f-480b469f5c2c"
     },
-    "m_Name": "Float",
+    "m_Name": "LightSweep",
     "m_DefaultReferenceName": "Vector1_efb42e6c338e45f080df8827edd0959d",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_LightSweep",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
