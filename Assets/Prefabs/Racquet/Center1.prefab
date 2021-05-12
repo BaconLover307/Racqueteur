@@ -144,6 +144,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 021b9e92-003f-41e0-b66b-df18ab306d52
     m_ActionName: Player/Rotate[/Keyboard/q,/Keyboard/e,/Keyboard/u,/Keyboard/o]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5929513302266969096}
+        m_TargetAssemblyTypeName: Player.PlayerController, Assembly-CSharp
+        m_MethodName: OnFlip
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b06392cb-e03e-43ff-8d5c-51f2c1be0156
+    m_ActionName: Player/Flip[/XInputControllerWindows/buttonSouth,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l,/Keyboard/l]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player

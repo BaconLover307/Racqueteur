@@ -926,6 +926,8 @@ MonoBehaviour:
       remapped: 7
     - original: 8
       remapped: 8
+    - original: 26
+      remapped: 26
   - name: P2
     routes:
     - original: 37
@@ -985,7 +987,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 6125254679274490594, guid: e0854ce649900134e90e85c634d3d72e,
+  m_PlayerPrefab: {fileID: 5017163697905385578, guid: b1ac653eb9cd5e3499feda1939c8629d,
     type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0

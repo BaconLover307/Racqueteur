@@ -85,6 +85,14 @@ namespace Player
             }
         }
 
+        public void OnFlip(InputAction.CallbackContext context)
+        {
+            Vector3 newScale = this.transform.localScale;
+            if (newScale == null) return;
+            newScale.x *= -1;
+            this.transform.localScale = newScale;
+        }
+
         #endregion
     }
 }
