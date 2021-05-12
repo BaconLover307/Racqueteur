@@ -93,6 +93,15 @@ namespace Player
             this.transform.localScale = newScale;
         }
 
+        public void OnCover(InputAction.CallbackContext context)
+        {
+            if (!gameObject.scene.IsValid())
+            {
+                return;
+            }
+            Debug.Log("Cover Pressed");
+        }
+
         #endregion
     }
 }
