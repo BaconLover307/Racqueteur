@@ -8,15 +8,20 @@ namespace Player
     {
         public float linearForce = 500f;
         public float maxLinearSpeed = 100f;
-        public float angularForce = 1000f;
-        public float angularSpeedMultiplier = 1000f;
+        public float angularForce = 500f;
+        public float burstSpeed = 2500f;
+        public float burstDelay = 1f;
+        public float maxAngularSpeed = 500f;
         public Vector2 centerOfMass;
 
         private Rigidbody2D _rb;
         private Vector2 _movementInput = Vector2.zero;
         private float _rotationsInput;
-        private float spamRate = 0f;
+        private float doubleTapDelay = 0.3f;
         private float lastTimestamp;
+        private float lastBurstTimeStamp;
+        private float lastTap;
+        private bool isDoubleTap;
 
         #region unity callback
         void Start()
@@ -29,21 +34,23 @@ namespace Player
 
         private void FixedUpdate()
         {
-            _rb.AddForce(_movementInput * (linearForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
+            _rb.AddForce(_movementInput * (linearForce * Time.fixedDeltaTime * 2), ForceMode2D.Impulse);
             var velocity = _rb.velocity;
             _rb.velocity = velocity.normalized * Mathf.Clamp(velocity.magnitude, 0, maxLinearSpeed);
-            _rb.AddTorque(_rotationsInput * angularForce * spamRate * Time.fixedDeltaTime);
 
-            if (_rotationsInput == 0)
+            if (isDoubleTap)
             {
-                spamRate -= 0.1f;
-            }
-            else
-            {
-                _rb.angularVelocity = Mathf.Clamp(_rb.angularVelocity, -angularSpeedMultiplier * spamRate, angularSpeedMultiplier * spamRate);
-            }
+                _rb.angularVelocity = Mathf.Clamp(_rotationsInput * burstSpeed, -burstSpeed, burstSpeed);
+                isDoubleTap = false;
 
-            spamRate = Mathf.Max(0, spamRate);
+            } else
+            {
+                if (-maxAngularSpeed <= _rb.angularVelocity && _rb.angularVelocity <= maxAngularSpeed)
+                {
+                    _rb.AddTorque(_rotationsInput * angularForce * Time.fixedDeltaTime * 2, ForceMode2D.Impulse);
+                    _rb.angularVelocity = Mathf.Clamp(_rb.angularVelocity, -maxAngularSpeed, maxAngularSpeed);
+                }
+            }
         }
 
         #endregion
@@ -65,7 +72,15 @@ namespace Player
             _rotationsInput = context.ReadValue<float>();
             if (context.started)
             {
-                spamRate = 1 / (Time.fixedTime - lastTimestamp);
+                var tapDelayTime = Time.fixedTime - lastTimestamp;
+                var burstDelayTime = Time.fixedTime - lastBurstTimeStamp;
+                if (tapDelayTime < doubleTapDelay && burstDelayTime > burstDelay && lastTap == _rotationsInput)
+                {
+                    isDoubleTap = true;
+                    lastBurstTimeStamp = Time.fixedTime;
+                }
+
+                lastTap = _rotationsInput;
                 lastTimestamp = Time.fixedTime;
             }
         }

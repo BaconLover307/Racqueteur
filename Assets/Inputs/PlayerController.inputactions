@@ -103,7 +103,7 @@
                 {
                     "name": "positive",
                     "id": "56bf994a-187e-4a16-92e2-a6d9a48dfaf7",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/comma",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -114,7 +114,7 @@
                 {
                     "name": "negative",
                     "id": "555bebb3-f5bb-4dfa-9d60-2930c2babda8",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/period",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
