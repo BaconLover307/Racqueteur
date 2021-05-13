@@ -447,7 +447,7 @@ MonoBehaviour:
   isGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 0.118
+  weight: 0.24
   sharedProfile: {fileID: 11400000, guid: 7d27aa5c71c1c4f49ba7338816fc7e94, type: 2}
 --- !u!4 &554233402
 Transform:
@@ -995,7 +995,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 2270337499535675342, guid: ac47e10c1dbe4c5409b1a508f038d9cf,
+  m_PlayerPrefab: {fileID: 5017163697905385578, guid: b1ac653eb9cd5e3499feda1939c8629d,
     type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0

@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2854374215564253223}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.78, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -193,12 +193,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3baa2319f9cdb0870a6b4245cc39f726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linearForce: 420
-  maxLinearSpeed: 40
+  linearForce: 350
+  maxLinearSpeed: 35
   angularForce: 1200
-  burstSpeed: 2650
+  burstSpeed: 2600
   skillDelay: 1.4
-  maxAngularSpeed: 420
+  maxAngularSpeed: 350
   blockDuration: 1.4
   centerOfMass: {x: 0, y: -2}
   pivotLocation: {x: 0, y: 0}

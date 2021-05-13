@@ -196,7 +196,7 @@ MonoBehaviour:
   linearForce: 350
   maxLinearSpeed: 35
   angularForce: 1200
-  burstSpeed: 2650
+  burstSpeed: 2600
   skillDelay: 1.4
   maxAngularSpeed: 350
   blockDuration: 1.4

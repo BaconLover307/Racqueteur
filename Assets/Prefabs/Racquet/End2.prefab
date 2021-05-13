@@ -193,12 +193,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3baa2319f9cdb0870a6b4245cc39f726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linearForce: 500
-  maxLinearSpeed: 50
+  linearForce: 400
+  maxLinearSpeed: 40
   angularForce: 1000
   burstSpeed: 2500
   skillDelay: 1
-  maxAngularSpeed: 540
+  maxAngularSpeed: 420
   blockDuration: 1
   centerOfMass: {x: 0, y: -1.9}
   pivotLocation: {x: 0, y: 0}
