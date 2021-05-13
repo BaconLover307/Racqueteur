@@ -101,12 +101,13 @@ namespace Tower
         {
             // Get the number of active dot
             int numOfDot = (int) Math.Ceiling(health / (startingHealth / 36));
-            if (numOfDot >= -1)
+            if (numOfDot < -1)
             {
-                for (int i = 35; i > numOfDot; i--)
-                {
-                    Children[i].SetActive(false);
-                }
+                numOfDot = -1;
+            }
+            for (int i = 35; i > numOfDot; i--)
+            {
+                Children[i].SetActive(false);
             }
         }
 
