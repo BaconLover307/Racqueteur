@@ -1,13 +1,18 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace Tower
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class TowerHealth : MonoBehaviour
     {
-        public float health = 1000f;
+        public List<GameObject> Children;
+        
+        public static float startingHealth = 1000f;
+        public float health;
         public float damageMultiplier = 10f;
         public GameObject rubleParticlePrefab;
 
@@ -18,6 +23,14 @@ namespace Tower
         private void Awake()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
+            foreach (Transform child in transform.GetChild(transform.childCount - 1))
+            {
+                if (child.tag == "Dot")
+                {
+                    Children.Add(child.gameObject);
+                }
+            }
+            health = startingHealth;
         }
 
         private void Start()
@@ -81,6 +94,20 @@ namespace Tower
         {
             health -= damage;
             Debug.Log(health);
+            SetHealthUI();
+        }
+
+        private void SetHealthUI()
+        {
+            // Get the number of active dot
+            int numOfDot = (int) Math.Ceiling(health / (startingHealth / 36));
+            if (numOfDot >= -1)
+            {
+                for (int i = 35; i > numOfDot; i--)
+                {
+                    Children[i].SetActive(false);
+                }
+            }
         }
 
         #endregion
