@@ -44,10 +44,10 @@ public class ArenaLight : MonoBehaviour
         float currentTime = 0;
         while (currentTime < lightsUpDuration)
         {
-            spriteRenderer.material.SetFloat("_MinAlpha", currentTime / lightsUpDuration * 0.3f);
+            spriteRenderer.material.SetFloat("_MinAlpha", currentTime / lightsUpDuration * 0.4f);
             currentTime += Time.fixedDeltaTime;
             yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
-        spriteRenderer.material.SetFloat("_MinAlpha", 0.3f);
+        spriteRenderer.material.SetFloat("_MinAlpha", 0.4f);
     }
 }

@@ -12,10 +12,7 @@ public class GameManager : MonoBehaviour
     public TowerLight[] towerLights;
     public BorderLight[] borderLights;
 
-    public GameObject globalVolume;
-
     private KeyboardSplitter keyboardSplitter;
-    private bool effectsOn;
 
     void Start()
     {
@@ -52,13 +49,6 @@ public class GameManager : MonoBehaviour
         Debug.Log(keyCW2);
         Debug.Log(keyCCW2);
 
-        // Set shininess volume
-        globalVolume.GetComponent<Volume>().weight = PlayerPrefs.GetFloat("ShininessVolume", 0);
-
-        // Set effects
-        //globalVolume.GetComponent<Bloom>().active = PlayerPrefs.GetInt("Effects", 0) == 1;
-        effectsOn = PlayerPrefs.GetInt("Effects", 1) == 1;
-        Debug.Log(effectsOn);
 
         StartCoroutine(TurnOnLights());
     }
@@ -70,7 +60,7 @@ public class GameManager : MonoBehaviour
         {
             light.Initialize();
         }
-        yield return new WaitForSeconds(arenaLight.sweepDuration + arenaLight.lightsUpDuration);
+        yield return new WaitForSeconds(arenaLight.sweepDuration);
         foreach (TowerLight light in towerLights)
         {
             light.Initialize();
