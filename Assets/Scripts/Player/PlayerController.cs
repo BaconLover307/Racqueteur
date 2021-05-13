@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(SparkSpawner))]
     public class PlayerController : MonoBehaviour
     {
         public float linearForce = 500f;
@@ -23,14 +24,19 @@ namespace Player
         private float lastSkillTimeStamp = 0f;
         private float lastTap;
         private bool isDoubleTap;
-
+        private SparkSpawner sparkSpawner;
         private bool isBlock = false;
 
         #region unity callback
-        void Start()
+        private void Awake()
         {
             _rb = gameObject.GetComponent<Rigidbody2D>();
             _rb.centerOfMass = centerOfMass;
+            sparkSpawner = GetComponent<SparkSpawner>();
+        }
+
+        void Start()
+        {
             var spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
             //spriteRenderer.color = Random.ColorHSV();
         }
@@ -55,6 +61,7 @@ namespace Player
             else if (isDoubleTap)
             {
                 _rb.angularVelocity = Mathf.Clamp(_rotationsInput * burstSpeed, -burstSpeed, burstSpeed);
+                StartCoroutine(sparkSpawner.ShowSparks());
                 isDoubleTap = false;
 
             } else
