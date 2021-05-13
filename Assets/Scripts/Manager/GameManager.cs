@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
@@ -11,10 +12,10 @@ public class GameManager : MonoBehaviour
     public TowerLight[] towerLights;
     public BorderLight[] borderLights;
 
-    [Header("Shininess Settings")]
     public GameObject globalVolume;
 
     private KeyboardSplitter keyboardSplitter;
+    private bool effectsOn;
 
     void Start()
     {
@@ -53,6 +54,11 @@ public class GameManager : MonoBehaviour
 
         // Set shininess volume
         globalVolume.GetComponent<Volume>().weight = PlayerPrefs.GetFloat("ShininessVolume", 0);
+
+        // Set effects
+        //globalVolume.GetComponent<Bloom>().active = PlayerPrefs.GetInt("Effects", 0) == 1;
+        effectsOn = PlayerPrefs.GetInt("Effects", 1) == 1;
+        Debug.Log(effectsOn);
 
         StartCoroutine(TurnOnLights());
     }

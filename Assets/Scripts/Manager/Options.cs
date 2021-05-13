@@ -12,6 +12,7 @@ public class Options : MonoBehaviour
     public TextMeshProUGUI up1, down1, left1, right1, cw1, ccw1;
     public TextMeshProUGUI up2, down2, left2, right2, cw2, ccw2;
     public Slider volumeSlider;
+    public Toggle effectsToggle;
 
     private GameObject currentKey;
 
@@ -49,6 +50,9 @@ public class Options : MonoBehaviour
 
         // Set shininess volume
         volumeSlider.value = PlayerPrefs.GetFloat("ShininessVolume", 0);
+
+        // Set effects toggle
+        effectsToggle.isOn = PlayerPrefs.GetInt("Effects", 1) == 1;
     }
 
     public void BackScene()
@@ -87,6 +91,13 @@ public class Options : MonoBehaviour
     public void OnVolumeChanged(float value)
     {
         PlayerPrefs.SetFloat("ShininessVolume", value);
+
+        PlayerPrefs.Save();
+    }
+
+    public void OnEffectsChanged(bool value)
+    {
+        PlayerPrefs.SetInt("Effects", value? 1:0);
 
         PlayerPrefs.Save();
     }
