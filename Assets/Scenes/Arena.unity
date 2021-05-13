@@ -445,7 +445,7 @@ MonoBehaviour:
   isGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 0.04
+  weight: 0.118
   sharedProfile: {fileID: 11400000, guid: 7d27aa5c71c1c4f49ba7338816fc7e94, type: 2}
 --- !u!4 &554233402
 Transform:
@@ -1037,6 +1037,7 @@ MonoBehaviour:
   - {fileID: 351917531}
   - {fileID: 2044790490}
   - {fileID: 765276944}
+  globalVolume: {fileID: 554233400}
 --- !u!1 &1280614506
 GameObject:
   m_ObjectHideFlags: 0

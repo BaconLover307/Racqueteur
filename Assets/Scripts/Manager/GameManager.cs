@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
@@ -9,6 +10,10 @@ public class GameManager : MonoBehaviour
     public ArenaLight arenaLight;
     public TowerLight[] towerLights;
     public BorderLight[] borderLights;
+
+    [Header("Shininess Settings")]
+    public GameObject globalVolume;
+
     private KeyboardSplitter keyboardSplitter;
 
     void Start()
@@ -45,6 +50,9 @@ public class GameManager : MonoBehaviour
         Debug.Log(keyRight2);
         Debug.Log(keyCW2);
         Debug.Log(keyCCW2);
+
+        // Set shininess volume
+        globalVolume.GetComponent<Volume>().weight = PlayerPrefs.GetFloat("ShininessVolume", 0);
 
         StartCoroutine(TurnOnLights());
     }

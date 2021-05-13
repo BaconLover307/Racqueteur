@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -10,11 +11,13 @@ public class Options : MonoBehaviour
 
     public TextMeshProUGUI up1, down1, left1, right1, cw1, ccw1;
     public TextMeshProUGUI up2, down2, left2, right2, cw2, ccw2;
+    public Slider volumeSlider;
 
     private GameObject currentKey;
 
     public void Start()
     {
+        // Set controller bindings
         keys.Add("Up1", (KeyCode)System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Up1", "W")));
         keys.Add("Down1", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Down1", "S")));
         keys.Add("Left1", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Left1", "A")));
@@ -43,6 +46,9 @@ public class Options : MonoBehaviour
         right2.text = keys["Right2"].ToString();
         cw2.text = keys["CW2"].ToString();
         ccw2.text = keys["CCW2"].ToString();
+
+        // Set shininess volume
+        volumeSlider.value = PlayerPrefs.GetFloat("ShininessVolume", 0);
     }
 
     public void BackScene()
@@ -76,6 +82,13 @@ public class Options : MonoBehaviour
     public void ChangeKey(GameObject clicked)
     {
         currentKey = clicked;
+    }
+
+    public void OnVolumeChanged(float value)
+    {
+        PlayerPrefs.SetFloat("ShininessVolume", value);
+
+        PlayerPrefs.Save();
     }
 
     // Save all key bindings when pressed Save
