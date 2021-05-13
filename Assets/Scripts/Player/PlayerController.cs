@@ -14,6 +14,7 @@ namespace Player
         public float maxAngularSpeed = 500f;
         public float blockDuration = 1f;
         public Vector2 centerOfMass;
+        public Vector2 pivotLocation;
 
         private Rigidbody2D _rb;
         private Vector2 _movementInput = Vector2.zero;
