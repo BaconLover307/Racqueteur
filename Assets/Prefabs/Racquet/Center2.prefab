@@ -197,8 +197,9 @@ MonoBehaviour:
   maxLinearSpeed: 40
   angularForce: 1000
   burstSpeed: 2000
-  burstDelay: 1
+  skillDelay: 1
   maxAngularSpeed: 420
+  blockDuration: 1
   centerOfMass: {x: 0, y: 0}
 --- !u!50 &4554215788990534105
 Rigidbody2D:

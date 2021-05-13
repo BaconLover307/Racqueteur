@@ -175,7 +175,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 72750553-c143-425e-ab05-186675735990
-    m_ActionName: Player/Cover[/Keyboard/e,/Keyboard/q,/Keyboard/q,/Keyboard/e]
+    m_ActionName: Player/Cover[/XInputControllerWindows/leftShoulder,/XInputControllerWindows/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
@@ -197,8 +197,9 @@ MonoBehaviour:
   maxLinearSpeed: 40
   angularForce: 1000
   burstSpeed: 2500
-  burstDelay: 1
+  skillDelay: 1
   maxAngularSpeed: 450
+  blockDuration: 1
   centerOfMass: {x: 0, y: 0}
 --- !u!50 &8102439745519360852
 Rigidbody2D:

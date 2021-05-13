@@ -10,8 +10,9 @@ namespace Player
         public float maxLinearSpeed = 100f;
         public float angularForce = 500f;
         public float burstSpeed = 2500f;
-        public float burstDelay = 1f;
+        public float skillDelay = 1f;
         public float maxAngularSpeed = 500f;
+        public float blockDuration = 1f;
         public Vector2 centerOfMass;
 
         private Rigidbody2D _rb;
@@ -19,9 +20,11 @@ namespace Player
         private float _rotationsInput;
         private float doubleTapDelay = 0.3f;
         private float lastTimestamp;
-        private float lastBurstTimeStamp;
+        private float lastSkillTimeStamp = 0f;
         private float lastTap;
         private bool isDoubleTap;
+
+        private bool isBlock = false;
 
         #region unity callback
         void Start()
@@ -38,7 +41,18 @@ namespace Player
             var velocity = _rb.velocity;
             _rb.velocity = velocity.normalized * Mathf.Clamp(velocity.magnitude, 0, maxLinearSpeed);
 
-            if (isDoubleTap)
+            if (isBlock)
+            {
+                var blockTime = Time.fixedTime - lastSkillTimeStamp;
+                if (blockTime <= blockDuration)
+                {
+                    _rb.angularVelocity = 0;
+                } else
+                {
+                    isBlock = false;
+                }
+            }
+            else if (isDoubleTap)
             {
                 _rb.angularVelocity = Mathf.Clamp(_rotationsInput * burstSpeed, -burstSpeed, burstSpeed);
                 isDoubleTap = false;
@@ -70,27 +84,30 @@ namespace Player
             }
 
             _rotationsInput = context.ReadValue<float>();
+
+            var tapDelayTime = Time.fixedTime - lastTimestamp;
+            var burstDelayTime = Time.fixedTime - lastSkillTimeStamp;
             if (context.started)
             {
-                var tapDelayTime = Time.fixedTime - lastTimestamp;
-                var burstDelayTime = Time.fixedTime - lastBurstTimeStamp;
-                if (tapDelayTime < doubleTapDelay && burstDelayTime > burstDelay && lastTap == _rotationsInput)
+                if (tapDelayTime < doubleTapDelay && burstDelayTime > skillDelay && lastTap == _rotationsInput)
                 {
                     isDoubleTap = true;
-                    lastBurstTimeStamp = Time.fixedTime;
+                    lastSkillTimeStamp = Time.fixedTime;
                 }
 
                 lastTap = _rotationsInput;
                 lastTimestamp = Time.fixedTime;
             }
+
+            
         }
 
         public void OnFlip(InputAction.CallbackContext context)
         {
-            Vector3 newScale = this.transform.localScale;
-            if (newScale == null) return;
+            Vector3 newScale = transform.localScale;
+            if (newScale == null || !gameObject.scene.IsValid()) return;
             newScale.x *= -1;
-            this.transform.localScale = newScale;
+            transform.localScale = newScale;
         }
 
         public void OnCover(InputAction.CallbackContext context)
@@ -99,9 +116,25 @@ namespace Player
             {
                 return;
             }
-            Debug.Log("Cover Pressed");
-        }
 
+            if (context.started)
+            {
+                var burstDelayTime = Time.fixedTime - lastSkillTimeStamp;
+                if (burstDelayTime > skillDelay)
+                {
+                    isBlock = true;
+                    lastSkillTimeStamp = Time.fixedTime;
+                }
+            }
+
+            if (context.canceled)
+            {
+                isBlock = false;
+            }
+
+
+
+        }
         #endregion
     }
 }

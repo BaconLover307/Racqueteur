@@ -35,7 +35,7 @@
                     "id": "72750553-c143-425e-ab05-186675735990",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -106,7 +106,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "QE",
+                    "name": "Left/Right",
                     "id": "8877e470-7bae-4357-95ca-873a1c04bd34",
                     "path": "1DAxis",
                     "interactions": "",
@@ -194,10 +194,10 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Q/E",
+                    "name": "Left/Right",
                     "id": "4b8f9450-3855-40c5-94a1-28ca4aea5b90",
                     "path": "ButtonWithOneModifier",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Cover",
@@ -207,7 +207,7 @@
                 {
                     "name": "modifier",
                     "id": "859bcc0a-7488-4c70-b426-6aea7244369f",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -218,7 +218,7 @@
                 {
                     "name": "button",
                     "id": "cec4ec92-9ebd-4162-9b8c-a35fc47df70b",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -227,7 +227,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "LB/RB",
+                    "name": "Shoulder",
                     "id": "aa1bebe2-401c-4d63-a15c-fc8465da0103",
                     "path": "ButtonWithOneModifier",
                     "interactions": "",
