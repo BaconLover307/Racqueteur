@@ -8,7 +8,7 @@ namespace Tower
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class TowerHealth : MonoBehaviour
-    {        
+    {
         public static float startingHealth = 1000f;
         public float health;
         public float damageMultiplier = 10f;
@@ -20,7 +20,7 @@ namespace Tower
         private GameObject[] healthDots;
         private SpriteRenderer spriteRenderer;
         private int healthDotsIterator;
-       
+
         #region unity callback
 
         private void Awake()
@@ -44,23 +44,9 @@ namespace Tower
             ContactPoint2D contact = other.contacts[0];
             //Debug.Log(contact.collider.name + " hit " + contact.otherCollider.name);
 
-            float minThresholdImpulse = 20f;
-            float maxImpulse = 100f;
-            if (contact.normalImpulse > minThresholdImpulse)
-            {
-                var ruble = Instantiate(rubleParticlePrefab, contact.point, Quaternion.identity);
-                Quaternion rotation = Quaternion.LookRotation(ruble.transform.forward, contact.normal * -1);
-                ruble.transform.rotation = rotation;
-                ParticleSystem rubleParticle = ruble.GetComponent<ParticleSystem>();
-                var mainModule = rubleParticle.main;
-                var emissionModule = rubleParticle.emission;
-                emissionModule.rateOverTime = contact.normalImpulse / maxImpulse * mainModule.maxParticles;
-                Destroy(ruble, 1f);
+            ProcessEffect(contact);
 
-                cameraShake.Shake(contact.normalImpulse / maxImpulse * cameraShake.maxAmplitude);
-            }
-
-            //Calculate the damage based on magnitude
+            // Calculate the damage based on magnitude
             float damage;
             if (contact.otherCollider.name == "WeakpointTop" ||
                 contact.otherCollider.name == "WeakpointBottom" ||
@@ -83,6 +69,27 @@ namespace Tower
 
         #region private function
 
+        private void ProcessEffect(ContactPoint2D contact)
+        {
+            float minThresholdImpulse = 20f;
+            float maxImpulse = 100f;
+
+            if (contact.normalImpulse > minThresholdImpulse)
+            {
+                var ruble = Instantiate(rubleParticlePrefab, contact.point, Quaternion.identity);
+                Quaternion rotation = Quaternion.LookRotation(ruble.transform.forward, contact.normal * -1);
+                ruble.transform.rotation = rotation;
+                ParticleSystem rubleParticle = ruble.GetComponent<ParticleSystem>();
+                var mainModule = rubleParticle.main;
+                var emissionModule = rubleParticle.emission;
+                ParticleSystem.Burst burst = new ParticleSystem.Burst(0, contact.normalImpulse / maxImpulse * mainModule.maxParticles);
+                emissionModule.SetBurst(0, burst);
+                Destroy(ruble, 1f);
+
+                cameraShake.Shake(contact.normalImpulse / maxImpulse * cameraShake.maxAmplitude);
+            }
+        }
+
         private void Hit(float damage)
         {
             health -= damage;
@@ -93,7 +100,7 @@ namespace Tower
         private void SetHealthUI()
         {
             int lastDotActiveIndex = healthDots.Length - Mathf.CeilToInt((health / startingHealth) * healthDots.Length);
-            while(healthDotsIterator < lastDotActiveIndex)
+            while (healthDotsIterator < lastDotActiveIndex)
             {
                 healthDots[healthDotsIterator].SetActive(false);
                 healthDotsIterator++;
