@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -92,7 +93,6 @@ public class Options : MonoBehaviour
                 if (!conflictedkey)
                 {
                     keys[currentName] = e.keyCode;
-                    Debug.Log(currentName);
                     currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
 
                     // Save the key binding to PlayerPrefs
@@ -100,6 +100,8 @@ public class Options : MonoBehaviour
                     PlayerPrefs.Save();
                 }
 
+                Debug.Log(currentKey);
+                currentKey.GetComponent<Button>().OnSelect(null);
                 currentKey = null;
             }
         }
