@@ -5,29 +5,38 @@ namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(SparkSpawner))]
+    [RequireComponent(typeof(RacketLight))]
     public class PlayerController : MonoBehaviour
     {
+        [Header("Movements Settings")]
         public float linearForce = 500f;
         public float maxLinearSpeed = 100f;
         public float angularForce = 500f;
-        public float burstSpeed = 2500f;
-        public float skillDelay = 1f;
         public float maxAngularSpeed = 500f;
-        public float blockDuration = 1f;
         public Vector2 centerOfMass;
 
+        [Header("Skill Settings")]
+        public float flickSpeed = 2500f;
+        public float flickCooldown = 1f;
+        public float blockDuration = 1f;
+        public float blockCooldown = 1f;
+
+        [Header("Input Settings")]
+        public float doubleTapDelayThreshold = 0.3f;
+
+        private SparkSpawner sparkSpawner;
         private Rigidbody2D _rb;
         private Vector2 _movementInput = Vector2.zero;
-        private float _rotationsInput;
-        private float doubleTapDelay = 0.3f;
-        private float lastTimestamp;
-        private float lastSkillTimeStamp = 0f;
-        private float lastTap;
+        private float _rotationInput;
+        private float blockTimestamp = 0f;
+        private float firstTapTimestamp = 0f;
+        private float lastFlickTimestamp = 0f;
+        private float lastRotationInput = 0f;
         private bool isDoubleTap;
-        private SparkSpawner sparkSpawner;
         private bool isBlock = false;
 
         #region unity callback
+
         private void Awake()
         {
             _rb = gameObject.GetComponent<Rigidbody2D>();
@@ -43,35 +52,55 @@ namespace Player
 
         private void FixedUpdate()
         {
-            _rb.AddForce(_movementInput * (linearForce * Time.fixedDeltaTime * 2), ForceMode2D.Impulse);
-            var velocity = _rb.velocity;
-            _rb.velocity = velocity.normalized * Mathf.Clamp(velocity.magnitude, 0, maxLinearSpeed);
+            Move();
 
             if (isBlock)
             {
-                var blockTime = Time.fixedTime - lastSkillTimeStamp;
-                if (blockTime <= blockDuration)
-                {
-                    _rb.angularVelocity = 0;
-                } else
-                {
-                    isBlock = false;
-                }
+                Block();
             }
             else if (isDoubleTap)
             {
-                _rb.angularVelocity = Mathf.Clamp(_rotationsInput * burstSpeed, -burstSpeed, burstSpeed);
-                StartCoroutine(sparkSpawner.ShowSparks());
-                isDoubleTap = false;
-
+                Flick();
             } else
             {
-                if (-maxAngularSpeed <= _rb.angularVelocity && _rb.angularVelocity <= maxAngularSpeed)
-                {
-                    _rb.AddTorque(_rotationsInput * angularForce * Time.fixedDeltaTime * 2, ForceMode2D.Impulse);
-                    _rb.angularVelocity = Mathf.Clamp(_rb.angularVelocity, -maxAngularSpeed, maxAngularSpeed);
-                }
+                Rotate();
             }
+        }
+
+        private void Move()
+        {
+            _rb.AddForce(_movementInput * (linearForce * Time.fixedDeltaTime * 2), ForceMode2D.Impulse);
+            var velocity = _rb.velocity;
+            _rb.velocity = velocity.normalized * Mathf.Clamp(velocity.magnitude, 0, maxLinearSpeed);
+        }
+
+        private void Rotate()
+        {
+            if (-maxAngularSpeed <= _rb.angularVelocity && _rb.angularVelocity <= maxAngularSpeed)
+            {
+                _rb.AddTorque(_rotationInput * angularForce * Time.fixedDeltaTime * 2, ForceMode2D.Impulse);
+                _rb.angularVelocity = Mathf.Clamp(_rb.angularVelocity, -maxAngularSpeed, maxAngularSpeed);
+            }
+        }
+
+        private void Block()
+        {
+            float elapsedBlockTime = Time.fixedTime - blockTimestamp;
+            if (elapsedBlockTime <= blockDuration)
+            {
+                _rb.angularVelocity = 0;
+            }
+            else
+            {
+                isBlock = false;
+            }
+        }
+
+        private void Flick()
+        {
+            _rb.angularVelocity = Mathf.Clamp(_rotationInput * flickSpeed, -flickSpeed, flickSpeed);
+            StartCoroutine(sparkSpawner.ShowSparks());
+            isDoubleTap = false;
         }
 
         #endregion
@@ -85,32 +114,31 @@ namespace Player
 
         public void OnRotate(InputAction.CallbackContext context)
         {
-            if (!gameObject.scene.IsValid())
-            {
-                return;
-            }
+            if (!gameObject.scene.IsValid()) return;
 
-            _rotationsInput = context.ReadValue<float>();
+            _rotationInput = context.ReadValue<float>();
 
-            var tapDelayTime = Time.fixedTime - lastTimestamp;
-            var burstDelayTime = Time.fixedTime - lastSkillTimeStamp;
             if (context.started)
             {
-                if (tapDelayTime < doubleTapDelay && burstDelayTime > skillDelay && lastTap == _rotationsInput)
+                if (Time.fixedTime - firstTapTimestamp < doubleTapDelayThreshold 
+                    && lastRotationInput == _rotationInput
+                    && Time.fixedTime - lastFlickTimestamp > flickCooldown)
                 {
                     isDoubleTap = true;
-                    lastSkillTimeStamp = Time.fixedTime;
+                    lastFlickTimestamp = Time.fixedTime;
                 }
-
-                lastTap = _rotationsInput;
-                lastTimestamp = Time.fixedTime;
+                else
+                {
+                    firstTapTimestamp = Time.fixedTime;
+                    lastRotationInput = _rotationInput;
+                }
             }
-
-            
         }
 
         public void OnFlip(InputAction.CallbackContext context)
         {
+            if (!gameObject.scene.IsValid()) return;
+
             Vector3 newScale = transform.localScale;
             if (newScale == null || !gameObject.scene.IsValid()) return;
             newScale.x *= -1;
@@ -119,29 +147,26 @@ namespace Player
 
         public void OnCover(InputAction.CallbackContext context)
         {
-            if (!gameObject.scene.IsValid())
-            {
-                return;
-            }
+            if (!gameObject.scene.IsValid()) return;
 
             if (context.started)
             {
-                var burstDelayTime = Time.fixedTime - lastSkillTimeStamp;
-                if (burstDelayTime > skillDelay)
+                if (Time.fixedTime - blockTimestamp > blockCooldown)
                 {
                     isBlock = true;
-                    lastSkillTimeStamp = Time.fixedTime;
+                    blockTimestamp = Time.fixedTime;
                 }
             }
-
-            if (context.canceled)
+            else if (context.canceled)
             {
-                isBlock = false;
+                if (isBlock)
+                {
+                    isBlock = false;
+                    blockTimestamp = Time.fixedTime;
+                }
             }
-
-
-
         }
+
         #endregion
     }
 }

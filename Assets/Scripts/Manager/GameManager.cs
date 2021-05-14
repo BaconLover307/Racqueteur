@@ -35,19 +35,19 @@ public class GameManager : MonoBehaviour
         KeyCode keyCW2 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("CW2", "LeftArrow"));
         KeyCode keyCCW2 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("CCW2", "RightArrow"));
 
-        Debug.Log(keyUp1);
-        Debug.Log(keyDown1);
-        Debug.Log(keyLeft1);
-        Debug.Log(keyRight1);
-        Debug.Log(keyCW1);
-        Debug.Log(keyCCW1);
+        //Debug.Log(keyUp1);
+        //Debug.Log(keyDown1);
+        //Debug.Log(keyLeft1);
+        //Debug.Log(keyRight1);
+        //Debug.Log(keyCW1);
+        //Debug.Log(keyCCW1);
 
-        Debug.Log(keyUp2);
-        Debug.Log(keyDown2);
-        Debug.Log(keyLeft2);
-        Debug.Log(keyRight2);
-        Debug.Log(keyCW2);
-        Debug.Log(keyCCW2);
+        //Debug.Log(keyUp2);
+        //Debug.Log(keyDown2);
+        //Debug.Log(keyLeft2);
+        //Debug.Log(keyRight2);
+        //Debug.Log(keyCW2);
+        //Debug.Log(keyCCW2);
 
         // Set prefab for player 1 & player 2
         int racquet1 = PlayerPrefs.GetInt("Racquet1");

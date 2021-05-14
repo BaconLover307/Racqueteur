@@ -22,7 +22,6 @@ public class CameraShake : MonoBehaviour
 
     public void Shake(float amplitude, float frequency=1f)
     {
-        Debug.Log("Shake");
         StopCoroutine(ProcessShake(amplitude, frequency, shakeDuration));
         StartCoroutine(ProcessShake(amplitude, frequency, shakeDuration));
     }

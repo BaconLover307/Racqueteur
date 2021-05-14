@@ -34,7 +34,7 @@ public class TowerLight : MonoBehaviour
         float currentTime = 0;
         while (currentTime < lightsUpDuration)
         {
-            spriteRenderer.material.SetFloat("_Progress", currentTime / lightsUpDuration * 0.3f);
+            spriteRenderer.material.SetFloat("_Progress", currentTime / lightsUpDuration);
             currentTime += Time.fixedDeltaTime;
             yield return new WaitForSeconds(Time.fixedDeltaTime);
         }

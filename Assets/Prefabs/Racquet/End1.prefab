@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 853616d0c2d9ae14eab165c0921e8829, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -201,7 +201,6 @@ MonoBehaviour:
   maxAngularSpeed: 450
   blockDuration: 1
   centerOfMass: {x: 0, y: -2}
-  pivotLocation: {x: 0, y: 0}
 --- !u!50 &6237792806378677047
 Rigidbody2D:
   serializedVersion: 4
@@ -240,7 +239,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.8, y: 7.2}
+    oldSize: {x: 2.8, y: 8.2}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
