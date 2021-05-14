@@ -49,6 +49,13 @@ public class GameManager : MonoBehaviour
         Debug.Log(keyCW2);
         Debug.Log(keyCCW2);
 
+        // Set prefab for player 1 & player 2
+        int racquet1 = PlayerPrefs.GetInt("Racquet1");
+        int racquet2 = PlayerPrefs.GetInt("Racquet2");
+
+        Debug.Log(racquet1.ToString());
+        Debug.Log(racquet2.ToString());
+
 
         StartCoroutine(TurnOnLights());
     }

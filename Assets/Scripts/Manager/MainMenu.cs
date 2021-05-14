@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("Arena");
+        SceneManager.LoadScene("SelectionScene");
     }
 
     public void OpenOptions()
