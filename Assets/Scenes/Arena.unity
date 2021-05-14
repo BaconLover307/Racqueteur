@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 236580328}
   - component: {fileID: 236580330}
   - component: {fileID: 236580329}
+  - component: {fileID: 236580331}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -180,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 03:00
+  m_text: <mspace=mspace=40>00:00</mspace>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0a2e880558cb60f43884e603b2892c43, type: 2}
   m_sharedMaterial: {fileID: -6638281995272284298, guid: 0a2e880558cb60f43884e603b2892c43, type: 2}
@@ -257,6 +258,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 236580327}
   m_CullTransparentMesh: 1
+--- !u!114 &236580331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236580327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0062b13d3512f254686bde217fd600e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeRemaining: 180
+  monoSpacingSize: 40
+  timerStarted: 0
 --- !u!1 &351917526
 GameObject:
   m_ObjectHideFlags: 0
