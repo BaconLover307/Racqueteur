@@ -660,6 +660,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3620422607196070027, guid: edd83c2ad58b4024083f6a36558d848e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1b1577ee64c2d3439ba9131f5c98a29, type: 2}
     - target: {fileID: 3852488009082525282, guid: edd83c2ad58b4024083f6a36558d848e, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -987,7 +991,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -480, y: -200.00005}
+  m_AnchoredPosition: {x: -480, y: -200.00006}
   m_SizeDelta: {x: 320, y: 60}
   m_Pivot: {x: 0.50000006, y: 0.5000001}
 --- !u!114 &519897030
@@ -1120,6 +1124,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1892412935754809452, guid: beb99370979504b4bb8bf31d51a8229c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1b1577ee64c2d3439ba9131f5c98a29, type: 2}
     - target: {fileID: 1892412935754809453, guid: beb99370979504b4bb8bf31d51a8229c, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1243,6 +1251,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8350226946297475714, guid: abfc181c870727f448d21649a409be9e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1b1577ee64c2d3439ba9131f5c98a29, type: 2}
     - target: {fileID: 8350226946297475715, guid: abfc181c870727f448d21649a409be9e, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1380,6 +1392,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2270337499535675341, guid: ac47e10c1dbe4c5409b1a508f038d9cf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1b1577ee64c2d3439ba9131f5c98a29, type: 2}
     - target: {fileID: 2270337499535675342, guid: ac47e10c1dbe4c5409b1a508f038d9cf, type: 3}
       propertyPath: m_Name
       value: End4
@@ -2631,6 +2647,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2854374215564253220, guid: 752ece3d767c6c240a3c095b1e0575e9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1b1577ee64c2d3439ba9131f5c98a29, type: 2}
     - target: {fileID: 2854374215564253221, guid: 752ece3d767c6c240a3c095b1e0575e9, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -2945,7 +2965,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 480, y: -200.00005}
+  m_AnchoredPosition: {x: 480, y: -200.00006}
   m_SizeDelta: {x: 320, y: 60}
   m_Pivot: {x: 0.50000006, y: 0.5000001}
 --- !u!114 &1702856388
@@ -3203,6 +3223,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5017163697905385577, guid: b1ac653eb9cd5e3499feda1939c8629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1b1577ee64c2d3439ba9131f5c98a29, type: 2}
     - target: {fileID: 5017163697905385578, guid: b1ac653eb9cd5e3499feda1939c8629d, type: 3}
       propertyPath: m_Name
       value: Center4
@@ -3308,6 +3332,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6125254679274490593, guid: e0854ce649900134e90e85c634d3d72e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1b1577ee64c2d3439ba9131f5c98a29, type: 2}
     - target: {fileID: 6125254679274490594, guid: e0854ce649900134e90e85c634d3d72e, type: 3}
       propertyPath: m_Name
       value: Center1
@@ -3513,6 +3541,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5352381281662699202, guid: 8ee28a5938a0a0d41b20d5b6c87c7887, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1b1577ee64c2d3439ba9131f5c98a29, type: 2}
     - target: {fileID: 5352381281662699203, guid: 8ee28a5938a0a0d41b20d5b6c87c7887, type: 3}
       propertyPath: m_RootOrder
       value: 5
