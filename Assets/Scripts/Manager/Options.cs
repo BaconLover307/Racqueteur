@@ -9,8 +9,8 @@ public class Options : MonoBehaviour
 {
     private Dictionary<string, KeyCode> keys = new Dictionary<string, KeyCode>();
 
-    public TextMeshProUGUI up1, down1, left1, right1, cw1, ccw1;
-    public TextMeshProUGUI up2, down2, left2, right2, cw2, ccw2;
+    public TextMeshProUGUI up1, down1, left1, right1, cw1, ccw1, flip1;
+    public TextMeshProUGUI up2, down2, left2, right2, cw2, ccw2, flip2;
     public Slider volumeSlider;
     public Toggle effectsToggle;
 
@@ -25,6 +25,7 @@ public class Options : MonoBehaviour
         keys.Add("Right1", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Right1", "D")));
         keys.Add("CW1", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("CW1", "V")));
         keys.Add("CCW1", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("CCW1", "N")));
+        keys.Add("Flip1", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Flip1", "G")));
 
         keys.Add("Up2", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Up2", "I")));
         keys.Add("Down2", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Down2", "K")));
@@ -32,7 +33,7 @@ public class Options : MonoBehaviour
         keys.Add("Right2", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Right2", "L")));
         keys.Add("CW2", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("CW2", "LeftArrow")));
         keys.Add("CCW2", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("CCW2", "RightArrow")));
-
+        keys.Add("Flip2", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Flip2", "UpArrow")));
 
         up1.text = keys["Up1"].ToString();
         down1.text = keys["Down1"].ToString();
@@ -40,6 +41,7 @@ public class Options : MonoBehaviour
         right1.text = keys["Right1"].ToString();
         cw1.text = keys["CW1"].ToString();
         ccw1.text = keys["CCW1"].ToString();
+        left1.text = keys["Flip1"].ToString();
 
         up2.text = keys["Up2"].ToString();
         down2.text = keys["Down2"].ToString();
@@ -47,6 +49,7 @@ public class Options : MonoBehaviour
         right2.text = keys["Right2"].ToString();
         cw2.text = keys["CW2"].ToString();
         ccw2.text = keys["CCW2"].ToString();
+        right2.text = keys["Right2"].ToString();
 
         // Set shininess volume
         volumeSlider.value = PlayerPrefs.GetFloat("ShininessVolume", 0);
@@ -70,13 +73,32 @@ public class Options : MonoBehaviour
             {
                 string currentName = currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().name;
 
-                keys[currentName] = e.keyCode;
-                Debug.Log(currentName);
-                currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
+                // Check if the input key is same with the other key binding
+                bool conflictedkey = false;
 
-                // Save the key binding to PlayerPrefs
-                PlayerPrefs.SetString(currentName, e.keyCode.ToString());
-                PlayerPrefs.Save();
+                foreach (var key in keys)
+                {
+                    // If the key binding name isn't same with the name and the input keycode
+                    // is same with this key binding
+                    // then it makes conflict
+                    if (key.Key != currentName && key.Value == e.keyCode)
+                    {
+                        conflictedkey = true;
+                        break;
+                    }
+                }
+
+                // If not conflict then change the key
+                if (!conflictedkey)
+                {
+                    keys[currentName] = e.keyCode;
+                    Debug.Log(currentName);
+                    currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
+
+                    // Save the key binding to PlayerPrefs
+                    PlayerPrefs.SetString(currentName, e.keyCode.ToString());
+                    PlayerPrefs.Save();
+                }
 
                 currentKey = null;
             }
