@@ -29,7 +29,7 @@ public class ArenaLight : MonoBehaviour
         int step = Mathf.FloorToInt(sweepOnceDuration / Time.fixedDeltaTime);
         float delta = 2 / (float) step;
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             for (int j = 0; j < step; j++)
             {
