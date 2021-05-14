@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
 {
     [Header("Game Settings")]
     public PlayerController[] racquets;
+    public GameObject[] spawnPoints;
+    public Material P1Mat;
+    public Material P2Mat;
+
 
     [Header("Light Settings")]
     public ArenaLight arenaLight;
@@ -17,6 +21,8 @@ public class GameManager : MonoBehaviour
     public BorderLight[] borderLights;
 
     private KeyboardSplitter keyboardSplitter;
+    private PlayerController player1;
+    private PlayerController player2;
 
     void Start()
     {
@@ -62,6 +68,7 @@ public class GameManager : MonoBehaviour
 
 
         StartCoroutine(TurnOnLights());
+        SpawnRacquets();
     }
 
     IEnumerator TurnOnLights()
@@ -76,5 +83,16 @@ public class GameManager : MonoBehaviour
         {
             light.Initialize();
         }
+    }
+
+    private void SpawnRacquets()
+    {
+        player1 = Instantiate(racquets[PlayerPrefs.GetInt("Racquet1")], spawnPoints[0].transform);
+        player1.GetComponent<SpriteRenderer>().material = P1Mat;
+        PlayerInput p1Controller = player1.GetComponent<PlayerInput>();
+
+        player2 = Instantiate(racquets[PlayerPrefs.GetInt("Racquet2")], spawnPoints[1].transform);
+        player2.GetComponent<SpriteRenderer>().material = P2Mat;
+        PlayerInput p2Controller = player2.GetComponent<PlayerInput>();
     }
 }

@@ -6,8 +6,16 @@ public class RacquetSelection : MonoBehaviour
 {
     public GameObject[] racquets1;
     public GameObject[] racquets2;
-    public int selectedRacquet1 = 0;
-    public int selectedRacquet2 = 0;
+    public int selectedRacquet1;
+    public int selectedRacquet2;
+
+    public void Start()
+    {
+        selectedRacquet1 = PlayerPrefs.GetInt("Racquet1", 0);
+        racquets1[selectedRacquet1].SetActive(true);
+        selectedRacquet2 = PlayerPrefs.GetInt("Racquet2", 0);
+        racquets2[selectedRacquet2].SetActive(true);
+    }
 
     public void nextRacquet1()
     {

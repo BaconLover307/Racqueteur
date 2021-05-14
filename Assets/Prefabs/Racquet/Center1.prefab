@@ -94,7 +94,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6125254679274490594}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children:
   - {fileID: 6531245812473604660}
@@ -359,6 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8887a4c6f7ae74ab31b8391273a317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightSwitchDuration: 0.2
 --- !u!1 &6611025115491253532
 GameObject:
   m_ObjectHideFlags: 0
