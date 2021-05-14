@@ -5,11 +5,31 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class RacketLight : MonoBehaviour
 {
+    public float lightSwitchDuration = .2f;
+
     private Material lightMat;
 
     private void Awake()
     {
         lightMat = GetComponent<SpriteRenderer>().material;
+    }
+
+    public void UpdateMaterial(Material mat)
+    {
+        GetComponent<SpriteRenderer>().material = mat;
+        lightMat = mat;
+    }
+
+    public void SwitchLight(bool on)
+    {
+        float intensity = on ? 1 : 0;
+        StopAllCoroutines();
+        StartCoroutine(SetLightIntensity(intensity, lightSwitchDuration));
+    }
+
+    public void SetLightIntensity(float targetIntensity)
+    {
+        lightMat.SetFloat("_Progress", targetIntensity);
     }
 
     IEnumerator SetLightIntensity(float targetIntensity, float duration)

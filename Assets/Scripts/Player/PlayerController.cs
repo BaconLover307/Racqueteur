@@ -25,6 +25,7 @@ namespace Player
         public float doubleTapDelayThreshold = 0.3f;
 
         private SparkSpawner sparkSpawner;
+        private RacketLight racketLight;
         private Rigidbody2D _rb;
         private Vector2 _movementInput = Vector2.zero;
         private float _rotationInput;
@@ -42,6 +43,7 @@ namespace Player
             _rb = gameObject.GetComponent<Rigidbody2D>();
             _rb.centerOfMass = centerOfMass;
             sparkSpawner = GetComponent<SparkSpawner>();
+            racketLight = GetComponent<RacketLight>();
         }
 
         void Start()
@@ -61,7 +63,8 @@ namespace Player
             else if (isDoubleTap)
             {
                 Flick();
-            } else
+            } 
+            else
             {
                 Rotate();
             }
@@ -93,6 +96,7 @@ namespace Player
             else
             {
                 isBlock = false;
+                racketLight.SwitchLight(false);
             }
         }
 
@@ -155,6 +159,7 @@ namespace Player
                 {
                     isBlock = true;
                     blockTimestamp = Time.fixedTime;
+                    racketLight.SwitchLight(true);
                 }
             }
             else if (context.canceled)
@@ -163,6 +168,7 @@ namespace Player
                 {
                     isBlock = false;
                     blockTimestamp = Time.fixedTime;
+                    racketLight.SwitchLight(false);
                 }
             }
         }
