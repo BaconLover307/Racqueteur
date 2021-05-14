@@ -1,13 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using Player;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+    
     [Header("Game Settings")]
     public PlayerController[] racquets;
     public GameObject[] spawnPoints;
@@ -23,6 +27,11 @@ public class GameManager : MonoBehaviour
     private KeyboardSplitter keyboardSplitter;
     private PlayerController player1;
     private PlayerController player2;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -119,4 +128,18 @@ public class GameManager : MonoBehaviour
         player2.GetComponent<SpriteRenderer>().material = P2Mat;
         PlayerInput p2Controller = player2.GetComponent<PlayerInput>();
     }
+
+    #region public callback
+
+    public void OnBackToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenuScene");
+    }
+    
+    public void OnRestart()
+    {
+        SceneManager.LoadScene("Arena");
+    }
+
+    #endregion
 }

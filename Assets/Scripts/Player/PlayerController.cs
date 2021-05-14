@@ -1,3 +1,5 @@
+using System;
+using Manager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -171,6 +173,12 @@ namespace Player
                     racketLight.SwitchLight(false);
                 }
             }
+        }
+
+
+        public void OnPause(InputAction.CallbackContext context)
+        {
+            GameManager.Instance.GetComponent<PauseManager>().OnPauseClicked();
         }
 
         #endregion
