@@ -4,9 +4,13 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
+using Player;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Game Settings")]
+    public PlayerController[] racquets;
+
     [Header("Light Settings")]
     public ArenaLight arenaLight;
     public TowerLight[] towerLights;

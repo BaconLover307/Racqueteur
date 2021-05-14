@@ -25,7 +25,6 @@ namespace Player
         public float doubleTapDelayThreshold = 0.3f;
 
         private SparkSpawner sparkSpawner;
-        private RacketLight racketLight;
         private Rigidbody2D _rb;
         private Vector2 _movementInput = Vector2.zero;
         private float _rotationInput;
@@ -35,6 +34,7 @@ namespace Player
         private float lastRotationInput = 0f;
         private bool isDoubleTap;
         private bool isBlock = false;
+        private bool isEnabled = true;
 
         #region unity callback
 
@@ -43,7 +43,6 @@ namespace Player
             _rb = gameObject.GetComponent<Rigidbody2D>();
             _rb.centerOfMass = centerOfMass;
             sparkSpawner = GetComponent<SparkSpawner>();
-            racketLight = GetComponent<RacketLight>();
         }
 
         void Start()
@@ -54,19 +53,21 @@ namespace Player
 
         private void FixedUpdate()
         {
-            Move();
+            if (isEnabled)
+            {
+                Move();
 
-            if (isBlock)
-            {
-                Block();
-            }
-            else if (isDoubleTap)
-            {
-                Flick();
-            } 
-            else
-            {
-                Rotate();
+                if (isBlock)
+                {
+                    Block();
+                }
+                else if (isDoubleTap)
+                {
+                    Flick();
+                } else
+                {
+                    Rotate();
+                }
             }
         }
 
@@ -96,7 +97,6 @@ namespace Player
             else
             {
                 isBlock = false;
-                racketLight.SwitchLight(false);
             }
         }
 
@@ -105,6 +105,16 @@ namespace Player
             _rb.angularVelocity = Mathf.Clamp(_rotationInput * flickSpeed, -flickSpeed, flickSpeed);
             StartCoroutine(sparkSpawner.ShowSparks());
             isDoubleTap = false;
+        }
+
+        public void DisableControls()
+        {
+            isEnabled = false;
+        }
+
+        public void EnableControls()
+        {
+            isEnabled = true;
         }
 
         #endregion
@@ -159,7 +169,6 @@ namespace Player
                 {
                     isBlock = true;
                     blockTimestamp = Time.fixedTime;
-                    racketLight.SwitchLight(true);
                 }
             }
             else if (context.canceled)
@@ -168,7 +177,6 @@ namespace Player
                 {
                     isBlock = false;
                     blockTimestamp = Time.fixedTime;
-                    racketLight.SwitchLight(false);
                 }
             }
         }

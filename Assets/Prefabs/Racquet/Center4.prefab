@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 853616d0c2d9ae14eab165c0921e8829, type: 2}
+  - {fileID: 2100000, guid: 89d30a9eeaf0d3346a6cbeba1232f12d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -196,11 +196,13 @@ MonoBehaviour:
   linearForce: 400
   maxLinearSpeed: 45
   angularForce: 1100
-  burstSpeed: 2400
-  skillDelay: 1
   maxAngularSpeed: 500
-  blockDuration: 0.8
   centerOfMass: {x: 0, y: 0}
+  flickSpeed: 2500
+  flickCooldown: 1
+  blockDuration: 0.8
+  blockCooldown: 1
+  doubleTapDelayThreshold: 0.3
 --- !u!50 &6976193906495345116
 Rigidbody2D:
   serializedVersion: 4

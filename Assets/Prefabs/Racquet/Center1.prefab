@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 6942975387944909469}
   - component: {fileID: 5929513302266969096}
   - component: {fileID: 1514370231265055727}
+  - component: {fileID: 1571102590567038138}
   m_Layer: 0
   m_Name: Center1
   m_TagString: Player
@@ -119,7 +120,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 853616d0c2d9ae14eab165c0921e8829, type: 2}
+  - {fileID: 2100000, guid: 89d30a9eeaf0d3346a6cbeba1232f12d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -323,11 +324,13 @@ MonoBehaviour:
   linearForce: 400
   maxLinearSpeed: 40
   angularForce: 1000
-  burstSpeed: 2400
-  skillDelay: 1
   maxAngularSpeed: 450
-  blockDuration: 1
   centerOfMass: {x: 0, y: 0}
+  flickSpeed: 2500
+  flickCooldown: 1
+  blockDuration: 1
+  blockCooldown: 1
+  doubleTapDelayThreshold: 0.3
 --- !u!114 &1514370231265055727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,6 +347,18 @@ MonoBehaviour:
   spawnLocations:
   - {fileID: 4959541314457506933}
   - {fileID: 9221064697589817529}
+--- !u!114 &1571102590567038138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6125254679274490594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b8887a4c6f7ae74ab31b8391273a317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6611025115491253532
 GameObject:
   m_ObjectHideFlags: 0
