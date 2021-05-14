@@ -201,7 +201,6 @@ MonoBehaviour:
   maxAngularSpeed: 420
   blockDuration: 1
   centerOfMass: {x: 0, y: 0}
-  pivotLocation: {x: 0, y: 0}
 --- !u!50 &4554215788990534105
 Rigidbody2D:
   serializedVersion: 4

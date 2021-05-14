@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OutlineMat
-  m_Shader: {fileID: -6465566751694194690, guid: 533ac13d99eb42b41b59e77790f32c35, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_Name: RubleMat
+  m_Shader: {fileID: -6465566751694194690, guid: be4df7e23390919488fec5b3f515bdef, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -19,8 +19,8 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d0a8170e1080a7645a5b3b0e8b7a17a4, type: 3}
+    - Texture2D_435b612719524bd5abc21b28b79c0738:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -35,8 +35,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - Vector1_216d883c409d479d9cd7ff3dadbcc4e1: 0.01
+    m_Floats: []
     m_Colors:
-    - Color_9b45c343587f49978107c45714e44697: {r: 0, g: 0, b: 0, a: 0}
+    - Color_ab5fc22c5fc54f4aa44c9beb754e4cbd: {r: 19.468573, g: 19.468573, b: 19.468573, a: 0}
   m_BuildTextureStacks: []

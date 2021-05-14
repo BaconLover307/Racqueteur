@@ -8,7 +8,7 @@ public class TowerLight : MonoBehaviour
     public Transform healthParent;
     public float lightsUpDuration;
 
-    private GameObject[] healthDots;
+    [HideInInspector] public GameObject[] healthDots;
     private SpriteRenderer spriteRenderer;
 
     private void Awake()
@@ -32,13 +32,13 @@ public class TowerLight : MonoBehaviour
     IEnumerator TurnOnLight()
     {
         float currentTime = 0;
-        //while (currentTime < lightsUpDuration)
-        //{
-        //    spriteRenderer.material.SetFloat("_Progress", currentTime / lightsUpDuration * 0.3f);
-        //    currentTime += Time.fixedDeltaTime;
-        //    yield return new WaitForSeconds(Time.fixedDeltaTime);
-        //}
-        //spriteRenderer.material.SetFloat("_Progress", 1f);
+        while (currentTime < lightsUpDuration)
+        {
+            spriteRenderer.material.SetFloat("_Progress", currentTime / lightsUpDuration * 0.3f);
+            currentTime += Time.fixedDeltaTime;
+            yield return new WaitForSeconds(Time.fixedDeltaTime);
+        }
+        spriteRenderer.material.SetFloat("_Progress", 1f);
 
         foreach (GameObject obj in healthDots)
         {

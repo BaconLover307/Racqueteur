@@ -1045,7 +1045,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1000
   damageMultiplier: 10
-  rubleParticlePrefab: {fileID: 0}
+  towerLight: {fileID: 1286253649980286713}
+  rubleParticlePrefab: {fileID: 8670120321857144941, guid: 993cf401bc79fab4a894bea2e2b8cfed, type: 3}
+  cameraShake: {fileID: 0}
 --- !u!50 &1687088218321253765
 Rigidbody2D:
   serializedVersion: 4
@@ -2496,6 +2498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthParent: {fileID: 8466176495101295368}
   lightsUpDuration: 2
+  healthDots: []
 --- !u!1 &5307491672139149471
 GameObject:
   m_ObjectHideFlags: 0
