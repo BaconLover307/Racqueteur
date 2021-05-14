@@ -1836,6 +1836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shakeDuration: 0.5
   maxAmplitude: 7
+  globalVolume: {fileID: 11400000, guid: 7d27aa5c71c1c4f49ba7338816fc7e94, type: 2}
 --- !u!1 &1996436225
 GameObject:
   m_ObjectHideFlags: 0
