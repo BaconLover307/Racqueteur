@@ -10,10 +10,21 @@ public class Options : MonoBehaviour
 {
     private Dictionary<string, KeyCode> keys = new Dictionary<string, KeyCode>();
 
+    [Header("Controls Settings")]
     public TextMeshProUGUI up1, down1, left1, right1, cw1, ccw1, flip1;
     public TextMeshProUGUI up2, down2, left2, right2, cw2, ccw2, flip2;
-    public Slider volumeSlider;
+
+    [Header("Graphics Settings")]
     public Toggle effectsToggle;
+
+    [Header("Sounds Settings")]
+    public Slider musicSlider;
+    public Slider sfxSlider;
+
+    [Header("View")]
+    public GameObject controlsView;
+    public GameObject graphicsView;
+    public GameObject soundsView;
 
     private GameObject currentKey;
 
@@ -52,11 +63,16 @@ public class Options : MonoBehaviour
         ccw2.text = keys["CCW2"].ToString();
         right2.text = keys["Right2"].ToString();
 
-        // Set shininess volume
-        volumeSlider.value = PlayerPrefs.GetFloat("ShininessVolume", 0);
-
         // Set effects toggle
         effectsToggle.isOn = PlayerPrefs.GetInt("Effects", 1) == 1;
+
+        // Set music volume
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0);
+
+        // Set SFX volume
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0);
+
+        // Disable all views
     }
 
     public void BackScene()
@@ -112,9 +128,41 @@ public class Options : MonoBehaviour
         currentKey = clicked;
     }
 
-    public void OnVolumeChanged(float value)
+    public void DisableViews()
     {
-        PlayerPrefs.SetFloat("ShininessVolume", value);
+        controlsView.SetActive(false);
+        graphicsView.SetActive(false);
+        soundsView.SetActive(false);
+    }
+
+    public void OpenControls()
+    {
+        DisableViews();
+        controlsView.SetActive(true);
+    }
+
+    public void OpenGraphics()
+    {
+        DisableViews();
+        graphicsView.SetActive(true);
+    }
+
+    public void OpenSounds()
+    {
+        DisableViews();
+        soundsView.SetActive(true);
+    }
+
+    public void OnMusicVolumeChanged(float value)
+    {
+        PlayerPrefs.SetFloat("MusicVolume", value);
+
+        PlayerPrefs.Save();
+    }
+
+    public void OnSFXVolumeChanged(float value)
+    {
+        PlayerPrefs.SetFloat("SFXVolume", value);
 
         PlayerPrefs.Save();
     }
