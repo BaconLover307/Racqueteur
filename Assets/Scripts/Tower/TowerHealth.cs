@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Tower
 {
-    [RequireComponent(typeof(SpriteRenderer))]
+    [RequireComponent(typeof(TowerDestroy))]
     public class TowerHealth : MonoBehaviour
     {
         public static float startingHealth = 1000f;
@@ -19,14 +19,14 @@ namespace Tower
 
         private float maxDamagePerHit;
         private GameObject[] healthDots;
-        private SpriteRenderer spriteRenderer;
         private int healthDotsIterator;
+        private TowerDestroy towerDestroy;
 
         #region unity callback
 
         private void Awake()
         {
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            towerDestroy = GetComponent<TowerDestroy>();
             health = startingHealth;
             maxDamagePerHit = health / 5;
             healthDotsIterator = 0;
@@ -95,9 +95,10 @@ namespace Tower
         {
             health -= damage;
             health = Mathf.Max(health, 0);
-            if (health == 0)
+            if (health <= 0)
             {
                 OnTowerDestroy?.Invoke();
+                towerDestroy.Shatter();
             }
             SetHealthUI();
         }
