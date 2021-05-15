@@ -9,6 +9,11 @@ namespace Manager
 
         private bool _isPaused;
 
+        public void Awake()
+        {
+            Time.timeScale = 1f;
+        }
+
         #region public callback
 
         public void OnPauseClicked()
