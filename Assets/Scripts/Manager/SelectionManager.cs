@@ -100,8 +100,8 @@ public class SelectionManager : MonoBehaviour
             c1Index = (c1Index + 1) % controls.Length;
             selectedControl1 = controls[c1Index].name;
 
-        } while ((c1Index == c2Index)
-                    || (selectedControl2 == "KeyboardFull" && (selectedControl1 == "KeyboardLeft" || selectedControl2 == "KeyboardRight"))
+        } while ((selectedControl1 != "Gamepad" && c1Index == c2Index)
+                    || (selectedControl2 == "KeyboardFull" && (selectedControl1 == "KeyboardLeft" || selectedControl1 == "KeyboardRight"))
                     || (selectedControl1 == "KeyboardFull" && (selectedControl2 == "KeyboardLeft" || selectedControl2 == "KeyboardRight")));
 
         controlDisplay1.sprite = controls[c1Index];
@@ -114,7 +114,7 @@ public class SelectionManager : MonoBehaviour
             c1Index = c1Index - 1 < 0 ? controls.Length - 1 : c1Index - 1;
             selectedControl1 = controls[c1Index].name;
 
-        } while ((c1Index == c2Index)
+        } while ((selectedControl1 != "Gamepad" && c1Index == c2Index)
                     || (selectedControl2 == "KeyboardFull" && (selectedControl1 == "KeyboardLeft" || selectedControl1 == "KeyboardRight"))
                     || (selectedControl1 == "KeyboardFull" && (selectedControl2 == "KeyboardLeft" || selectedControl2 == "KeyboardRight")));
 
@@ -129,7 +129,7 @@ public class SelectionManager : MonoBehaviour
             c2Index = (c2Index + 1) % controls.Length;
             selectedControl2 = controls[c2Index].name;
 
-        } while ((c1Index == c2Index)
+        } while ((selectedControl2 != "Gamepad" && c1Index == c2Index)
                     || (selectedControl2 == "KeyboardFull" && (selectedControl1 == "KeyboardLeft" || selectedControl1 == "KeyboardRight"))
                     || (selectedControl1 == "KeyboardFull" && (selectedControl2 == "KeyboardLeft" || selectedControl2 == "KeyboardRight")));
 
@@ -143,7 +143,7 @@ public class SelectionManager : MonoBehaviour
             c2Index = c2Index - 1 < 0 ? controls.Length - 1 : c2Index - 1;
             selectedControl2 = controls[c2Index].name;
 
-        } while ((c1Index == c2Index)
+        } while ((selectedControl2 != "Gamepad" && c1Index == c2Index)
                     || (selectedControl2 == "KeyboardFull" && (selectedControl1 == "KeyboardLeft" || selectedControl1 == "KeyboardRight"))
                     || (selectedControl1 == "KeyboardFull" && (selectedControl2 == "KeyboardLeft" || selectedControl2 == "KeyboardRight")));
 
