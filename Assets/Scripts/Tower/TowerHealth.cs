@@ -15,6 +15,7 @@ namespace Tower
         public TowerLight towerLight;
         public GameObject rubleParticlePrefab;
         public CameraShake cameraShake;
+        public Action OnTowerDestroy;
 
         private float maxDamagePerHit;
         private GameObject[] healthDots;
@@ -94,6 +95,10 @@ namespace Tower
         {
             health -= damage;
             health = Mathf.Max(health, 0);
+            if (health == 0)
+            {
+                OnTowerDestroy?.Invoke();
+            }
             SetHealthUI();
         }
 

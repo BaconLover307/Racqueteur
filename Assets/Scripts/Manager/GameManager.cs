@@ -8,6 +8,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Player;
 using Tower;
+using Manager;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +23,10 @@ public class GameManager : MonoBehaviour
     public TowerHealth P1Health;
     public TowerHealth P2Health;
     public Boolean TimeUp = false;
+    public GameObject EndGameScreen;
+    public Timer timer;
+    public TextMeshProUGUI countdownDisplay;
+    public TextMeshProUGUI winnerDisplay;
 
     [Header("Light Settings")]
     public ArenaLight arenaLight;
@@ -40,51 +46,41 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(TurnOnLights());
         SpawnRacquets();
-        StartCoroutine(GameLoop());
+        StartCoroutine(Countdown());
+
+        P1Health.OnTowerDestroy += EndCondition;
+        P2Health.OnTowerDestroy += EndCondition;
+        timer.OnTimerEnd += EndCondition;
     }
 
-    private IEnumerator GameLoop()
+    private IEnumerator Countdown()
     {
-        while (EndCondition() == 0)
+        int countdownTime = 3;
+        while (countdownTime > 0)
         {
-            Debug.Log("We don't have a winner yet!");
-            yield return null;
+            countdownDisplay.text = countdownTime.ToString();
+            yield return new WaitForSeconds(1f);
+            countdownTime--;
         }
-        Debug.Log("The winner is player " + EndCondition().ToString());
+
+        countdownDisplay.text = "GO!";
+        yield return new WaitForSeconds(1f);
+        countdownDisplay.gameObject.SetActive(false);
+        timer.StartTimer();
     }
 
-    private int EndCondition()
+    private void EndCondition()
     {
-        if (TimeUp)
+        if (P1Health.health > P2Health.health)
         {
-            if (P1Health.health > P2Health.health)
-            {
-                return 1;
-            }
-            else if (P2Health.health > P1Health.health)
-            {
-                return 2;
-            }
-            else
-            {
-                return 0;
-            }
+            winnerDisplay.text = "PLAYER 1 WIN";
         }
-        else
+        else if (P2Health.health >= P1Health.health)
         {
-            if (P2Health.health == 0)
-            {
-                return 1;
-            }
-            else if (P1Health.health == 0)
-            {
-                return 2;
-            }
-            else
-            {
-                return 0;
-            }
+            winnerDisplay.text = "PLAYER 2 WIN";
         }
+        timer.StopTimer();
+        EndGameScreen.SetActive(true);
     }
 
     IEnumerator TurnOnLights()
@@ -107,7 +103,6 @@ public class GameManager : MonoBehaviour
         player1.GetComponent<RacketLight>().UpdateMaterial(P1Mat);
         PlayerInput p1Controller = player1.GetComponent<PlayerInput>();
         p1Controller.SwitchCurrentControlScheme(PlayerPrefs.GetString("Control1", "KeyboardLeft"));
-
 
         player2 = Instantiate(racquets[PlayerPrefs.GetInt("Racquet2", 0)], spawnPoints[1].transform);
         player2.GetComponent<RacketLight>().UpdateMaterial(P2Mat);
