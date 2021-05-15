@@ -7,17 +7,20 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Player;
+using Tower;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    
+
     [Header("Game Settings")]
     public PlayerController[] racquets;
     public GameObject[] spawnPoints;
     public Material P1Mat;
     public Material P2Mat;
-
+    public TowerHealth P1Health;
+    public TowerHealth P2Health;
+    public Boolean TimeUp = false;
 
     [Header("Light Settings")]
     public ArenaLight arenaLight;
@@ -37,6 +40,51 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(TurnOnLights());
         SpawnRacquets();
+        StartCoroutine(GameLoop());
+    }
+
+    private IEnumerator GameLoop()
+    {
+        while (EndCondition() == 0)
+        {
+            Debug.Log("We don't have a winner yet!");
+            yield return null;
+        }
+        Debug.Log("The winner is player " + EndCondition().ToString());
+    }
+
+    private int EndCondition()
+    {
+        if (TimeUp)
+        {
+            if (P1Health.health > P2Health.health)
+            {
+                return 1;
+            }
+            else if (P2Health.health > P1Health.health)
+            {
+                return 2;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            if (P2Health.health == 0)
+            {
+                return 1;
+            }
+            else if (P1Health.health == 0)
+            {
+                return 2;
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 
     IEnumerator TurnOnLights()
@@ -73,7 +121,7 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenuScene");
     }
-    
+
     public void OnRestart()
     {
         SceneManager.LoadScene("Arena");
