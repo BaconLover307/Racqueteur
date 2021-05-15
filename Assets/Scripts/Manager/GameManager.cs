@@ -74,10 +74,12 @@ public class GameManager : MonoBehaviour
         if (P1Health.health > P2Health.health)
         {
             winnerDisplay.text = "PLAYER 1 WIN";
+            winnerDisplay.color = new Color32(214, 73, 69, 255);
         }
         else if (P2Health.health >= P1Health.health)
         {
             winnerDisplay.text = "PLAYER 2 WIN";
+            winnerDisplay.color = new Color32(69, 123, 214, 255);
         }
         timer.StopTimer();
         EndGameScreen.SetActive(true);
