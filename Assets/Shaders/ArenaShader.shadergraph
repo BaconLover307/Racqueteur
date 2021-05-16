@@ -89,6 +89,9 @@
         },
         {
             "m_Id": "f9fb80ba99b344d5b45e8d9cdffc006e"
+        },
+        {
+            "m_Id": "8be02ae4d8de4d55a76a35e9123cb955"
         }
     ],
     "m_GroupDatas": [],
@@ -414,6 +417,9 @@
         "m_Blocks": [
             {
                 "m_Id": "b1dc6c914e7e48c5be9151b33dfbd3dc"
+            },
+            {
+                "m_Id": "8be02ae4d8de4d55a76a35e9123cb955"
             }
         ]
     },
@@ -1673,6 +1679,39 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BlockNode",
+    "m_ObjectId": "8be02ae4d8de4d55a76a35e9123cb955",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "SurfaceDescription.Alpha",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 0.0,
+            "y": 0.0,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "b5a6deff2bf1484d81df6ff5ef5aba41"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_SerializedDescriptor": "SurfaceDescription.Alpha"
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "91d08192a8094986a4aba225b8cc4fbc",
     "m_Id": 7,
@@ -1718,7 +1757,7 @@
     "m_ActiveSubTarget": {
         "m_Id": "f8bbe5ee3f4645c19ad3a057e1c47736"
     },
-    "m_SurfaceType": 0,
+    "m_SurfaceType": 1,
     "m_AlphaMode": 0,
     "m_TwoSided": false,
     "m_AlphaClip": false,
@@ -2184,6 +2223,21 @@
         "e32": 0.0,
         "e33": 1.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "b5a6deff2bf1484d81df6ff5ef5aba41",
+    "m_Id": 0,
+    "m_DisplayName": "Alpha",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Alpha",
+    "m_StageCapability": 2,
+    "m_Value": 1.0,
+    "m_DefaultValue": 1.0,
+    "m_Labels": []
 }
 
 {
