@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(TurnOnLights());
         SpawnRacquets();
+        DisableControllers(true);
         StartCoroutine(Countdown());
 
         P1Health.OnTowerDestroy += EndCondition;
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour
         countdownDisplay.text = "GO!";
         yield return new WaitForSeconds(1f);
         countdownDisplay.gameObject.SetActive(false);
+        EnableControllers();
         timer.StartTimer();
     }
 
@@ -73,12 +75,12 @@ public class GameManager : MonoBehaviour
     {
         if (P1Health.health > P2Health.health)
         {
-            winnerDisplay.text = "PLAYER 1 WIN";
+            winnerDisplay.text = "PLAYER 1 WINS";
             winnerDisplay.color = new Color32(214, 73, 69, 255);
         }
         else if (P2Health.health >= P1Health.health)
         {
-            winnerDisplay.text = "PLAYER 2 WIN";
+            winnerDisplay.text = "PLAYER 2 WINS";
             winnerDisplay.color = new Color32(69, 123, 214, 255);
         }
         timer.StopTimer();
@@ -110,6 +112,31 @@ public class GameManager : MonoBehaviour
         player2.GetComponent<RacketLight>().UpdateMaterial(P2Mat);
         PlayerInput p2Controller = player2.GetComponent<PlayerInput>();
         p2Controller.SwitchCurrentControlScheme(PlayerPrefs.GetString("Control2", "KeyboardRight"));
+    }
+
+    private void DisableControllers(bool movementOnly = false)
+    {
+        PlayerInput p1 = player1.gameObject.GetComponent<PlayerInput>();
+        PlayerInput p2 = player2.gameObject.GetComponent<PlayerInput>();
+        if (movementOnly)
+        {
+            p1.actions.FindAction("Movement").Disable();
+            p2.actions.FindAction("Movement").Disable();
+        } else
+        {
+            p1.DeactivateInput();
+            p2.DeactivateInput();
+        }
+    }
+
+    private void EnableControllers()
+    {
+        PlayerInput p1 = player1.gameObject.GetComponent<PlayerInput>();
+        PlayerInput p2 = player2.gameObject.GetComponent<PlayerInput>();
+        p1.actions.FindAction("Movement").Enable();
+        p2.actions.FindAction("Movement").Enable();
+        p1.ActivateInput();
+        p2.ActivateInput();
     }
 
     #region public callback
