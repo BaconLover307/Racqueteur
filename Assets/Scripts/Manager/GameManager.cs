@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator LastCountdown()
     {
         countdownDisplay.gameObject.SetActive(true);
-        int countdownTime = 5;
+        int countdownTime = 10;
         while (countdownTime > 0)
         {
             countdownDisplay.text = countdownTime.ToString();
@@ -93,7 +93,6 @@ public class GameManager : MonoBehaviour
         notificationDisplay.text = "Time's Up";
         notificationDisplay.gameObject.SetActive(true);
         yield return new WaitForSeconds(3.0f);
-        notificationDisplay.gameObject.SetActive(false);
     }
 
     private void EndCondition()
@@ -128,6 +127,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator ShowEndGameScreen()
     {
         yield return new WaitForSeconds(3.0f);
+        notificationDisplay.gameObject.SetActive(false);
         EndGameScreen.SetActive(true);
     }
 

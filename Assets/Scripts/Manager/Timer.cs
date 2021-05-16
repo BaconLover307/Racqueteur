@@ -67,11 +67,11 @@ namespace Manager
                 timerStarted = false;
                 OnTimerEnd?.Invoke();
             }
-            else if ((Math.Floor(timeRemaining) == 10) || (Math.Floor(timeRemaining) == 30) || (Math.Floor(timeRemaining) == 60))
+            else if ((Math.Floor(timeRemaining) == 30) || (Math.Floor(timeRemaining) == 60))
             {
                 OnTimerNotification?.Invoke();
             }
-            else if ((Math.Floor(timeRemaining) == 5))
+            else if ((Math.Floor(timeRemaining) == 10))
             {
                 OnTimerLastCountdown?.Invoke();
             }
