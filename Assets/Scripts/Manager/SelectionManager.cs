@@ -24,6 +24,10 @@ public class SelectionManager : MonoBehaviour
     public string selectedControl1;
     public string selectedControl2;
 
+    [Header("UI Components")]
+    public GameObject[] buttonObjs;
+    public Slider loadingBar;
+
     private int c1Index;
     private int c2Index;
 
@@ -61,7 +65,24 @@ public class SelectionManager : MonoBehaviour
         PlayerPrefs.SetString("Control2", selectedControl2);
 
         PlayerPrefs.Save();
-        SceneManager.LoadScene("Arena");
+        StartCoroutine(LoadMainScene());
+    }
+
+    IEnumerator LoadMainScene()
+    {
+        foreach(GameObject obj in buttonObjs)
+        {
+            obj.SetActive(false);
+        }
+        loadingBar.gameObject.SetActive(true);
+        
+        AsyncOperation load = SceneManager.LoadSceneAsync("Arena");
+
+        while(!load.isDone)
+        {
+            loadingBar.value = Mathf.Clamp01(load.progress / .9f);
+            yield return null;
+        }
     }
 
     public void BackScene()
