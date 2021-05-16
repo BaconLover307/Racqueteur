@@ -3,44 +3,53 @@ using UnityEngine;
 
 namespace Tower
 {
+    [Serializable]
+    public struct DamageMultiplier
+    {
+        public float topMultiplier;
+        public float leftMultiplier;
+        public float rightMultiplier;
+        public float bottomMultiplier;
+    }
+
     [RequireComponent(typeof(TowerDestroy))]
     [RequireComponent(typeof(DamageIndicator))]
     [RequireComponent(typeof(Animator))]
     public class TowerHealth : MonoBehaviour
     {
-        public float startingHealth;
-        public float damageMultiplier = 10f;
+        public float maxHealth = 1000f;
+        public float maxDamagePercentage = 20;
         public float blinkThreshold = 0.2f;
         public TowerLight towerLight;
         public GameObject rubleParticlePrefab;
         public CameraShake cameraShake;
+        public DamageMultiplier damageMultipliers;
+
+        [HideInInspector] public float health;
+
+        private Animator _animator;
+        private DamageIndicator _damageIndicator;
+        private GameObject[] _healthDots;
+        private int _healthDotsIterator;
+
+        private float _maxDamagePerHit;
+        private TowerDestroy _towerDestroy;
         public Action OnTowerDestroy;
-
-        [HideInInspector]
-        public float health;
-
-        private float maxDamagePerHit;
-        private GameObject[] healthDots;
-        private int healthDotsIterator;
-        private TowerDestroy towerDestroy;
-        private DamageIndicator damageIndicator;
-        private Animator animator;
 
         #region unity callback
 
         private void Awake()
         {
-            towerDestroy = GetComponent<TowerDestroy>();
-            damageIndicator = GetComponent<DamageIndicator>();
-            animator = GetComponent<Animator>();
-            health = startingHealth;
-            maxDamagePerHit = health / 5;
-            healthDotsIterator = 0;
+            _towerDestroy = GetComponent<TowerDestroy>();
+            _damageIndicator = GetComponent<DamageIndicator>();
+            _animator = GetComponent<Animator>();
+            health = maxHealth;
+            _maxDamagePerHit = maxHealth * maxDamagePercentage / 100;
         }
 
         private void Start()
         {
-            healthDots = towerLight.healthDots;
+            _healthDots = towerLight.healthDots;
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -48,28 +57,12 @@ namespace Tower
             if (!other.gameObject.CompareTag("Ball")) return;
 
             // Know which body of tower got hit
-            ContactPoint2D contact = other.contacts[0];
+            var contact = other.contacts[0];
 
             ProcessEffect(contact);
-
-            // Calculate the damage based on magnitude
-            float damage;
-            if (contact.otherCollider.name == "WeakpointTop" ||
-                contact.otherCollider.name == "WeakpointBottom" ||
-                contact.otherCollider.name == "WeakpointLeft" ||
-                contact.otherCollider.name == "WeakpointRight")
-            {
-                damage = other.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude *
-                    damageMultiplier;
-            }
-            else
-            {
-                damage = other.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude;
-            }
-
-            damage = Mathf.Min(damage, maxDamagePerHit);
+            var damage = CalculateDamage(contact, other);
             Hit(damage);
-            damageIndicator.Spawn(Mathf.RoundToInt(damage), contact.point, contact.normal.normalized * -1);
+            _damageIndicator.Spawn(Mathf.RoundToInt(damage), contact.point, contact.normal.normalized * -1);
         }
 
         #endregion
@@ -78,18 +71,18 @@ namespace Tower
 
         private void ProcessEffect(ContactPoint2D contact)
         {
-            float minThresholdImpulse = 20f;
-            float maxImpulse = 100f;
+            var minThresholdImpulse = 20f;
+            var maxImpulse = 100f;
 
             if (contact.normalImpulse > minThresholdImpulse)
             {
                 var ruble = Instantiate(rubleParticlePrefab, contact.point, Quaternion.identity);
-                Quaternion rotation = Quaternion.LookRotation(ruble.transform.forward, contact.normal * -1);
+                var rotation = Quaternion.LookRotation(ruble.transform.forward, contact.normal * -1);
                 ruble.transform.rotation = rotation;
-                ParticleSystem rubleParticle = ruble.GetComponent<ParticleSystem>();
+                var rubleParticle = ruble.GetComponent<ParticleSystem>();
                 var mainModule = rubleParticle.main;
                 var emissionModule = rubleParticle.emission;
-                ParticleSystem.Burst burst = new ParticleSystem.Burst(0, contact.normalImpulse / maxImpulse * mainModule.maxParticles);
+                var burst = new ParticleSystem.Burst(0, contact.normalImpulse / maxImpulse * mainModule.maxParticles);
                 emissionModule.SetBurst(0, burst);
                 Destroy(ruble, 1f);
 
@@ -97,20 +90,41 @@ namespace Tower
             }
         }
 
+        private float CalculateDamage(ContactPoint2D weakPoint, Collision2D ball)
+        {
+            // Calculate the damage based on magnitude
+            var damage = ball.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude;
+
+            switch (weakPoint.otherCollider.name)
+            {
+                case "WeakpointTop":
+                    damage *= damageMultipliers.topMultiplier;
+                    break;
+                case "WeakpointBottom":
+                    damage *= damageMultipliers.bottomMultiplier;
+                    break;
+                case "WeakpointLeft":
+                    damage *= damageMultipliers.leftMultiplier;
+                    break;
+                case "WeakpointRight":
+                    damage *= damageMultipliers.rightMultiplier;
+                    break;
+            }
+
+            return Mathf.Min(damage, _maxDamagePerHit);
+        }
+
         private void Hit(float damage)
         {
             health -= damage;
             health = Mathf.Max(health, 0);
 
-            if (health <= blinkThreshold * startingHealth && animator.enabled == false)
-            {
-                animator.enabled = true;
-            }
+            if (health <= blinkThreshold * maxHealth && _animator.enabled == false) _animator.enabled = true;
 
             if (health <= 0)
             {
                 OnTowerDestroy?.Invoke();
-                towerDestroy.Shatter();
+                _towerDestroy.Shatter();
             }
 
             SetHealthUI();
@@ -118,11 +132,11 @@ namespace Tower
 
         private void SetHealthUI()
         {
-            int lastDotActiveIndex = healthDots.Length - Mathf.CeilToInt((health / startingHealth) * healthDots.Length);
-            while (healthDotsIterator < lastDotActiveIndex)
+            var lastDotActiveIndex = _healthDots.Length - Mathf.CeilToInt(health / maxHealth * _healthDots.Length);
+            while (_healthDotsIterator < lastDotActiveIndex)
             {
-                healthDots[healthDotsIterator].SetActive(false);
-                healthDotsIterator++;
+                _healthDots[_healthDotsIterator].SetActive(false);
+                _healthDotsIterator++;
             }
         }
 
