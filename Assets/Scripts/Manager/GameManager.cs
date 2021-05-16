@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
         P2Health.OnTowerDestroy += EndCondition;
         timer.OnTimerEnd += EndCondition;
         timer.OnTimerNotification += TimeNotification;
+        timer.OnTimerLastCountdown += CallLastCountdown;
     }
 
     private IEnumerator Countdown()
@@ -70,6 +71,29 @@ public class GameManager : MonoBehaviour
         countdownDisplay.gameObject.SetActive(false);
         EnableControllers();
         timer.StartTimer();
+    }
+
+    private void CallLastCountdown()
+    {
+        StartCoroutine(LastCountdown());
+    }
+    private IEnumerator LastCountdown()
+    {
+        countdownDisplay.gameObject.SetActive(true);
+        int countdownTime = 5;
+        while (countdownTime > 0)
+        {
+            countdownDisplay.text = countdownTime.ToString();
+            yield return new WaitForSeconds(1f);
+            countdownTime--;
+        }
+        countdownDisplay.gameObject.SetActive(false);
+
+        DisableControllers(true);
+        notificationDisplay.text = "Time's Up";
+        notificationDisplay.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3.0f);
+        notificationDisplay.gameObject.SetActive(false);
     }
 
     private void EndCondition()
@@ -103,11 +127,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ShowEndGameScreen()
     {
-        notificationDisplay.text = "Time's Up";
-        notificationDisplay.gameObject.SetActive(true);
         yield return new WaitForSeconds(3.0f);
-        notificationDisplay.gameObject.SetActive(false);
-        DisableControllers(true);
         EndGameScreen.SetActive(true);
     }
 

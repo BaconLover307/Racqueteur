@@ -13,6 +13,7 @@ namespace Manager
         private TMP_Text _timerText;
         public Action OnTimerEnd;
         public Action OnTimerNotification;
+        public Action OnTimerLastCountdown;
 
         #region private function
 
@@ -69,6 +70,10 @@ namespace Manager
             else if ((Math.Floor(timeRemaining) == 10) || (Math.Floor(timeRemaining) == 30) || (Math.Floor(timeRemaining) == 60))
             {
                 OnTimerNotification?.Invoke();
+            }
+            else if ((Math.Floor(timeRemaining) == 5))
+            {
+                OnTimerLastCountdown?.Invoke();
             }
         }
 
