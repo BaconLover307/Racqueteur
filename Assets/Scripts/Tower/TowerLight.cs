@@ -6,7 +6,8 @@ using UnityEngine;
 public class TowerLight : MonoBehaviour
 {
     public Transform healthParent;
-    public float lightsUpDuration;
+    public float lightsUpDuration = 1.5f;
+    public float healthLightsUpDuration = .05f;
 
     [HideInInspector] public GameObject[] healthDots;
     private SpriteRenderer spriteRenderer;
@@ -43,7 +44,7 @@ public class TowerLight : MonoBehaviour
         foreach (GameObject obj in healthDots)
         {
             obj.SetActive(true);
-            yield return new WaitForSeconds(.05f);
+            yield return new WaitForSeconds(healthLightsUpDuration);
         }
     }
 }
