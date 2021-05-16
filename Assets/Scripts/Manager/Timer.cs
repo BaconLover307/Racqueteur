@@ -21,7 +21,7 @@ namespace Manager
         {
             var minutes = Math.Floor(timeRemaining / 60);
             var seconds = Math.Floor(timeRemaining % 60);
-            _timerText.text = $"<mspace=mspace={monoSpacingSize}>{minutes:00}:{seconds:00}</mspace>";
+            _timerText.text = $"<mspace=mspace={monoSpacingSize}>{minutes:0}:{seconds:00}</mspace>";
         }
 
         #endregion
