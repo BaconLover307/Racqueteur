@@ -1437,7 +1437,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -5.446633, y: 0.004969716}
+  m_Offset: {x: -5.5, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1448,7 +1448,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0871286, y: 4.204668}
+  m_Size: {x: 1, y: 4}
   m_EdgeRadius: 0
 --- !u!1 &1687088217547504274
 GameObject:
@@ -1528,7 +1528,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 5.470377, y: 0.020160198}
+  m_Offset: {x: 5.5, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1539,7 +1539,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0539823, y: 4.166087}
+  m_Size: {x: 1, y: 4}
   m_EdgeRadius: 0
 --- !u!1 &1687088218211408928
 GameObject:
@@ -1585,7 +1585,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0042784214, y: 5.484866}
+  m_Offset: {x: 0, y: 5.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1596,7 +1596,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.316341, y: 1.040484}
+  m_Size: {x: 4, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &1687088218321253767
 GameObject:
@@ -1628,7 +1628,7 @@ Transform:
   m_GameObject: {fileID: 1687088218321253767}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -30, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
   - {fileID: 1687088217547504275}
   - {fileID: 6600084550462133769}
@@ -1650,7 +1650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d68f8f39cfc769524a6a02882fb2d2f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 0
+  startingHealth: 1000
   damageMultiplier: 10
   blinkThreshold: 0.2
   towerLight: {fileID: 1286253649980286713}
@@ -1673,7 +1673,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 01a5b5bc43f167d438a88009547fa1af, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -1703,26 +1703,22 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 2.1572263, y: 6}
-      - {x: 2.157226, y: 2.107498}
-      - {x: -2.1455042, y: 2.109666}
-      - {x: -2.155054, y: 6}
+    - - {x: 6, y: 6}
+      - {x: 2, y: 6}
+      - {x: 0, y: 5}
+      - {x: -2, y: 6}
       - {x: -6, y: 6}
-      - {x: -6.0000005, y: 2.1060853}
-      - {x: -2.1631107, y: 2.1060865}
-      - {x: -2.1108751, y: -2.1116128}
-      - {x: -6.0000005, y: -2.1107903}
-      - {x: -6, y: -6}
-      - {x: -2.1208148, y: -6}
-      - {x: -2.1242297, y: -2.1034746}
-      - {x: 2.0627856, y: -2.0506496}
-      - {x: 2.0820217, y: -6}
+      - {x: -6.0000005, y: 2}
+      - {x: -5, y: 0}
+      - {x: -6, y: -2}
+      - {x: -6.0000005, y: -6}
+      - {x: -2, y: -6}
+      - {x: 0, y: -5}
+      - {x: 2, y: -6}
       - {x: 6, y: -6}
-      - {x: 5.973322, y: -2.0524943}
-      - {x: 2.0870726, y: -2.042716}
-      - {x: 2.183818, y: 2.08702}
-      - {x: 5.999998, y: 2.08702}
-      - {x: 6, y: 6}
+      - {x: 6, y: -2}
+      - {x: 5, y: 0}
+      - {x: 6, y: 2}
 --- !u!114 &4547535969055686189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1812,7 +1808,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0042796135, y: -5.4502907}
+  m_Offset: {x: 0, y: -5.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1823,7 +1819,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.2190733, y: 1.0648403}
+  m_Size: {x: 4, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &1783839900660562390
 GameObject:
@@ -3425,7 +3421,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 12, y: 12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
