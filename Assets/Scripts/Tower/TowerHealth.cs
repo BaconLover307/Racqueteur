@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
 
 namespace Tower
 {
     [RequireComponent(typeof(TowerDestroy))]
+    [RequireComponent(typeof(DamageIndicator))]
     [RequireComponent(typeof(Animator))]
     public class TowerHealth : MonoBehaviour
     {
@@ -25,6 +23,7 @@ namespace Tower
         private GameObject[] healthDots;
         private int healthDotsIterator;
         private TowerDestroy towerDestroy;
+        private DamageIndicator damageIndicator;
         private Animator animator;
 
         #region unity callback
@@ -32,6 +31,7 @@ namespace Tower
         private void Awake()
         {
             towerDestroy = GetComponent<TowerDestroy>();
+            damageIndicator = GetComponent<DamageIndicator>();
             animator = GetComponent<Animator>();
             health = startingHealth;
             maxDamagePerHit = health / 5;
@@ -69,6 +69,7 @@ namespace Tower
 
             damage = Mathf.Min(damage, maxDamagePerHit);
             Hit(damage);
+            damageIndicator.Spawn(Mathf.RoundToInt(damage), contact.point, contact.normal.normalized * -1);
         }
 
         #endregion

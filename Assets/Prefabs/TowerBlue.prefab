@@ -5155,12 +5155,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d68f8f39cfc769524a6a02882fb2d2f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
+  startingHealth: 0
   damageMultiplier: 10
   blinkThreshold: 0.2
   towerLight: {fileID: 4636442914994339190}
   rubleParticlePrefab: {fileID: 8670120321857144941, guid: 993cf401bc79fab4a894bea2e2b8cfed, type: 3}
   cameraShake: {fileID: 0}
+  health: 1000
 --- !u!50 &808178585061209519
 Rigidbody2D:
   serializedVersion: 4
