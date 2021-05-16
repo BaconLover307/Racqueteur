@@ -1655,7 +1655,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 12
   m_TargetDisplay: 0
 --- !u!224 &656210864
 RectTransform:
@@ -1669,7 +1669,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2676,7 +2676,7 @@ RectTransform:
   - {fileID: 114233891}
   - {fileID: 1610175498}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6286,7 +6286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3099761723684368883, guid: 5ab6ccd6ab26fc848a0596f8f12d65e5, type: 3}
       propertyPath: m_SortingOrder
-      value: 51
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3275123755318445014, guid: 5ab6ccd6ab26fc848a0596f8f12d65e5, type: 3}
       propertyPath: m_IsActive
