@@ -5590,7 +5590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4636442914994339190, guid: d2bbb5031676ce44699a2cf4e3be7de6, type: 3}
       propertyPath: lightsUpDuration
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4636442914994339190, guid: d2bbb5031676ce44699a2cf4e3be7de6, type: 3}
       propertyPath: healthLightsUpDuration
@@ -6154,7 +6154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1286253649980286713, guid: 5ab6ccd6ab26fc848a0596f8f12d65e5, type: 3}
       propertyPath: lightsUpDuration
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1286253649980286713, guid: 5ab6ccd6ab26fc848a0596f8f12d65e5, type: 3}
       propertyPath: healthLightsUpDuration
