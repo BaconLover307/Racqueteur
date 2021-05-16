@@ -22,11 +22,11 @@ public class GameManager : MonoBehaviour
     public Material P2Mat;
     public TowerHealth P1Health;
     public TowerHealth P2Health;
-    public Boolean TimeUp = false;
     public GameObject EndGameScreen;
     public Timer timer;
     public TextMeshProUGUI countdownDisplay;
     public TextMeshProUGUI winnerDisplay;
+    public TextMeshProUGUI notificationDisplay;
 
     [Header("Light Settings")]
     public ArenaLight arenaLight;
@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
         P1Health.OnTowerDestroy += EndCondition;
         P2Health.OnTowerDestroy += EndCondition;
         timer.OnTimerEnd += EndCondition;
+        timer.OnTimerNotification += TimeNotification;
     }
 
     private IEnumerator Countdown()
@@ -84,6 +85,29 @@ public class GameManager : MonoBehaviour
             winnerDisplay.color = new Color32(69, 123, 214, 255);
         }
         timer.StopTimer();
+        StartCoroutine(ShowEndGameScreen());
+    }
+
+    private void TimeNotification()
+    {
+        notificationDisplay.text = Math.Floor(timer.timeRemaining).ToString() + " Seconds Remaining";
+        StartCoroutine(ShowTimeNotification());
+    }
+
+    IEnumerator ShowTimeNotification()
+    {
+        notificationDisplay.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3.0f);
+        notificationDisplay.gameObject.SetActive(false);
+    }
+
+    private IEnumerator ShowEndGameScreen()
+    {
+        notificationDisplay.text = "Time's Up";
+        notificationDisplay.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3.0f);
+        notificationDisplay.gameObject.SetActive(false);
+        DisableControllers(true);
         EndGameScreen.SetActive(true);
     }
 
@@ -122,7 +146,8 @@ public class GameManager : MonoBehaviour
         {
             p1.actions.FindAction("Movement").Disable();
             p2.actions.FindAction("Movement").Disable();
-        } else
+        }
+        else
         {
             p1.DeactivateInput();
             p2.DeactivateInput();
