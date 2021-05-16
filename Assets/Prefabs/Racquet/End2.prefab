@@ -145,7 +145,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 2.8, y: 8.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3baa2319f9cdb0870a6b4245cc39f726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linearForce: 400
+  linearForce: 750
   maxLinearSpeed: 40
   angularForce: 1000
   maxAngularSpeed: 420
@@ -296,7 +296,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 4.5
-  m_LinearDrag: 2.2
+  m_LinearDrag: 8.5
   m_AngularDrag: 3.5
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 80afc26c08599c6da923d0b1fdc3166c, type: 2}
@@ -322,29 +322,25 @@ PolygonCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2.8, y: 8.2}
-    newSize: {x: 1, y: 2}
+    newSize: {x: 2.8, y: 8.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.7049175, y: -0.99792176}
-      - {x: 0.50229645, y: -0.40095416}
-      - {x: 0.50353247, y: 3.2076204}
-      - {x: 0.28790447, y: 3.4012983}
-      - {x: -0.2915559, y: 3.4018824}
-      - {x: -0.4989776, y: 3.1833966}
-      - {x: -0.4971529, y: -0.41244817}
-      - {x: -0.69949764, y: -0.984174}
-      - {x: -0.6961473, y: -1.792818}
-      - {x: -0.888295, y: -2.4044156}
-      - {x: -0.8940289, y: -2.9954453}
-      - {x: -0.30806404, y: -3.6115303}
-      - {x: 0.30987558, y: -3.6114411}
-      - {x: 0.8981643, y: -2.9946034}
-      - {x: 0.8954525, y: -2.4034085}
-      - {x: 0.7019887, y: -1.7975615}
+    - - {x: 0.9005383, y: -0.6972964}
+      - {x: 0.69791746, y: -0.49074742}
+      - {x: 0.69759625, y: 3.0980198}
+      - {x: 0.49487063, y: 3.5020983}
+      - {x: -0.49631727, y: 3.5005689}
+      - {x: -0.69871855, y: 3.095053}
+      - {x: -0.69949764, y: -0.49752122}
+      - {x: -0.90175384, y: -0.70015264}
+      - {x: -0.9039078, y: -2.8966572}
+      - {x: -0.3039012, y: -3.498721}
+      - {x: 0.30490503, y: -3.4984539}
+      - {x: 0.89934456, y: -2.9018111}
 --- !u!58 &9159296429447739070
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -73,10 +73,10 @@ GameObject:
   - component: {fileID: 6125254679274490592}
   - component: {fileID: 6125254679274490593}
   - component: {fileID: 8535584290850417136}
+  - component: {fileID: 5929513302266969096}
   - component: {fileID: 8102439745519360852}
   - component: {fileID: -4277539786278193691}
   - component: {fileID: 6942975387944909469}
-  - component: {fileID: 5929513302266969096}
   - component: {fileID: 1514370231265055727}
   - component: {fileID: 1571102590567038138}
   m_Layer: 0
@@ -258,10 +258,32 @@ MonoBehaviour:
     m_ActionId: 9d2a96aa-2e31-4934-87fa-2d8c6a62703f
     m_ActionName: Player/Pause[/Keyboard/escape,/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Keyboard
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5929513302266969096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6125254679274490594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3baa2319f9cdb0870a6b4245cc39f726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linearForce: 750
+  maxLinearSpeed: 40
+  angularForce: 1000
+  maxAngularSpeed: 450
+  centerOfMass: {x: 0, y: 0}
+  flickSpeed: 2500
+  flickCooldown: 1
+  blockDuration: 1
+  blockCooldown: 1
+  doubleTapDelayThreshold: 0.3
 --- !u!50 &8102439745519360852
 Rigidbody2D:
   serializedVersion: 4
@@ -275,7 +297,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 4
-  m_LinearDrag: 2
+  m_LinearDrag: 8
   m_AngularDrag: 3.5
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 80afc26c08599c6da923d0b1fdc3166c, type: 2}
@@ -325,28 +347,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.6
---- !u!114 &5929513302266969096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6125254679274490594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3baa2319f9cdb0870a6b4245cc39f726, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linearForce: 400
-  maxLinearSpeed: 40
-  angularForce: 1000
-  maxAngularSpeed: 450
-  centerOfMass: {x: 0, y: 0}
-  flickSpeed: 2500
-  flickCooldown: 1
-  blockDuration: 1
-  blockCooldown: 1
-  doubleTapDelayThreshold: 0.3
 --- !u!114 &1514370231265055727
 MonoBehaviour:
   m_ObjectHideFlags: 0

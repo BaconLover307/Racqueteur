@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3baa2319f9cdb0870a6b4245cc39f726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linearForce: 400
+  linearForce: 720
   maxLinearSpeed: 45
   angularForce: 1100
   maxAngularSpeed: 500
@@ -297,7 +297,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 3.5
-  m_LinearDrag: 2
+  m_LinearDrag: 8
   m_AngularDrag: 3.5
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 80afc26c08599c6da923d0b1fdc3166c, type: 2}
