@@ -10,14 +10,16 @@ namespace Tower
     [RequireComponent(typeof(Animator))]
     public class TowerHealth : MonoBehaviour
     {
-        public static float startingHealth = 1000f;
-        public float health;
+        public float startingHealth;
         public float damageMultiplier = 10f;
         public float blinkThreshold = 0.2f;
         public TowerLight towerLight;
         public GameObject rubleParticlePrefab;
         public CameraShake cameraShake;
         public Action OnTowerDestroy;
+
+        [HideInInspector]
+        public float health;
 
         private float maxDamagePerHit;
         private GameObject[] healthDots;
