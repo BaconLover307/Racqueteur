@@ -62,12 +62,20 @@ namespace Tower
             ProcessEffect(contact);
             var damage = CalculateDamage(contact, other);
             Hit(damage);
-            _damageIndicator.Spawn(Mathf.RoundToInt(damage), contact.point, contact.normal.normalized * -1);
+            _damageIndicator.Spawn(Mathf.RoundToInt(damage), contact.point, contact.normal.normalized * -1, IsWeakPoint(contact));
         }
 
         #endregion
 
         #region private function
+
+        private bool IsWeakPoint(ContactPoint2D contact)
+        {
+            return (contact.otherCollider.name == "WeakpointTop") ||
+                (contact.otherCollider.name == "WeakpointBottom") ||
+                (contact.otherCollider.name == "WeakpointLeft") ||
+                (contact.otherCollider.name == "WeakpointRight");
+        }
 
         private void ProcessEffect(ContactPoint2D contact)
         {
