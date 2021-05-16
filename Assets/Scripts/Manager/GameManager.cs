@@ -24,7 +24,8 @@ public class GameManager : MonoBehaviour
     public TowerHealth P2Health;
     public GameObject EndGameScreen;
     public Timer timer;
-    public TextMeshProUGUI countdownDisplay;
+    public string monoSpacingSize = "30";
+    public GameObject countdownDisplay;
     public TextMeshProUGUI winnerDisplay;
     public TextMeshProUGUI notificationDisplay;
 
@@ -59,16 +60,17 @@ public class GameManager : MonoBehaviour
     private IEnumerator Countdown()
     {
         int countdownTime = 3;
+        TextMeshProUGUI countdownGUI = countdownDisplay.GetComponentInChildren<TextMeshProUGUI>();
         while (countdownTime > 0)
         {
-            countdownDisplay.text = countdownTime.ToString();
+            countdownGUI.text = $"<mspace=mspace={monoSpacingSize}>{countdownTime.ToString()}</mspace>";
             yield return new WaitForSeconds(1f);
             countdownTime--;
         }
 
-        countdownDisplay.text = "GO!";
+        countdownGUI.text = "GO!";
         yield return new WaitForSeconds(1f);
-        countdownDisplay.gameObject.SetActive(false);
+        countdownDisplay.SetActive(false);
         EnableControllers();
         timer.StartTimer();
     }
@@ -83,7 +85,8 @@ public class GameManager : MonoBehaviour
         int countdownTime = 10;
         while (countdownTime > 0)
         {
-            countdownDisplay.text = countdownTime.ToString();
+            TextMeshProUGUI countdownGUI = countdownDisplay.GetComponentInChildren<TextMeshProUGUI>();
+            countdownGUI.text = $"<mspace=mspace={monoSpacingSize}>{countdownTime.ToString()}</mspace>";
             yield return new WaitForSeconds(1f);
             countdownTime--;
         }
