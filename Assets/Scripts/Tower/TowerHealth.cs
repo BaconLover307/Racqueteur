@@ -7,11 +7,13 @@ using System.Collections.Generic;
 namespace Tower
 {
     [RequireComponent(typeof(TowerDestroy))]
+    [RequireComponent(typeof(Animator))]
     public class TowerHealth : MonoBehaviour
     {
         public static float startingHealth = 1000f;
         public float health;
         public float damageMultiplier = 10f;
+        public float blinkThreshold = 0.2f;
         public TowerLight towerLight;
         public GameObject rubleParticlePrefab;
         public CameraShake cameraShake;
@@ -21,12 +23,14 @@ namespace Tower
         private GameObject[] healthDots;
         private int healthDotsIterator;
         private TowerDestroy towerDestroy;
+        private Animator animator;
 
         #region unity callback
 
         private void Awake()
         {
             towerDestroy = GetComponent<TowerDestroy>();
+            animator = GetComponent<Animator>();
             health = startingHealth;
             maxDamagePerHit = health / 5;
             healthDotsIterator = 0;
@@ -43,7 +47,6 @@ namespace Tower
 
             // Know which body of tower got hit
             ContactPoint2D contact = other.contacts[0];
-            //Debug.Log(contact.collider.name + " hit " + contact.otherCollider.name);
 
             ProcessEffect(contact);
 
@@ -95,11 +98,18 @@ namespace Tower
         {
             health -= damage;
             health = Mathf.Max(health, 0);
+
+            if (health <= blinkThreshold * startingHealth && animator.enabled == false)
+            {
+                animator.enabled = true;
+            }
+
             if (health <= 0)
             {
                 OnTowerDestroy?.Invoke();
                 towerDestroy.Shatter();
             }
+
             SetHealthUI();
         }
 
