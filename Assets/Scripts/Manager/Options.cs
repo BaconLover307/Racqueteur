@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Manager;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class Options : MonoBehaviour
 {
@@ -82,6 +84,16 @@ public class Options : MonoBehaviour
 
     public void BackScene()
     {
+        Debug.Log("p1: " + DeviceMap.PlayerDevices[0].Item2);
+        Debug.Log("p2: " + DeviceMap.PlayerDevices[1].Item2);
+
+        if (!DeviceManager.Instance.isValidScheme)
+        {
+            // TODO handle error invalid scheme
+            Debug.Log("Invalid scheme");
+            return;
+        }
+        
         SceneManager.LoadScene("MainMenuScene");
     }
 
