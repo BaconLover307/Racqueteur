@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
@@ -10,8 +11,20 @@ public class MainMenu : MonoBehaviour
     public GameObject tutorialsPanel;
     public GameObject creditsPanel;
 
+    [Header("Audio")]
+    public AudioMixer mainMix;
+
     void Start()
     {
+        // Set volume sound
+        float musicVol = PlayerPrefs.GetFloat("musicVol", 1f);
+        float sfxVol = PlayerPrefs.GetFloat("sfxVol", 1f);
+        float annVol = PlayerPrefs.GetFloat("annVol", 1f);
+
+        mainMix.SetFloat("musicVol", Mathf.Log10(musicVol) * 20);
+        mainMix.SetFloat("sfxVol", Mathf.Log10(sfxVol) * 20);
+        mainMix.SetFloat("annVol", Mathf.Log10(annVol) * 20);
+
         DisablePanels();
         ShowPanel(mainMenuPanel);
     }

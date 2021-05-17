@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -14,16 +14,18 @@ public class Options : MonoBehaviour
     public TextMeshProUGUI up1, down1, left1, right1, cw1, ccw1, flip1;
     public TextMeshProUGUI up2, down2, left2, right2, cw2, ccw2, flip2;
 
-    [Header("Graphics Settings")]
-    public Toggle effectsToggle;
+    //[Header("Graphics Settings")]
+    //public Toggle effectsToggle;
 
     [Header("Sounds Settings")]
     public Slider musicSlider;
     public Slider sfxSlider;
+    public Slider annSlider;
+    public AudioMixer mainMix;
 
     [Header("View")]
     public GameObject controlsView;
-    public GameObject graphicsView;
+    //public GameObject graphicsView;
     public GameObject soundsView;
 
     private GameObject currentKey;
@@ -64,15 +66,17 @@ public class Options : MonoBehaviour
         right2.text = keys["Right2"].ToString();
 
         // Set effects toggle
-        effectsToggle.isOn = PlayerPrefs.GetInt("Effects", 1) == 1;
+        //effectsToggle.isOn = PlayerPrefs.GetInt("Effects", 1) == 1;
 
-        // Set music volume
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0);
-
-        // Set SFX volume
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0);
+        // Set sound volume
+        musicSlider.value = PlayerPrefs.GetFloat("musicVol", 1f);
+        Debug.Log(musicSlider.value);
+        sfxSlider.value = PlayerPrefs.GetFloat("sfxVol", 1f);
+        annSlider.value = PlayerPrefs.GetFloat("annVol", 1f);
 
         // Disable all views
+        DisableViews();
+        OpenControls();
     }
 
     public void BackScene()
@@ -131,7 +135,7 @@ public class Options : MonoBehaviour
     public void DisableViews()
     {
         controlsView.SetActive(false);
-        graphicsView.SetActive(false);
+        //graphicsView.SetActive(false);
         soundsView.SetActive(false);
     }
 
@@ -141,11 +145,11 @@ public class Options : MonoBehaviour
         controlsView.SetActive(true);
     }
 
-    public void OpenGraphics()
-    {
-        DisableViews();
-        graphicsView.SetActive(true);
-    }
+    //public void OpenGraphics()
+    //{
+    //    DisableViews();
+    //    graphicsView.SetActive(true);
+    //}
 
     public void OpenSounds()
     {
@@ -155,24 +159,37 @@ public class Options : MonoBehaviour
 
     public void OnMusicVolumeChanged(float value)
     {
-        PlayerPrefs.SetFloat("MusicVolume", value);
+        mainMix.SetFloat("musicVol", Mathf.Log10(value) * 20);
+
+        PlayerPrefs.SetFloat("musicVol", value);
 
         PlayerPrefs.Save();
     }
 
     public void OnSFXVolumeChanged(float value)
     {
-        PlayerPrefs.SetFloat("SFXVolume", value);
+        mainMix.SetFloat("sfxVol", Mathf.Log10(value) * 20);
+
+        PlayerPrefs.SetFloat("sfxVol", value);
 
         PlayerPrefs.Save();
     }
 
-    public void OnEffectsChanged(bool value)
+    public void OnAnnVolumeChanged(float value)
     {
-        PlayerPrefs.SetInt("Effects", value? 1:0);
+        mainMix.SetFloat("annVol", Mathf.Log10(value) * 20);
+
+        PlayerPrefs.SetFloat("annVol", value);
 
         PlayerPrefs.Save();
     }
+
+    //public void OnEffectsChanged(bool value)
+    //{
+    //    PlayerPrefs.SetInt("Effects", value? 1:0);
+
+    //    PlayerPrefs.Save();
+    //}
 
     // Save all key bindings when pressed Save
     public void saveKeys()
