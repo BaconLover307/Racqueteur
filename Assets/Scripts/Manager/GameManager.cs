@@ -2,8 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
+using UnityEngine.InputSystem.Users;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Player;
@@ -18,8 +17,7 @@ public class GameManager : MonoBehaviour
     [Header("Game Settings")]
     public PlayerController[] racquets;
     public GameObject[] spawnPoints;
-    public Material P1Mat;
-    public Material P2Mat;
+    public Material[] PlayerMats;
     public TowerHealth P1Health;
     public TowerHealth P2Health;
     public GameObject EndGameScreen;
@@ -35,8 +33,7 @@ public class GameManager : MonoBehaviour
     public BorderLight[] borderLights;
 
     private KeyboardSplitter keyboardSplitter;
-    private PlayerController player1;
-    private PlayerController player2;
+    private List<PlayerController> players = new List<PlayerController>();
 
     private void Awake()
     {
@@ -150,41 +147,41 @@ public class GameManager : MonoBehaviour
 
     private void SpawnRacquets()
     {
-        player1 = Instantiate(racquets[PlayerPrefs.GetInt("Racquet1", 0)], spawnPoints[0].transform);
-        player1.GetComponent<RacketLight>().UpdateMaterial(P1Mat);
-        PlayerInput p1Controller = player1.GetComponent<PlayerInput>();
-        p1Controller.SwitchCurrentControlScheme(PlayerPrefs.GetString("Control1", "KeyboardLeft"));
-
-        player2 = Instantiate(racquets[PlayerPrefs.GetInt("Racquet2", 0)], spawnPoints[1].transform);
-        player2.GetComponent<RacketLight>().UpdateMaterial(P2Mat);
-        PlayerInput p2Controller = player2.GetComponent<PlayerInput>();
-        p2Controller.SwitchCurrentControlScheme(PlayerPrefs.GetString("Control2", "KeyboardRight"));
+        for (int i=0; i<spawnPoints.Length; i++)
+        {
+            PlayerController player = Instantiate(racquets[PlayerPrefs.GetInt("Racquet" + i, 0)], spawnPoints[i].transform);
+            player.GetComponent<RacketLight>().UpdateMaterial(PlayerMats[i]);
+            PlayerInput controller = player.GetComponent<PlayerInput>();
+            controller.SwitchCurrentControlScheme(DeviceMap.PlayerDevices[i].Item2);
+            InputUser.PerformPairingWithDevice(DeviceMap.PlayerDevices[i].Item1, controller.user, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
+            players.Add(player);
+        }
     }
 
     private void DisableControllers(bool movementOnly = false)
     {
-        PlayerInput p1 = player1.gameObject.GetComponent<PlayerInput>();
-        PlayerInput p2 = player2.gameObject.GetComponent<PlayerInput>();
-        if (movementOnly)
+        for (int i = 0; i < spawnPoints.Length; i++)
         {
-            p1.actions.FindAction("Movement").Disable();
-            p2.actions.FindAction("Movement").Disable();
-        }
-        else
-        {
-            p1.DeactivateInput();
-            p2.DeactivateInput();
+            PlayerInput pInput = players[i].GetComponent<PlayerInput>();
+            if (movementOnly)
+            {
+                pInput.actions.FindAction("Movement").Disable();
+            }
+            else
+            {
+                pInput.DeactivateInput();
+            }
         }
     }
 
     private void EnableControllers()
     {
-        PlayerInput p1 = player1.gameObject.GetComponent<PlayerInput>();
-        PlayerInput p2 = player2.gameObject.GetComponent<PlayerInput>();
-        p1.actions.FindAction("Movement").Enable();
-        p2.actions.FindAction("Movement").Enable();
-        p1.ActivateInput();
-        p2.ActivateInput();
+        for (int i = 0; i < spawnPoints.Length; i++)
+        {
+            PlayerInput pInput = players[i].GetComponent<PlayerInput>();
+            pInput.actions.FindAction("Movement").Enable();
+            pInput.ActivateInput();
+        }
     }
 
     #region public callback

@@ -514,8 +514,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4294942431
+  m_fontColor: {r: 0.87264144, g: 0.6179246, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2742,8 +2742,9 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 1734790208}
   - {fileID: 1699095356}
-  P1Mat: {fileID: 2100000, guid: f1b1577ee64c2d3439ba9131f5c98a29, type: 2}
-  P2Mat: {fileID: 2100000, guid: 853616d0c2d9ae14eab165c0921e8829, type: 2}
+  PlayerMats:
+  - {fileID: 2100000, guid: f1b1577ee64c2d3439ba9131f5c98a29, type: 2}
+  - {fileID: 2100000, guid: 853616d0c2d9ae14eab165c0921e8829, type: 2}
   P1Health: {fileID: 1687088218179989131}
   P2Health: {fileID: 597828186030360084}
   EndGameScreen: {fileID: 1610175497}
