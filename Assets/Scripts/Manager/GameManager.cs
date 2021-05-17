@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     public BorderLight[] borderLights;
 
     private List<PlayerController> players = new List<PlayerController>();
-    
+
     private void Awake()
     {
         Instance = this;
@@ -57,10 +57,12 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Countdown(int duration, string endString)
     {
+        countdownDisplay.SetActive(true);
         TextMeshProUGUI countdownGUI = countdownDisplay.GetComponentInChildren<TextMeshProUGUI>();
+        Animator anim = countdownDisplay.GetComponent<Animator>();
         Color targetColor = countdownGUI.color;
         Color whiteColor = new Color(1, 1, 1, 1);
-        float initialSize = countdownGUI.fontSize; 
+        float initialSize = countdownGUI.fontSize;
         float targetSize = 0.8f * initialSize;
 
         float currentTime = 0;
@@ -76,11 +78,12 @@ public class GameManager : MonoBehaviour
                 countdownGUI.text = endString;
             }
 
-            countdownGUI.color = Color.Lerp(whiteColor, targetColor, animCurve.Evaluate(currentTime - Mathf.FloorToInt(currentTime)));
-            countdownGUI.fontSize = Mathf.Lerp(initialSize, targetSize, animCurve.Evaluate(currentTime - Mathf.FloorToInt(currentTime)));
+            // countdownGUI.color = Color.Lerp(whiteColor, targetColor, animCurve.Evaluate(currentTime - Mathf.FloorToInt(currentTime)));
+            // countdownGUI.fontSize = Mathf.Lerp(initialSize, targetSize, animCurve.Evaluate(currentTime - Mathf.FloorToInt(currentTime)));
+            anim.Play("Countdown", -1, 0f);
 
-            currentTime += Time.deltaTime;
-            yield return new WaitForSeconds(Time.deltaTime);
+            currentTime += 1.0f;
+            yield return new WaitForSeconds(1.0f);
         }
 
         countdownDisplay.SetActive(false);
@@ -150,7 +153,7 @@ public class GameManager : MonoBehaviour
 
     private void SpawnRacquets()
     {
-        for (int i=0; i<spawnPoints.Length; i++)
+        for (int i = 0; i < spawnPoints.Length; i++)
         {
             PlayerController player = Instantiate(racquets[PlayerPrefs.GetInt("Racquet" + i, 0)], spawnPoints[i].transform);
             player.GetComponent<RacketLight>().UpdateMaterial(PlayerMats[i]);
