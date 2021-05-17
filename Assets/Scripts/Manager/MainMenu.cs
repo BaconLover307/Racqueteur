@@ -12,13 +12,13 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         DisablePanels();
-        mainMenuPanel.SetActive(true);
+        ShowPanel(mainMenuPanel);
     }
 
     public void DisablePanels()
     {
-        mainMenuPanel.SetActive(false);
-        creditsPanel.SetActive(false);
+        HidePanel(mainMenuPanel);
+        HidePanel(creditsPanel);
     }
 
     public void PlayGame()
@@ -34,18 +34,30 @@ public class MainMenu : MonoBehaviour
     public void OpenCredits()
     {
         DisablePanels();
+        creditsPanel.SetActive(false);
         creditsPanel.SetActive(true);
+        ShowPanel(creditsPanel);
     }
 
     public void BackToMainMenu()
     {
         DisablePanels();
-        mainMenuPanel.SetActive(true);
+        ShowPanel(mainMenuPanel);
     }
 
     public void QuitGame()
     {
         Debug.Log("QUIT!");
         Application.Quit();
+    }
+
+    public void HidePanel(GameObject panel)
+    {
+        panel.GetComponent<Canvas>().enabled = false;
+    }
+
+    public void ShowPanel(GameObject panel)
+    {
+        panel.GetComponent<Canvas>().enabled = true;
     }
 }
