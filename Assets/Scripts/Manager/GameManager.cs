@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(TurnOnLights());
         SpawnRacquets();
         DisableControllers(true);
-        StartCoroutine(Countdown(3, "GO!", true));
+        StartCoroutine(Countdown(3, "GO!"));
 
         P1Health.OnTowerDestroy += EndCondition;
         P2Health.OnTowerDestroy += EndCondition;
@@ -55,58 +55,49 @@ public class GameManager : MonoBehaviour
         timer.OnTimerLastCountdown += CallLastCountdown;
     }
 
-    private IEnumerator Countdown(int duration, string endString, bool isOpening)
+    private IEnumerator Countdown(int duration, string endString)
     {
         countdownDisplay.SetActive(true);
+
+        float initialTimestamp = timer.timeRemaining;
+
         TextMeshProUGUI countdownGUI = countdownDisplay.GetComponentInChildren<TextMeshProUGUI>();
-        Animator anim = countdownDisplay.GetComponent<Animator>();
         Color targetColor = countdownGUI.color;
         Color whiteColor = new Color(1, 1, 1, 1);
-        float initialSize = countdownGUI.fontSize;
-        float targetSize = 0.8f * initialSize;
+        float targetSize = countdownGUI.fontSize;
+        float initialSize = targetSize * 1.2f;
 
-        float currentTime = 0;
-        while (currentTime < duration + 1)
+        float elapsedTime;
+        do
         {
-            if (currentTime < duration)
+            elapsedTime = initialTimestamp - timer.timeRemaining;
+
+            if (elapsedTime < duration)
             {
-                int countdownTime = duration - Mathf.FloorToInt(currentTime);
-                countdownGUI.text = $"<mspace=mspace={monoSpacingSize}>{countdownTime}</mspace>";
-            }
-            else if (isOpening)
-            {
-                countdownGUI.text = endString;
+                int countdownTime = duration - Mathf.FloorToInt(elapsedTime);
+                countdownGUI.text = countdownTime.ToString();
             }
             else
             {
-                break;
+                countdownGUI.text = endString;
             }
 
-            // countdownGUI.color = Color.Lerp(whiteColor, targetColor, animCurve.Evaluate(currentTime - Mathf.FloorToInt(currentTime)));
-            // countdownGUI.fontSize = Mathf.Lerp(initialSize, targetSize, animCurve.Evaluate(currentTime - Mathf.FloorToInt(currentTime)));
-            anim.Play("Countdown", -1, 0f);
+            countdownGUI.color = Color.Lerp(whiteColor, targetColor, animCurve.Evaluate(elapsedTime - Mathf.FloorToInt(elapsedTime)));
+            countdownGUI.fontSize = Mathf.Lerp(initialSize, targetSize, animCurve.Evaluate(elapsedTime - Mathf.FloorToInt(elapsedTime)));
 
-            currentTime += 1.0f;
-            yield return new WaitForSeconds(1.0f);
-        }
+            yield return new WaitForSeconds(Time.deltaTime);
+        } while (elapsedTime < duration + 1);
 
         countdownDisplay.SetActive(false);
-
-        if (isOpening)
-        {
-            EnableControllers();
-            timer.StartTimer();
-        }
-        else
-        {
-            notificationDisplay.text = endString;
-            StartCoroutine(ShowTimeNotification());
-        }
+        countdownGUI.color = targetColor;
+        countdownGUI.fontSize = targetSize;
+        EnableControllers();
+        timer.displayTimer = true;
     }
 
     private void CallLastCountdown()
     {
-        StartCoroutine(Countdown(10, "Time's Up", false));
+        StartCoroutine(Countdown(10, "Time's Up"));
     }
 
     private void EndCondition()
@@ -126,7 +117,6 @@ public class GameManager : MonoBehaviour
             winnerDisplay.text = "TIE!";
             winnerDisplay.color = new Color32(223, 158, 255, 255);
         }
-        timer.StopTimer();
         StartCoroutine(ShowEndGameScreen());
     }
 
@@ -139,15 +129,15 @@ public class GameManager : MonoBehaviour
     IEnumerator ShowTimeNotification()
     {
         notificationDisplay.gameObject.SetActive(true);
-        notificationDisplay.gameObject.GetComponent<Animator>().Play("Announcement");
         yield return new WaitForSeconds(3.0f);
         notificationDisplay.gameObject.SetActive(false);
     }
 
     private IEnumerator ShowEndGameScreen()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(3.0f);
         notificationDisplay.gameObject.SetActive(false);
+        countdownDisplay.SetActive(false);
         EndGameScreen.SetActive(true);
     }
 

@@ -8,20 +8,26 @@ namespace Manager
     {
         public float timeRemaining = 3 * 60;
         public string monoSpacingSize = "30";
+        public bool displayTimer = false;
         [SerializeField] private bool timerStarted;
 
-        private TMP_Text _timerText;
-        private double _lockTime;
         public Action OnTimerEnd;
         public Action OnTimerNotification;
         public Action OnTimerLastCountdown;
 
+        private TMP_Text _timerText;
+        private bool hasInvoked = false;
+
         #region private function
 
-        private void DisplayTimer()
+        private void DisplayTimer(float time = -1)
         {
-            var minutes = Math.Floor(timeRemaining / 60);
-            var seconds = Math.Floor(timeRemaining % 60);
+            if (time == -1)
+            {
+                time = timeRemaining;
+            }
+            var minutes = Math.Floor(time / 60);
+            var seconds = Math.Floor(time % 60);
             _timerText.text = $"<mspace=mspace={monoSpacingSize}>{minutes:0}:{seconds:00}</mspace>";
         }
 
@@ -50,7 +56,19 @@ namespace Manager
 
         private void Start()
         {
-            DisplayTimer();
+            DisplayTimer(timeRemaining - 4);
+            StartTimer();
+        }
+
+        private void SetHasInvokeFalse()
+        {
+            hasInvoked = false;
+        }
+
+        private void TriggerInvoke()
+        {
+            hasInvoked = true;
+            Invoke(nameof(SetHasInvokeFalse), 1.5f);
         }
 
         private void Update()
@@ -61,22 +79,24 @@ namespace Manager
 
             timeRemaining = Math.Max(timeRemaining, 0);
 
-            DisplayTimer();
+            if (displayTimer) DisplayTimer(-1);
 
-            if (timeRemaining == 0)
+            if (timeRemaining <= 0 && !hasInvoked)
             {
+                displayTimer = false;
                 timerStarted = false;
                 OnTimerEnd?.Invoke();
+                TriggerInvoke();
             }
-            else if (((Math.Floor(timeRemaining) == 30) || (Math.Floor(timeRemaining) == 60)) && (_lockTime != Math.Floor(timeRemaining)))
+            else if ((Math.Floor(timeRemaining) == 30) || (Math.Floor(timeRemaining) == 60) && !hasInvoked)
             {
-                _lockTime = Math.Floor(timeRemaining);
                 OnTimerNotification?.Invoke();
+                TriggerInvoke();
             }
-            else if ((Math.Floor(timeRemaining) == 10) && (_lockTime != Math.Floor(timeRemaining)))
+            else if ((Math.Floor(timeRemaining) == 10) && !hasInvoked)
             {
-                _lockTime = Math.Floor(timeRemaining);
                 OnTimerLastCountdown?.Invoke();
+                TriggerInvoke();
             }
         }
 
