@@ -18,6 +18,7 @@ public class Options : MonoBehaviour
     //public Toggle effectsToggle;
 
     [Header("Sounds Settings")]
+    public Slider masterSlider;
     public Slider musicSlider;
     public Slider sfxSlider;
     public Slider annSlider;
@@ -69,8 +70,8 @@ public class Options : MonoBehaviour
         //effectsToggle.isOn = PlayerPrefs.GetInt("Effects", 1) == 1;
 
         // Set sound volume
+        masterSlider.value = PlayerPrefs.GetFloat("masterVol", 1f);
         musicSlider.value = PlayerPrefs.GetFloat("musicVol", 1f);
-        Debug.Log(musicSlider.value);
         sfxSlider.value = PlayerPrefs.GetFloat("sfxVol", 1f);
         annSlider.value = PlayerPrefs.GetFloat("annVol", 1f);
 
@@ -155,6 +156,15 @@ public class Options : MonoBehaviour
     {
         DisableViews();
         soundsView.SetActive(true);
+    }
+
+    public void OnMasterVolumeChanged(float value)
+    {
+        mainMix.SetFloat("masterVol", Mathf.Log10(value) * 20);
+
+        PlayerPrefs.SetFloat("masterVol", value);
+
+        PlayerPrefs.Save();
     }
 
     public void OnMusicVolumeChanged(float value)

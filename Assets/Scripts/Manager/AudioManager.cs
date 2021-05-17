@@ -9,7 +9,8 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxAudioSrc;
     public AudioSource announceAudioSrc;
 
-    static AudioManager instance = null;
+    [HideInInspector]
+    public static AudioManager instance = null;
 
     #region public callback
 

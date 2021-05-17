@@ -9,29 +9,14 @@ public class SimpleButton : MonoBehaviour
     public AudioClip hoverFX;
     public AudioMixerGroup mixer;
 
-    private AudioSource audioSrc;
-
-    private void Awake()
-    {
-        AudioSource[] sources = GameObject.FindGameObjectWithTag("Audio").GetComponents<AudioSource>();
-        foreach (AudioSource source in sources)
-        {
-            if (source.outputAudioMixerGroup.Equals(mixer))
-            {
-                audioSrc = source;
-                break;
-            }
-        }
-    }
-
     public void OnClick()
     {
-        if (clickFX && audioSrc) audioSrc.PlayOneShot(clickFX);
+        if (clickFX) AudioManager.instance.PlaySFX(clickFX);
     }
 
     public void OnHover()
     {
-        if (hoverFX && audioSrc) audioSrc.PlayOneShot(hoverFX);
+        if (hoverFX) AudioManager.instance.PlaySFX(hoverFX);
     }
 
 }
