@@ -6878,6 +6878,26 @@ PrefabInstance:
       propertyPath: initialForce
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1612078897, guid: 951c4a392918c8dea9923a98f149060a, type: 3}
+      propertyPath: NoiseModule.quality
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612078897, guid: 951c4a392918c8dea9923a98f149060a, type: 3}
+      propertyPath: NoiseModule.strength.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612078897, guid: 951c4a392918c8dea9923a98f149060a, type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612078897, guid: 951c4a392918c8dea9923a98f149060a, type: 3}
+      propertyPath: EmissionModule.rateOverDistance.minScalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612078897, guid: 951c4a392918c8dea9923a98f149060a, type: 3}
+      propertyPath: EmissionModule.rateOverDistance.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6766883155833509844, guid: 951c4a392918c8dea9923a98f149060a, type: 3}
       propertyPath: m_Name
       value: Ball
