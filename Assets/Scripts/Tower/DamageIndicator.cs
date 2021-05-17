@@ -6,19 +6,21 @@ using TMPro;
 public class DamageIndicator : MonoBehaviour
 {
     public Transform damageCanvas;
-    public GameObject damageTextObj;
+    public GameObject damageTextPrefab;
     public float forceMultiplier = 2f;
 
     public void Spawn(int damage, Vector3 position, Vector2 forceDirection, bool isWeakPoint)
     {
-        GameObject damageText = Instantiate(damageTextObj, position, Quaternion.identity, damageCanvas);
-        damageText.GetComponent<TMP_Text>().text = damage.ToString();
+        GameObject damageTextObj = Instantiate(damageTextPrefab, position, Quaternion.identity, damageCanvas);
+        TMP_Text damageText = damageTextObj.GetComponent<TMP_Text>();
+        damageText.text = damage.ToString();
         if (isWeakPoint)
         {
-            damageText.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
+            damageTextObj.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
+            damageText.color = new Color(.9f, 0, 0, 1);
         }
-        Rigidbody2D rb = damageText.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb = damageTextObj.GetComponent<Rigidbody2D>();
         rb.AddForce(forceDirection * forceMultiplier, ForceMode2D.Impulse);
-        Destroy(damageText, 2f);
+        Destroy(damageTextObj, 2f);
     }
 }

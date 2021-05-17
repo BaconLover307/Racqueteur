@@ -7,13 +7,12 @@ public class TowerDestroy : MonoBehaviour
     public GameObject fullModel;
     public GameObject shatteredModel;
     public float explosionForce = 100f;
-    public float explosionforceDeviation = 10f;
+    public float explosionForceDeviation = 10f;
     public float explosionRadius = 6f;
     public LayerMask mask;
     public Collider2D[] towerColliders;
 
     private Vector2 explosionOrigin;
-
 
     public void Shatter()
     {
@@ -31,7 +30,7 @@ public class TowerDestroy : MonoBehaviour
         {
             Rigidbody2D rb = piece.attachedRigidbody;
             Vector2 piecePosition = piece.bounds.center;
-            rb.AddForce((piecePosition - explosionOrigin) * (explosionForce + Random.Range(-explosionforceDeviation, explosionforceDeviation)), ForceMode2D.Force);
+            rb.AddForce((piecePosition - explosionOrigin) * (explosionForce + Random.Range(-explosionForceDeviation, explosionForceDeviation)), ForceMode2D.Force);
         }
     }
 }

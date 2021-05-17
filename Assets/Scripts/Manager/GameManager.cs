@@ -20,24 +20,25 @@ public class GameManager : MonoBehaviour
     public Material[] PlayerMats;
     public TowerHealth P1Health;
     public TowerHealth P2Health;
-    public GameObject EndGameScreen;
     public Timer timer;
+    public GameObject EndGameScreen;
     public string monoSpacingSize = "30";
     public GameObject countdownDisplay;
     public TextMeshProUGUI winnerDisplay;
     public TextMeshProUGUI notificationDisplay;
+    public AnimationCurve animCurve;
 
     [Header("Light Settings")]
     public ArenaLight arenaLight;
     public TowerLight[] towerLights;
     public BorderLight[] borderLights;
 
-    private KeyboardSplitter keyboardSplitter;
     private List<PlayerController> players = new List<PlayerController>();
-
+    
     private void Awake()
     {
         Instance = this;
+
     }
 
     void Start()
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(TurnOnLights());
         SpawnRacquets();
         DisableControllers(true);
-        StartCoroutine(Countdown());
+        StartCoroutine(Countdown(3, "GO!"));
 
         P1Health.OnTowerDestroy += EndCondition;
         P2Health.OnTowerDestroy += EndCondition;
@@ -54,19 +55,34 @@ public class GameManager : MonoBehaviour
         timer.OnTimerLastCountdown += CallLastCountdown;
     }
 
-    private IEnumerator Countdown()
+    private IEnumerator Countdown(int duration, string endString)
     {
-        int countdownTime = 3;
         TextMeshProUGUI countdownGUI = countdownDisplay.GetComponentInChildren<TextMeshProUGUI>();
-        while (countdownTime > 0)
+        Color targetColor = countdownGUI.color;
+        Color whiteColor = new Color(1, 1, 1, 1);
+        float initialSize = countdownGUI.fontSize; 
+        float targetSize = 0.8f * initialSize;
+
+        float currentTime = 0;
+        while (currentTime < duration + 1)
         {
-            countdownGUI.text = $"<mspace=mspace={monoSpacingSize}>{countdownTime.ToString()}</mspace>";
-            yield return new WaitForSeconds(1f);
-            countdownTime--;
+            if (currentTime < duration)
+            {
+                int countdownTime = 3 - Mathf.FloorToInt(currentTime);
+                countdownGUI.text = $"<mspace=mspace={monoSpacingSize}>{countdownTime}</mspace>";
+            }
+            else
+            {
+                countdownGUI.text = endString;
+            }
+
+            countdownGUI.color = Color.Lerp(whiteColor, targetColor, animCurve.Evaluate(currentTime - Mathf.FloorToInt(currentTime)));
+            countdownGUI.fontSize = Mathf.Lerp(initialSize, targetSize, animCurve.Evaluate(currentTime - Mathf.FloorToInt(currentTime)));
+
+            currentTime += Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
         }
 
-        countdownGUI.text = "GO!";
-        yield return new WaitForSeconds(1f);
         countdownDisplay.SetActive(false);
         EnableControllers();
         timer.StartTimer();
@@ -74,25 +90,7 @@ public class GameManager : MonoBehaviour
 
     private void CallLastCountdown()
     {
-        StartCoroutine(LastCountdown());
-    }
-    private IEnumerator LastCountdown()
-    {
-        countdownDisplay.gameObject.SetActive(true);
-        int countdownTime = 10;
-        while (countdownTime > 0)
-        {
-            TextMeshProUGUI countdownGUI = countdownDisplay.GetComponentInChildren<TextMeshProUGUI>();
-            countdownGUI.text = $"<mspace=mspace={monoSpacingSize}>{countdownTime.ToString()}</mspace>";
-            yield return new WaitForSeconds(1f);
-            countdownTime--;
-        }
-        countdownDisplay.gameObject.SetActive(false);
-
-        DisableControllers(true);
-        notificationDisplay.text = "Time's Up";
-        notificationDisplay.gameObject.SetActive(true);
-        yield return new WaitForSeconds(3.0f);
+        StartCoroutine(Countdown(10, "Time's Up"));
     }
 
     private void EndCondition()

@@ -62,10 +62,10 @@ namespace Tower
             // Know which body of tower got hit
             var contact = other.GetContact(0);
 
-            ProcessEffect(contact);
             var damage = CalculateDamage(contact, other);
             Hit(damage);
             _damageIndicator.Spawn(Mathf.RoundToInt(damage), contact.point, contact.normal.normalized * -1, IsWeakPoint(contact));
+            ProcessEffect(contact);
         }
 
         private void OnCollisionExit2D(Collision2D other)
@@ -91,7 +91,7 @@ namespace Tower
             var minThresholdImpulse = 20f;
             var maxImpulse = 100f;
 
-            if (contact.normalImpulse > minThresholdImpulse)
+            if (contact.normalImpulse > minThresholdImpulse || health <= 0f)
             {
                 var ruble = Instantiate(rubleParticlePrefab, contact.point, Quaternion.identity);
                 var rotation = Quaternion.LookRotation(ruble.transform.forward, contact.normal * -1);
