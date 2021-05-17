@@ -102,10 +102,15 @@ public class GameManager : MonoBehaviour
             winnerDisplay.text = "PLAYER 1 WINS";
             winnerDisplay.color = new Color32(214, 73, 69, 255);
         }
-        else if (P2Health.health >= P1Health.health)
+        else if (P2Health.health > P1Health.health)
         {
             winnerDisplay.text = "PLAYER 2 WINS";
             winnerDisplay.color = new Color32(69, 123, 214, 255);
+        }
+        else
+        {
+            winnerDisplay.text = "TIE!";
+            winnerDisplay.color = new Color32(223, 158, 255, 255);
         }
         timer.StopTimer();
         StartCoroutine(ShowEndGameScreen());
