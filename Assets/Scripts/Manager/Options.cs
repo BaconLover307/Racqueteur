@@ -94,6 +94,8 @@ public class Options : MonoBehaviour
             return;
         }
         
+        DeviceMap.SavePlayerDevice();
+        
         SceneManager.LoadScene("MainMenuScene");
     }
 

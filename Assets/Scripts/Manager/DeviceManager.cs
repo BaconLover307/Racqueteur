@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -11,8 +10,6 @@ namespace Manager
     public class DeviceManager : MonoBehaviour
     {
         public static DeviceManager Instance;
-        
-        private GameObject[] _playerInstances;
 
         public GameObject playerPrefabs;
         public TMP_Text[] devicesText;
@@ -25,6 +22,8 @@ namespace Manager
 
         private InputAction _myAction;
 
+        private GameObject[] _playerInstances;
+
         private void Awake()
         {
             Instance = this;
@@ -32,9 +31,7 @@ namespace Manager
 
         private void Start()
         {
-            // TODO save device and scan on load 
-
-            _playerInstances = new []
+            _playerInstances = new[]
             {
                 Instantiate(playerPrefabs),
                 Instantiate(playerPrefabs)
@@ -46,7 +43,7 @@ namespace Manager
             {
                 var (device, scheme) = DeviceMap.PlayerDevices[playerIdx];
                 var playerInput = playerInputs[playerIdx];
-                
+
                 playerInput.SwitchCurrentControlScheme(scheme);
                 InputUser.PerformPairingWithDevice(device, playerInput.user,
                     InputUserPairingOptions.UnpairCurrentDevicesFromUser);
@@ -54,7 +51,6 @@ namespace Manager
 
                 if (!scheme.StartsWith("Keyboard")) keyboardScheme[playerIdx].SetActive(false);
             }
-
 
             // This subscribes us to events that will fire if any button is pressed.  We'll most certainly want to throw this away 
             // when not in a selection screen (performance intensive)!
