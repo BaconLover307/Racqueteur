@@ -704,7 +704,7 @@ MonoBehaviour:
   selectedControl2: KeyboardRight
   buttonObjs:
   - {fileID: 1073751526}
-  - {fileID: 0}
+  - {fileID: 1883488831}
   loadingBar: {fileID: 1315948629}
 --- !u!4 &203884727
 Transform:
@@ -4889,6 +4889,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1861790598}
   m_CullTransparentMesh: 1
+--- !u!1 &1883488831 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2980213448992235619, guid: 01703ebca167dc644909cf345325502c, type: 3}
+  m_PrefabInstance: {fileID: 1185192747}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1888374005
 GameObject:
   m_ObjectHideFlags: 0
