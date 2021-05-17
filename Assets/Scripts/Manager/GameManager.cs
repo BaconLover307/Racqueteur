@@ -129,6 +129,7 @@ public class GameManager : MonoBehaviour
     IEnumerator ShowTimeNotification()
     {
         notificationDisplay.gameObject.SetActive(true);
+        notificationDisplay.gameObject.GetComponent<Animator>().Play("Announcement");
         yield return new WaitForSeconds(3.0f);
         notificationDisplay.gameObject.SetActive(false);
     }
