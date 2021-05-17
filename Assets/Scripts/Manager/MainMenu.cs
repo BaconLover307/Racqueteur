@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     [Header("Panels")]
     public GameObject mainMenuPanel;
+    public GameObject tutorialsPanel;
     public GameObject creditsPanel;
 
     void Start()
@@ -18,6 +19,7 @@ public class MainMenu : MonoBehaviour
     public void DisablePanels()
     {
         HidePanel(mainMenuPanel);
+        HidePanel(tutorialsPanel);
         HidePanel(creditsPanel);
     }
 
@@ -31,11 +33,21 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("OptionsScene");
     }
 
+    public void OpenTutorials()
+    {
+        DisablePanels();
+        ShowPanel(tutorialsPanel);
+    }
+
     public void OpenCredits()
     {
         DisablePanels();
-        creditsPanel.SetActive(false);
-        creditsPanel.SetActive(true);
+        //creditsPanel.SetActive(false);
+
+        GameObject myEventSystem = GameObject.Find("EventSystem");
+        myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
+
+        //creditsPanel.SetActive(true);
         ShowPanel(creditsPanel);
     }
 
@@ -53,11 +65,13 @@ public class MainMenu : MonoBehaviour
 
     public void HidePanel(GameObject panel)
     {
-        panel.GetComponent<Canvas>().enabled = false;
+        //panel.GetComponent<Canvas>().enabled = false;
+        panel.SetActive(false);
     }
 
     public void ShowPanel(GameObject panel)
     {
-        panel.GetComponent<Canvas>().enabled = true;
+        //panel.GetComponent<Canvas>().enabled = true;
+        panel.SetActive(true);
     }
 }
