@@ -66,6 +66,7 @@ public class MainMenu : MonoBehaviour
     public void HidePanel(GameObject panel)
     {
         //panel.GetComponent<Canvas>().enabled = false;
+        new WaitForSeconds(0.5f);
         panel.SetActive(false);
     }
 

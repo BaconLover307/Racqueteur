@@ -8,6 +8,8 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxAudioSrc;
     public AudioSource announceAudioSrc;
 
+    static AudioManager instance = null;
+
     #region public callback
 
     public void PlaySFX(AudioClip audio)
@@ -24,16 +26,17 @@ public class AudioManager : MonoBehaviour
 
     #region unity callback
 
-    void Awake()
+    private void Awake()
     {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("Audio");
-
-        if (objs.Length > 1)
+        if (instance != null)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
-
-        DontDestroyOnLoad(this.gameObject);
+        else
+        {
+            instance = this;
+            GameObject.DontDestroyOnLoad(gameObject);
+        }
 
         if (!mainAudioSrc.isPlaying)
         {
