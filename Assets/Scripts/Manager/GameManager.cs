@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(TurnOnLights());
         SpawnRacquets();
         DisableControllers(true);
-        StartCoroutine(Countdown(3, "GO!"));
+        StartCoroutine(Countdown(3, "GO!", true));
 
         P1Health.OnTowerDestroy += EndCondition;
         P2Health.OnTowerDestroy += EndCondition;
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         timer.OnTimerLastCountdown += CallLastCountdown;
     }
 
-    private IEnumerator Countdown(int duration, string endString)
+    private IEnumerator Countdown(int duration, string endString, bool isOpening)
     {
         countdownDisplay.SetActive(true);
         TextMeshProUGUI countdownGUI = countdownDisplay.GetComponentInChildren<TextMeshProUGUI>();
@@ -73,9 +73,13 @@ public class GameManager : MonoBehaviour
                 int countdownTime = duration - Mathf.FloorToInt(currentTime);
                 countdownGUI.text = $"<mspace=mspace={monoSpacingSize}>{countdownTime}</mspace>";
             }
-            else
+            else if (isOpening)
             {
                 countdownGUI.text = endString;
+            }
+            else
+            {
+                break;
             }
 
             // countdownGUI.color = Color.Lerp(whiteColor, targetColor, animCurve.Evaluate(currentTime - Mathf.FloorToInt(currentTime)));
@@ -87,13 +91,22 @@ public class GameManager : MonoBehaviour
         }
 
         countdownDisplay.SetActive(false);
-        EnableControllers();
-        timer.StartTimer();
+
+        if (isOpening)
+        {
+            EnableControllers();
+            timer.StartTimer();
+        }
+        else
+        {
+            notificationDisplay.text = endString;
+            StartCoroutine(ShowTimeNotification());
+        }
     }
 
     private void CallLastCountdown()
     {
-        StartCoroutine(Countdown(10, "Time's Up"));
+        StartCoroutine(Countdown(10, "Time's Up", false));
     }
 
     private void EndCondition()
@@ -132,7 +145,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ShowEndGameScreen()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(2.0f);
         notificationDisplay.gameObject.SetActive(false);
         EndGameScreen.SetActive(true);
     }
