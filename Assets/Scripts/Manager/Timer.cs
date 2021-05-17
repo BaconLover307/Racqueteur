@@ -11,6 +11,7 @@ namespace Manager
         [SerializeField] private bool timerStarted;
 
         private TMP_Text _timerText;
+        private double _lockTime;
         public Action OnTimerEnd;
         public Action OnTimerNotification;
         public Action OnTimerLastCountdown;
@@ -67,12 +68,14 @@ namespace Manager
                 timerStarted = false;
                 OnTimerEnd?.Invoke();
             }
-            else if ((Math.Floor(timeRemaining) == 30) || (Math.Floor(timeRemaining) == 60))
+            else if (((Math.Floor(timeRemaining) == 30) || (Math.Floor(timeRemaining) == 60)) && (_lockTime != Math.Floor(timeRemaining)))
             {
+                _lockTime = Math.Floor(timeRemaining);
                 OnTimerNotification?.Invoke();
             }
-            else if ((Math.Floor(timeRemaining) == 10))
+            else if ((Math.Floor(timeRemaining) == 10) && (_lockTime != Math.Floor(timeRemaining)))
             {
+                _lockTime = Math.Floor(timeRemaining);
                 OnTimerLastCountdown?.Invoke();
             }
         }
