@@ -48,12 +48,6 @@ namespace Player
             racketLight = GetComponent<RacketLight>();
         }
 
-        void Start()
-        {
-            var spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-            //spriteRenderer.color = Random.ColorHSV();
-        }
-
         private void FixedUpdate()
         {
             Move();

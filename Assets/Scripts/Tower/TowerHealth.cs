@@ -24,6 +24,7 @@ namespace Tower
         public GameObject rubleParticlePrefab;
         public CameraShake cameraShake;
         public DamageMultiplier damageMultipliers;
+        public Action OnTowerDestroy;
 
         [HideInInspector] public float health;
 
@@ -34,7 +35,7 @@ namespace Tower
 
         private float _maxDamagePerHit;
         private TowerDestroy _towerDestroy;
-        public Action OnTowerDestroy;
+        private string collisionName = "";
 
         #region unity callback
 
@@ -55,14 +56,22 @@ namespace Tower
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (!other.gameObject.CompareTag("Ball")) return;
-
+            if (collisionName != "") return;
+            collisionName = other.otherCollider.name;
+            
             // Know which body of tower got hit
-            var contact = other.contacts[0];
+            var contact = other.GetContact(0);
 
             ProcessEffect(contact);
             var damage = CalculateDamage(contact, other);
             Hit(damage);
             _damageIndicator.Spawn(Mathf.RoundToInt(damage), contact.point, contact.normal.normalized * -1, IsWeakPoint(contact));
+        }
+
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            if (!other.gameObject.CompareTag("Ball")) return;
+            if (collisionName == other.otherCollider.name) collisionName = "";
         }
 
         #endregion
@@ -101,7 +110,8 @@ namespace Tower
         private float CalculateDamage(ContactPoint2D weakPoint, Collision2D ball)
         {
             // Calculate the damage based on magnitude
-            var damage = ball.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude;
+            Debug.Log(weakPoint.normalImpulse);
+            var damage = weakPoint.normalImpulse;
 
             switch (weakPoint.otherCollider.name)
             {
