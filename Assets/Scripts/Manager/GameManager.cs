@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         {
             if (currentTime < duration)
             {
-                int countdownTime = 3 - Mathf.FloorToInt(currentTime);
+                int countdownTime = duration - Mathf.FloorToInt(currentTime);
                 countdownGUI.text = $"<mspace=mspace={monoSpacingSize}>{countdownTime}</mspace>";
             }
             else
