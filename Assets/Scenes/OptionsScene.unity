@@ -8359,6 +8359,7 @@ MonoBehaviour:
   - KeyboardRight
   - KeyboardFull
   playerIdx: 1
+  playerControls: {fileID: -944628639613478452, guid: d483d11bece414ee888389050ffd112a, type: 3}
 --- !u!1 &1403756608
 GameObject:
   m_ObjectHideFlags: 0
@@ -8917,6 +8918,7 @@ MonoBehaviour:
   - KeyboardRight
   - KeyboardFull
   playerIdx: 0
+  playerControls: {fileID: -944628639613478452, guid: d483d11bece414ee888389050ffd112a, type: 3}
 --- !u!1 &1502172001
 GameObject:
   m_ObjectHideFlags: 0
