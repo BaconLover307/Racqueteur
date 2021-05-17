@@ -9904,7 +9904,7 @@ PrefabInstance:
     - target: {fileID: 6332650703628876985, guid: 01703ebca167dc644909cf345325502c, type: 3}
       propertyPath: clickFX
       value: 
-      objectReference: {fileID: 8300000, guid: 8d19f22c914d8394d911a48e2e2a26c4, type: 3}
+      objectReference: {fileID: 8300000, guid: fd2c6fdc557ce1e4a8555ace3e86b137, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01703ebca167dc644909cf345325502c, type: 3}
 --- !u!224 &1551179278 stripped
