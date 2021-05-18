@@ -9,7 +9,6 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxAudioSrc;
     public AudioSource announceAudioSrc;
 
-    [HideInInspector]
     public static AudioManager instance = null;
 
     #region public function
@@ -82,11 +81,6 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
             GameObject.DontDestroyOnLoad(gameObject);
-        }
-
-        if (!mainAudioSrc.isPlaying)
-        {
-            mainAudioSrc.Play();
         }
     }
 

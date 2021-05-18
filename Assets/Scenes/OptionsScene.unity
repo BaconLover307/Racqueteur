@@ -343,8 +343,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1330848288}
   m_HandleRect: {fileID: 1330848287}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.37569058
+  m_Value: 0.9999999
+  m_Size: 0.37569055
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3444,7 +3444,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 894138343}
         m_TargetAssemblyTypeName: Manager.Options.AudioOptions, Assembly-CSharp
-        m_MethodName: OnSFXVolumeChanged
+        m_MethodName: OnAnnVolumeChanged
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
