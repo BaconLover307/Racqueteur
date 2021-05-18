@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-namespace Manager
+namespace Manager.Options
 {
     public class KeyboardSchemeButtonHandler : MonoBehaviour
     {

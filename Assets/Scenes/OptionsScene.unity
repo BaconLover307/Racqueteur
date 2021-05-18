@@ -334,8 +334,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 955578020}
-        m_TargetAssemblyTypeName: Options, Assembly-CSharp
+      - m_Target: {fileID: 955578021}
+        m_TargetAssemblyTypeName: Manager.Options.AudioOptions, Assembly-CSharp
         m_MethodName: OnMasterVolumeChanged
         m_Mode: 0
         m_Arguments:
@@ -5316,8 +5316,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 955578020}
-        m_TargetAssemblyTypeName: Options, Assembly-CSharp
+      - m_Target: {fileID: 955578021}
+        m_TargetAssemblyTypeName: Manager.Options.AudioOptions, Assembly-CSharp
         m_MethodName: OnMusicVolumeChanged
         m_Mode: 0
         m_Arguments:
@@ -5493,8 +5493,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 955578020}
-        m_TargetAssemblyTypeName: Options, Assembly-CSharp
+      - m_Target: {fileID: 955578021}
+        m_TargetAssemblyTypeName: Manager.Options.AudioOptions, Assembly-CSharp
         m_MethodName: OnAnnVolumeChanged
         m_Mode: 0
         m_Arguments:
@@ -8572,8 +8572,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 955578020}
-        m_TargetAssemblyTypeName: Options, Assembly-CSharp
+      - m_Target: {fileID: 955578021}
+        m_TargetAssemblyTypeName: Manager.Options.AudioOptions, Assembly-CSharp
         m_MethodName: OnSFXVolumeChanged
         m_Mode: 0
         m_Arguments:
@@ -9030,6 +9030,7 @@ GameObject:
   m_Component:
   - component: {fileID: 955578019}
   - component: {fileID: 955578020}
+  - component: {fileID: 955578021}
   m_Layer: 0
   m_Name: Options
   m_TagString: Untagged
@@ -9070,27 +9071,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87cfe5623a0f98444a0cd7eb5ec10ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  up1: {fileID: 795137687}
-  down1: {fileID: 729381447}
-  left1: {fileID: 730255888}
-  right1: {fileID: 659415334}
-  cw1: {fileID: 155102054}
-  ccw1: {fileID: 1844427805}
-  flip1: {fileID: 422582132}
-  up2: {fileID: 2120679701}
-  down2: {fileID: 85444917}
-  left2: {fileID: 22462969}
-  right2: {fileID: 1792758548}
-  cw2: {fileID: 1926497551}
-  ccw2: {fileID: 961931392}
-  flip2: {fileID: 352430621}
+  controlsView: {fileID: 1183826621}
+  soundsView: {fileID: 656406444}
+--- !u!114 &955578021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955578018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0efc5386bda44b79b19ce68ae1d7b868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   masterSlider: {fileID: 21586336}
   musicSlider: {fileID: 546949870}
   sfxSlider: {fileID: 930449747}
   annSlider: {fileID: 561958046}
   mainMix: {fileID: 24100000, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
-  controlsView: {fileID: 1183826621}
-  soundsView: {fileID: 656406444}
 --- !u!1 &958717906
 GameObject:
   m_ObjectHideFlags: 0
@@ -15914,11 +15913,11 @@ PrefabInstance:
       objectReference: {fileID: 955578020}
     - target: {fileID: 533567263854607458, guid: 01703ebca167dc644909cf345325502c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BackScene
+      value: OnBackButton
       objectReference: {fileID: 0}
     - target: {fileID: 533567263854607458, guid: 01703ebca167dc644909cf345325502c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Options, Assembly-CSharp
+      value: Manager.Options.Options, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1557311997476305827, guid: 01703ebca167dc644909cf345325502c, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -20587,9 +20586,9 @@ RectTransform:
   m_Father: {fileID: 752020870}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 639, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 639, y: -840}
   m_SizeDelta: {x: 1238, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2032069716

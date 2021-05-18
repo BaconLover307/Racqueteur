@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 using UnityEngine.UI;
 
-namespace Manager
+namespace Manager.Options
 {
     public class DeviceManager : MonoBehaviour
     {
