@@ -240,6 +240,8 @@ public class GameManager : MonoBehaviour
 
     public void OnBackToMainMenu()
     {
+        // Set timescale to make the title animation run
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenuScene");
     }
 
