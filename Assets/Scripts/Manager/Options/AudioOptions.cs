@@ -15,10 +15,10 @@ namespace Manager.Options
         private void Start()
         {
             // Set sound volume
-            masterSlider.value = PlayerPrefs.GetFloat("masterVol", 1f);
-            musicSlider.value = PlayerPrefs.GetFloat("musicVol", 1f);
-            sfxSlider.value = PlayerPrefs.GetFloat("sfxVol", 1f);
-            annSlider.value = PlayerPrefs.GetFloat("annVol", 1f);
+            masterSlider.value = PlayerPrefs.GetFloat("masterVol", 0.5f);
+            musicSlider.value = PlayerPrefs.GetFloat("musicVol", 0.35f);
+            sfxSlider.value = PlayerPrefs.GetFloat("sfxVol", 0.75f);
+            annSlider.value = PlayerPrefs.GetFloat("annVol", 0.6f);
         }
 
         public void OnMasterVolumeChanged(float value)

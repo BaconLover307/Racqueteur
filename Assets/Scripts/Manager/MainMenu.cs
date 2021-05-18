@@ -19,10 +19,10 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         // Set volume sound
-        float masterVol = PlayerPrefs.GetFloat("masterVol", 1f);
-        float musicVol = PlayerPrefs.GetFloat("musicVol", 1f);
-        float sfxVol = PlayerPrefs.GetFloat("sfxVol", 1f);
-        float annVol = PlayerPrefs.GetFloat("annVol", 1f);
+        float masterVol = PlayerPrefs.GetFloat("masterVol", 0.5f);
+        float musicVol = PlayerPrefs.GetFloat("musicVol", 0.35f);
+        float sfxVol = PlayerPrefs.GetFloat("sfxVol", 0.75f);
+        float annVol = PlayerPrefs.GetFloat("annVol", 0.6f);
 
         mainMix.SetFloat("masterVol", Mathf.Log10(masterVol) * 20);
         mainMix.SetFloat("musicVol", Mathf.Log10(musicVol) * 20);
