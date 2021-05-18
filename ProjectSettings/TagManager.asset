@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Ball
   - Dot
-  - Audio
   layers:
   - Default
   - TransparentFX

@@ -111,7 +111,8 @@ namespace Tower
                 emissionModule.SetBurst(0, burst);
                 Destroy(ruble, 1f);
 
-                _audioManager.PlaySFX(IsWeakPoint(contact) ? towerHitWeakpointSFX : towerHitSFX);
+                AudioClip hitSFX = IsWeakPoint(contact) ? towerHitWeakpointSFX : towerHitSFX;
+                _audioManager.PlaySFX(hitSFX);
 
                 cameraShake.Shake(contact.normalImpulse / maxImpulse * cameraShake.maxAmplitude);
             }
