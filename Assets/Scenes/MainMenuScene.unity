@@ -7486,7 +7486,7 @@ MonoBehaviour:
   - name: ButtonClick
     clip: {fileID: 8300000, guid: bfd856b6ff281a5469fbccf55bca7916, type: 3}
     mixer: {fileID: 1560205838153445295, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
-    volume: 0.8
+    volume: 0.7
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -7570,14 +7570,14 @@ MonoBehaviour:
   - name: RacquetFlick
     clip: {fileID: 8300000, guid: 9bf7b6d2becb14c46b4af833d9334adf, type: 3}
     mixer: {fileID: 7020305397985817131, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
-    volume: 1
+    volume: 0.637
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: RacquetBlock
     clip: {fileID: 8300000, guid: 0e4cb80bace236941ababcb50da280d1, type: 3}
     mixer: {fileID: 7020305397985817131, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
-    volume: 1
+    volume: 0.577
     pitch: 1
     loop: 0
     source: {fileID: 0}

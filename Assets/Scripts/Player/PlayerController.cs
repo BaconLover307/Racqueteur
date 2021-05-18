@@ -117,8 +117,15 @@ namespace Player
         {
             if (other.gameObject.CompareTag("Ball"))
             {
+                ProcessAudio(other.GetContact(0));
                 _audioManager.PlayOneShot("BallHitRacquet");
             }
+        }
+
+        private void ProcessAudio(ContactPoint2D contact)
+        {
+            var maxImpulse = 100f;
+            AudioManager.instance.PlayWithVolume("BallHitRacquet", Mathf.Clamp(contact.normalImpulse / maxImpulse, 0.1f, 1f));
         }
 
         public void FreezeRacquet()

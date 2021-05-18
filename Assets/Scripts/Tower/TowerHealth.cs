@@ -130,7 +130,7 @@ namespace Tower
         private float CalculateDamage(ContactPoint2D weakPoint, Collision2D ball)
         {
             // Calculate the damage based on magnitude
-            Debug.Log(weakPoint.normalImpulse);
+            //Debug.Log(weakPoint.normalImpulse);
             var damage = weakPoint.normalImpulse;
 
             switch (weakPoint.otherCollider.name)
