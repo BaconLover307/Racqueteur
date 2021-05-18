@@ -18,18 +18,13 @@ namespace Manager.Options
 
         public void OnBackButton()
         {
-            Debug.Log("p1: " + DeviceMap.PlayerDevices[0].Item2);
-            Debug.Log("p2: " + DeviceMap.PlayerDevices[1].Item2);
-
             if (!DeviceManager.Instance.isValidScheme)
             {
-                // TODO handle error invalid scheme
-                Debug.Log("Invalid scheme");
+                ErrorPopup.Instance.Show("Error!!\n\n<size=50>wrong controller scheme pair</size>");
                 return;
             }
 
             DeviceMap.SavePlayerDevice();
-
             SceneManager.LoadScene("MainMenuScene");
         }
 

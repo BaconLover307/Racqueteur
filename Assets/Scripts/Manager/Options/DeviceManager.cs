@@ -29,15 +29,15 @@ namespace Manager.Options
         private void Awake()
         {
             Instance = this;
-        }
-
-        private void Start()
-        {
             _playerInstances = new[]
             {
                 Instantiate(playerPrefabs),
                 Instantiate(playerPrefabs)
             };
+        }
+
+        private void Start()
+        {
             var playerInputs = _playerInstances.Select(player => player.GetComponent<PlayerInput>()).ToList();
 
             // device option already exist

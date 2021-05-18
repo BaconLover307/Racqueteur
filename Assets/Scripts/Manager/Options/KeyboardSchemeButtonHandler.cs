@@ -35,30 +35,24 @@ namespace Manager.Options
             for (var i = 0; i < buttons.Length; i++)
             {
                 var schemeIdx = i;
-                buttons[i].onClick.AddListener(delegate { ChangeScheme(schemeIdx); });
+                buttons[i].onClick.AddListener(delegate { ChangeScheme(names[schemeIdx]); });
             }
 
             ParseInputActionAsset();
             DeviceManager.Instance.OnControllerChange += OnChangeControlMapping;
             OnChangeControlMapping();
-
-            if (DeviceMap.PlayerDevices == null) return;
-
-            // not default options
-            var (_, scheme) = DeviceMap.PlayerDevices[playerIdx];
-            if (!scheme.StartsWith("Keyboard")) return;
-
-            foreach (var button in buttons) button.interactable = true;
-            buttons[names.IndexOf(scheme)].interactable = false;
         }
 
-        private void ChangeScheme(int idx)
+        private void ChangeScheme(string schemeName)
         {
+            if (!schemeName.StartsWith("Keyboard")) return;
+            
             foreach (var button in buttons) button.interactable = true;
+            
+            var idx = names.IndexOf(schemeName);
 
             buttons[idx].interactable = false;
             DeviceManager.Instance.OnChangeScheme(playerIdx + "," + names[idx]);
-            OnChangeControlMapping();
         }
 
         private void ParseInputActionAsset()
@@ -98,6 +92,7 @@ namespace Manager.Options
         private void OnChangeControlMapping()
         {
             var (_, scheme) = DeviceMap.PlayerDevices[playerIdx];
+            ChangeScheme(scheme);
 
             var defaultControl = new List<string>();
 
