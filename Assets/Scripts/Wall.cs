@@ -17,13 +17,12 @@ public class Wall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Mashok");
         if (other.gameObject.CompareTag("Ball")) {
             _audioManager.PlaySFX(ballHitSFX);
         } else if (other.gameObject.CompareTag("Player"))
         {
-            _audioManager.StopSFX();
-            _audioManager.PlaySFX(racquetHitSFX);
+            //_audioManager.StopSFX();
+            //_audioManager.PlaySFX(racquetHitSFX);
         }
     }
     

@@ -26,6 +26,11 @@ namespace Player
         [Header("Input Settings")]
         public float doubleTapDelayThreshold = 0.3f;
 
+        [Header("Audio Settings")]
+        public AudioClip ballHitSFX;
+        public AudioClip flickSFX;
+        public AudioClip blockSFX;
+
         private SparkSpawner sparkSpawner;
         private RacketLight racketLight;
         private Rigidbody2D _rb;
