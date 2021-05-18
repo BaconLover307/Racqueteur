@@ -26,6 +26,11 @@ namespace Tower
         public DamageMultiplier damageMultipliers;
         public Action OnTowerDestroy;
 
+        [Header("SFX Clips")]
+        public AudioClip towerHitSFX;
+        public AudioClip towerHitWeakpointSFX;
+        public AudioClip towerDestroySFX;
+
         [HideInInspector] public float health;
 
         private Animator _animator;
@@ -106,6 +111,8 @@ namespace Tower
                 emissionModule.SetBurst(0, burst);
                 Destroy(ruble, 1f);
 
+                _audioManager.PlaySFX(IsWeakPoint(contact) ? towerHitWeakpointSFX : towerHitSFX);
+
                 cameraShake.Shake(contact.normalImpulse / maxImpulse * cameraShake.maxAmplitude);
             }
         }
@@ -146,6 +153,9 @@ namespace Tower
             {
                 OnTowerDestroy?.Invoke();
                 _towerDestroy.Shatter();
+
+                _audioManager.StopSFX();
+                _audioManager.PlaySFX(towerDestroySFX);
             }
 
             SetHealthUI();

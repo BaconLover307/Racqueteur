@@ -172,7 +172,7 @@ namespace Player
 
         public void OnPause(InputAction.CallbackContext context)
         {
-            GameManager.Instance.GetComponent<PauseManager>().OnPauseClicked();
+            if (context.started) GameManager.Instance.GetComponent<PauseManager>().OnPauseClicked();
         }
 
         #endregion

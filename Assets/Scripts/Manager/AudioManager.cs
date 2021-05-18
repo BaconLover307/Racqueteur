@@ -42,10 +42,29 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void StopSFX()
+    {
+        sfxAudioSrc.Stop();
+    }
+
+    public void PauseAudio()
+    {
+        mainAudioSrc.Pause();
+        sfxAudioSrc.Pause();
+        announceAudioSrc.Pause();
+    }
+
+    public void UnPauseAudio()
+    {
+        mainAudioSrc.UnPause();
+        sfxAudioSrc.UnPause();
+        announceAudioSrc.UnPause();
+    }
+
     public void ShutUp()
     {
-        mainAudioSrc.Stop();
-        sfxAudioSrc.Stop();
+        StopMusic();
+        StopSFX();
         announceAudioSrc.Stop();
     }
 
