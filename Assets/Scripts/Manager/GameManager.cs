@@ -42,6 +42,9 @@ public class GameManager : MonoBehaviour
     public AudioClip ann10sSFX;
     public AudioClip winnerSFX;
 
+    [Header("Others")]
+    public TextMeshProUGUI help;
+
     private List<PlayerController> players = new List<PlayerController>();
     private AudioManager _audioManager;
 
@@ -115,6 +118,9 @@ public class GameManager : MonoBehaviour
         countdownDisplay.SetActive(false);
         countdownGUI.color = targetColor;
         countdownGUI.fontSize = targetSize;
+
+        // Set "pause" help text to close
+        help.enabled = false;
         
         timer.displayTimer = true;
     }
