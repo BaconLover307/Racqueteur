@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace Manager.Options
         public GameObject[] keyboardScheme;
         public Button[] bindButton;
         public int maxPlayer = 2;
+        public Action OnControllerChange;
 
         public bool isValidScheme;
         private int _currPlayerIndex = -1;
@@ -123,6 +125,7 @@ namespace Manager.Options
 
             devicesText[_currPlayerIndex].text = device.displayName;
             bindButton[_currPlayerIndex].interactable = true;
+            OnControllerChange?.Invoke();
             CheckValidScheme();
 
             _currPlayerIndex = -1;
