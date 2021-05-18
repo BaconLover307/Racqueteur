@@ -2357,6 +2357,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 853616d0c2d9ae14eab165c0921e8829, type: 2}
   P1Health: {fileID: 1687088218179989131}
   P2Health: {fileID: 597828186030360084}
+  ball: {fileID: 6766883156459746708}
   timer: {fileID: 236580331}
   EndGameScreen: {fileID: 1610175497}
   monoSpacingSize: 30
@@ -6201,3 +6202,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 951c4a392918c8dea9923a98f149060a, type: 3}
+--- !u!114 &6766883156459746708 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -328215763232153010, guid: 951c4a392918c8dea9923a98f149060a, type: 3}
+  m_PrefabInstance: {fileID: 6766883156459746707}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc2f12e537a06568b1bd4a17a679f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

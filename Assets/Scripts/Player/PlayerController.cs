@@ -126,6 +126,12 @@ namespace Player
             }
         }
 
+        public void FreezeRacquet()
+        {
+            _rb.velocity = new Vector2(0, 0);
+            _rb.rotation = 0;
+        }
+
         #endregion
 
         #region public callback

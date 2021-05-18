@@ -26,5 +26,16 @@ namespace Ball
         }
 
         #endregion
+
+        #region public callback
+
+        public void FreezeBall()
+        {
+            _rb.velocity = new Vector2(0,0);
+            _rb.rotation = 0;
+        }
+
+        #endregion
+
     }
 }

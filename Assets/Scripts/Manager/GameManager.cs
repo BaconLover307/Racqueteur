@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Player;
 using Tower;
+using Ball;
 using Manager;
 using TMPro;
 
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
     public Material[] PlayerMats;
     public TowerHealth P1Health;
     public TowerHealth P2Health;
+    public Movement ball;
     public Timer timer;
     public GameObject EndGameScreen;
     public string monoSpacingSize = "30";
@@ -56,7 +58,7 @@ public class GameManager : MonoBehaviour
         DisableControllers(true);
         _audioManager.ShutUp();
         _audioManager.PlayAnnounce(countdownSFX);
-        StartCoroutine(Countdown(3, "GO!"));
+        StartCoroutine(Countdown(3, "GO!", false));
 
         P1Health.OnTowerDestroy += EndCondition;
         P2Health.OnTowerDestroy += EndCondition;
@@ -66,7 +68,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private IEnumerator Countdown(int duration, string endString)
+    private IEnumerator Countdown(int duration, string endString, bool isEnd)
     {
         countdownDisplay.SetActive(true);
 
@@ -88,10 +90,20 @@ public class GameManager : MonoBehaviour
             {
                 int countdownTime = duration - Mathf.FloorToInt(elapsedTime);
                 countdownGUI.text = countdownTime.ToString();
+
             }
             else
             {
                 countdownGUI.text = endString;
+                if (isEnd)
+                {
+                    DisableControllers();
+                    ball.FreezeBall();
+                }
+                else
+                {
+                    EnableControllers();
+                }
             }
 
             countdownGUI.color = Color.Lerp(whiteColor, targetColor, animCurve.Evaluate(elapsedTime - Mathf.FloorToInt(elapsedTime)));
@@ -103,14 +115,14 @@ public class GameManager : MonoBehaviour
         countdownDisplay.SetActive(false);
         countdownGUI.color = targetColor;
         countdownGUI.fontSize = targetSize;
-        EnableControllers();
+        
         timer.displayTimer = true;
     }
 
     private void CallLastCountdown()
     {
         _audioManager.PlayAnnounce(ann10sSFX);
-        StartCoroutine(Countdown(10, "Time's Up"));
+        StartCoroutine(Countdown(10, "Time's Up", true));
     }
 
     private void EndCondition()
@@ -130,7 +142,6 @@ public class GameManager : MonoBehaviour
             winnerDisplay.text = "TIE!";
             winnerDisplay.color = new Color32(223, 158, 255, 255);
         }
-        DisableControllers(true);
         timer.StopTimer();
         StartCoroutine(ShowEndGameScreen());
     }
@@ -211,6 +222,7 @@ public class GameManager : MonoBehaviour
             {
                 pInput.DeactivateInput();
             }
+            pInput.GetComponentInChildren<PlayerController>().FreezeRacquet();
         }
     }
 
