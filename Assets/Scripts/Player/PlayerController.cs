@@ -31,6 +31,7 @@ namespace Player
         public AudioClip flickSFX;
         public AudioClip blockSFX;
 
+        private AudioManager _audioManager;
         private SparkSpawner sparkSpawner;
         private RacketLight racketLight;
         private Rigidbody2D _rb;
@@ -42,6 +43,7 @@ namespace Player
         private float lastRotationInput = 0f;
         private bool isDoubleTap;
         private bool isBlock = false;
+        private bool hasBlocked = false;
 
         #region unity callback
 
@@ -51,6 +53,7 @@ namespace Player
             _rb.centerOfMass = centerOfMass;
             sparkSpawner = GetComponent<SparkSpawner>();
             racketLight = GetComponent<RacketLight>();
+            _audioManager = AudioManager.instance;
         }
 
         private void FixedUpdate()
@@ -92,20 +95,35 @@ namespace Player
             float elapsedBlockTime = Time.fixedTime - blockTimestamp;
             if (elapsedBlockTime <= blockDuration)
             {
+                if (!hasBlocked)
+                {
+                    _audioManager.PlaySFX(blockSFX);
+                    hasBlocked = true;
+                }
                 _rb.angularVelocity = 0;
             }
             else
             {
                 isBlock = false;
+                hasBlocked = false;
                 racketLight.SwitchLight(false);
             }
         }
 
         private void Flick()
         {
-            _rb.angularVelocity = Mathf.Clamp(_rotationInput * flickSpeed, -flickSpeed, flickSpeed);
-            StartCoroutine(sparkSpawner.ShowSparks());
             isDoubleTap = false;
+            _rb.angularVelocity = Mathf.Clamp(_rotationInput * flickSpeed, -flickSpeed, flickSpeed);
+            _audioManager.PlaySFX(flickSFX);
+            StartCoroutine(sparkSpawner.ShowSparks());
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Ball"))
+            {
+                _audioManager.PlaySFX(ballHitSFX);
+            }
         }
 
         #endregion
@@ -168,6 +186,7 @@ namespace Player
                 if (isBlock)
                 {
                     isBlock = false;
+                    hasBlocked = false;
                     blockTimestamp = Time.fixedTime;
                     racketLight.SwitchLight(false);
                 }
