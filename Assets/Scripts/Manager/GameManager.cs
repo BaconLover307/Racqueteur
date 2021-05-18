@@ -130,6 +130,8 @@ public class GameManager : MonoBehaviour
             winnerDisplay.text = "TIE!";
             winnerDisplay.color = new Color32(223, 158, 255, 255);
         }
+        DisableControllers(true);
+        timer.StopTimer();
         StartCoroutine(ShowEndGameScreen());
     }
 
@@ -165,6 +167,7 @@ public class GameManager : MonoBehaviour
         notificationDisplay.gameObject.SetActive(false);
         countdownDisplay.SetActive(false);
         EndGameScreen.SetActive(true);
+        EndGameScreen.GetComponent<Animator>().Play("EndMenu");
     }
 
     IEnumerator TurnOnLights()
