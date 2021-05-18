@@ -277,7 +277,7 @@ MonoBehaviour:
   maxLinearSpeed: 40
   angularForce: 1000
   maxAngularSpeed: 420
-  centerOfMass: {x: 0, y: -1.9}
+  centerOfMass: {x: 0, y: -1.8}
   flickSpeed: 2500
   flickCooldown: 1
   blockDuration: 1
