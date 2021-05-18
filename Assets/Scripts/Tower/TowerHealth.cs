@@ -74,6 +74,7 @@ namespace Tower
             Hit(damage);
             _damageIndicator.Spawn(Mathf.RoundToInt(damage), contact.point, contact.normal.normalized * -1, IsWeakPoint(contact));
             ProcessEffect(contact);
+            ProcessAudio(contact);
         }
 
         private void OnCollisionExit2D(Collision2D other)
@@ -94,6 +95,17 @@ namespace Tower
                 (contact.otherCollider.name == "WeakpointRight");
         }
 
+        private void ProcessAudio(ContactPoint2D contact)
+        {
+            var minThresholdImpulse = 10f;
+            var maxImpulse = 100f;
+            if (contact.normalImpulse > minThresholdImpulse || health <= 0f)
+            {
+                string hitSFX = IsWeakPoint(contact) ? "TowerHitWeakpoint" : "TowerHit";
+                AudioManager.instance.PlayOneShot(hitSFX);
+            }
+        }
+
         private void ProcessEffect(ContactPoint2D contact)
         {
             var minThresholdImpulse = 20f;
@@ -110,10 +122,6 @@ namespace Tower
                 var burst = new ParticleSystem.Burst(0, contact.normalImpulse / maxImpulse * mainModule.maxParticles);
                 emissionModule.SetBurst(0, burst);
                 Destroy(ruble, 1f);
-
-                string hitSFX = IsWeakPoint(contact) ? "TowerHitWeakpoint" : "TowerHit";
-                AudioManager.instance.Play(hitSFX);
-
                 cameraShake.Shake(contact.normalImpulse / maxImpulse * cameraShake.maxAmplitude);
             }
         }

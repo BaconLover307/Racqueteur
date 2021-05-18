@@ -35,13 +35,6 @@ public class GameManager : MonoBehaviour
     public TowerLight[] towerLights;
     public BorderLight[] borderLights;
 
-    [Header("SFX")]
-    public AudioClip countdownSFX;
-    public AudioClip ann60sSFX;
-    public AudioClip ann30sSFX;
-    public AudioClip ann10sSFX;
-    public AudioClip winnerSFX;
-
     [Header("Others")]
     public TextMeshProUGUI help;
 

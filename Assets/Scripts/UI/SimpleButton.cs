@@ -10,12 +10,12 @@ public class SimpleButton : MonoBehaviour
 
     public void OnClick()
     {
-        if (clickFX != null) AudioManager.instance.Play(clickFX);
+        if (clickFX != null) AudioManager.instance.PlayOneShot(clickFX);
     }
 
     public void OnHover()
     {
-        if (hoverFX != null) AudioManager.instance.Play(hoverFX);
+        if (hoverFX != null) AudioManager.instance.PlayOneShot(hoverFX);
     }
 
 }

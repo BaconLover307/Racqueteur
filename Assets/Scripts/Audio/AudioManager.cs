@@ -38,6 +38,11 @@ public class AudioManager : MonoBehaviour
     public void Play(string name)
     {
         Sound s = FindAudioClip(name);
+        if (s != null) s.source.Play();
+    }
+    public void PlayOneShot(string name)
+    {
+        Sound s = FindAudioClip(name);
         if (s != null) s.source.PlayOneShot(s.clip);
     }
 
