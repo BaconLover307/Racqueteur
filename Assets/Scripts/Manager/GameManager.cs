@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
         countdownGUI.fontSize = targetSize;
 
         // Set "pause" help text to close
-        help.enabled = false;
+        help.GetComponent<Animator>().SetTrigger("Close");
         
         timer.displayTimer = true;
     }
