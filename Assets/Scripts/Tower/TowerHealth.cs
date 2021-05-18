@@ -37,6 +37,8 @@ namespace Tower
         private TowerDestroy _towerDestroy;
         private string collisionName = "";
 
+        private AudioManager _audioManager;
+
         #region unity callback
 
         private void Awake()
@@ -46,6 +48,7 @@ namespace Tower
             _animator = GetComponent<Animator>();
             health = maxHealth;
             _maxDamagePerHit = maxHealth * maxDamagePercentage / 100;
+            _audioManager = AudioManager.instance;
         }
 
         private void Start()

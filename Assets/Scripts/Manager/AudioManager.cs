@@ -12,16 +12,41 @@ public class AudioManager : MonoBehaviour
     [HideInInspector]
     public static AudioManager instance = null;
 
-    #region public callback
+    #region public function
 
     public void PlaySFX(AudioClip audio)
     {
+        
         sfxAudioSrc.PlayOneShot(audio);
     }
 
     public void PlayAnnounce(AudioClip audio)
     {
+        if (announceAudioSrc.isPlaying)
+        {
+            announceAudioSrc.Stop();
+        }
         announceAudioSrc.PlayOneShot(audio);
+    }
+
+    public void StopMusic()
+    {
+        mainAudioSrc.Stop();
+    }
+
+    public void PlayMusic()
+    {
+        if (!mainAudioSrc.isPlaying)
+        {
+            mainAudioSrc.Play();
+        }
+    }
+
+    public void ShutUp()
+    {
+        mainAudioSrc.Stop();
+        sfxAudioSrc.Stop();
+        announceAudioSrc.Stop();
     }
 
     #endregion

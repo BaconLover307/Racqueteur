@@ -33,12 +33,20 @@ public class GameManager : MonoBehaviour
     public TowerLight[] towerLights;
     public BorderLight[] borderLights;
 
+    [Header("SFX")]
+    public AudioClip countdownSFX;
+    public AudioClip ann60sSFX;
+    public AudioClip ann30sSFX;
+    public AudioClip ann10sSFX;
+    public AudioClip winnerSFX;
+
     private List<PlayerController> players = new List<PlayerController>();
+    private AudioManager _audioManager;
 
     private void Awake()
     {
         Instance = this;
-
+        _audioManager = AudioManager.instance;
     }
 
     void Start()
@@ -46,6 +54,8 @@ public class GameManager : MonoBehaviour
         StartCoroutine(TurnOnLights());
         SpawnRacquets();
         DisableControllers(true);
+        _audioManager.ShutUp();
+        _audioManager.PlayAnnounce(countdownSFX);
         StartCoroutine(Countdown(3, "GO!"));
 
         P1Health.OnTowerDestroy += EndCondition;
@@ -53,6 +63,7 @@ public class GameManager : MonoBehaviour
         timer.OnTimerEnd += EndCondition;
         timer.OnTimerNotification += TimeNotification;
         timer.OnTimerLastCountdown += CallLastCountdown;
+
     }
 
     private IEnumerator Countdown(int duration, string endString)
@@ -66,6 +77,7 @@ public class GameManager : MonoBehaviour
         Color whiteColor = new Color(1, 1, 1, 1);
         float targetSize = countdownGUI.fontSize;
         float initialSize = targetSize * 1.2f;
+
 
         float elapsedTime;
         do
@@ -97,6 +109,7 @@ public class GameManager : MonoBehaviour
 
     private void CallLastCountdown()
     {
+        _audioManager.PlayAnnounce(ann10sSFX);
         StartCoroutine(Countdown(10, "Time's Up"));
     }
 
@@ -122,7 +135,18 @@ public class GameManager : MonoBehaviour
 
     private void TimeNotification()
     {
-        notificationDisplay.text = Math.Floor(timer.timeRemaining).ToString() + " Seconds Remaining";
+        var timeRemaining = Math.Floor(timer.timeRemaining);
+
+        if (timeRemaining == 30)
+        {
+            _audioManager.PlayAnnounce(ann30sSFX);
+        }
+        if (timeRemaining == 60)
+        {
+            _audioManager.PlayAnnounce(ann60sSFX);
+        }
+
+        notificationDisplay.text = timeRemaining.ToString() + " Seconds Remaining";
         StartCoroutine(ShowTimeNotification());
     }
 
@@ -137,6 +161,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator ShowEndGameScreen()
     {
         yield return new WaitForSeconds(3.0f);
+        _audioManager.PlayAnnounce(winnerSFX);
         notificationDisplay.gameObject.SetActive(false);
         countdownDisplay.SetActive(false);
         EndGameScreen.SetActive(true);

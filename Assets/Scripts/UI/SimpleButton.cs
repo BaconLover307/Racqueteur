@@ -7,7 +7,6 @@ public class SimpleButton : MonoBehaviour
 {
     public AudioClip clickFX;
     public AudioClip hoverFX;
-    public AudioMixerGroup mixer;
 
     public void OnClick()
     {

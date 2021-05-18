@@ -88,7 +88,7 @@ namespace Manager
                 OnTimerEnd?.Invoke();
                 TriggerInvoke();
             }
-            else if ((Math.Floor(timeRemaining) == 30) || (Math.Floor(timeRemaining) == 60) && !hasInvoked)
+            else if ((Math.Floor(timeRemaining) == 30 || Math.Floor(timeRemaining) == 60) && !hasInvoked)
             {
                 OnTimerNotification?.Invoke();
                 TriggerInvoke();
