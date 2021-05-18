@@ -97,12 +97,13 @@ namespace Tower
 
         private void ProcessAudio(ContactPoint2D contact)
         {
-            var minThresholdImpulse = 10f;
             var maxImpulse = 100f;
-            if (contact.normalImpulse > minThresholdImpulse || health <= 0f)
+            if (!IsWeakPoint(contact) && contact.normalImpulse > 10f)
             {
-                string hitSFX = IsWeakPoint(contact) ? "TowerHitWeakpoint" : "TowerHit";
-                AudioManager.instance.PlayOneShot(hitSFX);
+                AudioManager.instance.PlayWithVolume("TowerHit", Mathf.Clamp(contact.normalImpulse / maxImpulse, 0.1f, 1.2f));
+            } else if (IsWeakPoint(contact) && contact.normalImpulse > 20f)
+            {
+                AudioManager.instance.PlayWithVolume("TowerHitWeakpoint", Mathf.Clamp(1.5f * contact.normalImpulse / maxImpulse, 0.6f, 1.2f));
             }
         }
 

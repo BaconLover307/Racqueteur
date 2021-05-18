@@ -7,7 +7,7 @@ public class Wall : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ball")) {
-            AudioManager.instance.Play("BallHitWall");
+            AudioManager.instance.PlayOneShot("BallHitWall");
         } else if (other.gameObject.CompareTag("Player"))
         {
             //AudioManager.instance.Play("RacquetHitWall");

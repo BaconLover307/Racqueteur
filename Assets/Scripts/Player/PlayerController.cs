@@ -92,7 +92,7 @@ namespace Player
             {
                 if (!hasBlocked)
                 {
-                    _audioManager.Play("RacquetBlock");
+                    _audioManager.PlayOneShot("RacquetBlock");
                     hasBlocked = true;
                 }
                 _rb.angularVelocity = 0;
@@ -109,7 +109,7 @@ namespace Player
         {
             isDoubleTap = false;
             _rb.angularVelocity = Mathf.Clamp(_rotationInput * flickSpeed, -flickSpeed, flickSpeed);
-            _audioManager.Play("RacquetFlick");
+            _audioManager.PlayOneShot("RacquetFlick");
             StartCoroutine(sparkSpawner.ShowSparks());
         }
 
@@ -117,7 +117,7 @@ namespace Player
         {
             if (other.gameObject.CompareTag("Ball"))
             {
-                _audioManager.Play("BallHitRacquet");
+                _audioManager.PlayOneShot("BallHitRacquet");
             }
         }
 

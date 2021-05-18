@@ -40,10 +40,21 @@ public class AudioManager : MonoBehaviour
         Sound s = FindAudioClip(name);
         if (s != null) s.source.Play();
     }
+
     public void PlayOneShot(string name)
     {
         Sound s = FindAudioClip(name);
         if (s != null) s.source.PlayOneShot(s.clip);
+    }
+
+    public void PlayWithVolume(string name, float volumePercent)
+    {
+        Sound s = FindAudioClip(name);
+        if (s != null)
+        {
+            s.source.volume = s.volume * (volumePercent);
+            s.source.PlayOneShot(s.clip);
+        }
     }
 
     public void Stop(string name)
