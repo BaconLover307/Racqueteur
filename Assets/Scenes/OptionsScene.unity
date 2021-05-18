@@ -1924,6 +1924,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Manager.Options.Options, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 7468836508841150302, guid: 80cb43441ebff29488a9057c16b6ec10, type: 3}
+      propertyPath: hoverFX
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8534163748691520243, guid: 80cb43441ebff29488a9057c16b6ec10, type: 3}
       propertyPath: m_Name
       value: SoundsButton
@@ -2186,8 +2190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9fbd75b77dce34ca9050276f84d47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickFX: {fileID: 8300000, guid: bfd856b6ff281a5469fbccf55bca7916, type: 3}
-  hoverFX: {fileID: 0}
+  clickFX: 
+  hoverFX: 
 --- !u!1 &369511053
 GameObject:
   m_ObjectHideFlags: 0
@@ -2486,8 +2490,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9fbd75b77dce34ca9050276f84d47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickFX: {fileID: 8300000, guid: bfd856b6ff281a5469fbccf55bca7916, type: 3}
-  hoverFX: {fileID: 0}
+  clickFX: 
+  hoverFX: 
 --- !u!1 &408826278
 GameObject:
   m_ObjectHideFlags: 0
@@ -2819,8 +2823,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9fbd75b77dce34ca9050276f84d47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickFX: {fileID: 8300000, guid: bfd856b6ff281a5469fbccf55bca7916, type: 3}
-  hoverFX: {fileID: 0}
+  clickFX: 
+  hoverFX: 
 --- !u!1 &443046728
 GameObject:
   m_ObjectHideFlags: 0
@@ -6034,8 +6038,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9fbd75b77dce34ca9050276f84d47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickFX: {fileID: 8300000, guid: bfd856b6ff281a5469fbccf55bca7916, type: 3}
-  hoverFX: {fileID: 0}
+  clickFX: 
+  hoverFX: 
 --- !u!1 &997752283
 GameObject:
   m_ObjectHideFlags: 0
@@ -9442,8 +9446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9fbd75b77dce34ca9050276f84d47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickFX: {fileID: 8300000, guid: bfd856b6ff281a5469fbccf55bca7916, type: 3}
-  hoverFX: {fileID: 0}
+  clickFX: 
+  hoverFX: 
 --- !u!1 &1502172001
 GameObject:
   m_ObjectHideFlags: 0
@@ -10219,6 +10223,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Manager.Options.Options, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 7468836508841150302, guid: 80cb43441ebff29488a9057c16b6ec10, type: 3}
+      propertyPath: hoverFX
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8534163748691520243, guid: 80cb43441ebff29488a9057c16b6ec10, type: 3}
       propertyPath: m_Name
       value: ControlsButton
@@ -10374,8 +10382,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6332650703628876985, guid: 01703ebca167dc644909cf345325502c, type: 3}
       propertyPath: clickFX
-      value: 
-      objectReference: {fileID: 8300000, guid: fd2c6fdc557ce1e4a8555ace3e86b137, type: 3}
+      value: BackButtonClick
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01703ebca167dc644909cf345325502c, type: 3}
 --- !u!224 &1551179278 stripped
@@ -11294,8 +11302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9fbd75b77dce34ca9050276f84d47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickFX: {fileID: 8300000, guid: bfd856b6ff281a5469fbccf55bca7916, type: 3}
-  hoverFX: {fileID: 0}
+  clickFX: 
+  hoverFX: 
 --- !u!1 &1743932412
 GameObject:
   m_ObjectHideFlags: 0
@@ -11460,8 +11468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9fbd75b77dce34ca9050276f84d47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickFX: {fileID: 8300000, guid: bfd856b6ff281a5469fbccf55bca7916, type: 3}
-  hoverFX: {fileID: 0}
+  clickFX: 
+  hoverFX: 
 --- !u!1 &1766384442
 GameObject:
   m_ObjectHideFlags: 0
@@ -12542,8 +12550,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9fbd75b77dce34ca9050276f84d47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickFX: {fileID: 8300000, guid: bfd856b6ff281a5469fbccf55bca7916, type: 3}
-  hoverFX: {fileID: 0}
+  clickFX: 
+  hoverFX: 
 --- !u!1 &1870172550
 GameObject:
   m_ObjectHideFlags: 0

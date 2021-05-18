@@ -1719,11 +1719,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6332650703628876985, guid: 01703ebca167dc644909cf345325502c, type: 3}
       propertyPath: clickFX
-      value: 
+      value: BackButtonClick
       objectReference: {fileID: 0}
     - target: {fileID: 6332650703628876985, guid: 01703ebca167dc644909cf345325502c, type: 3}
       propertyPath: hoverFX
-      value: 
+      value: ButtonHover
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01703ebca167dc644909cf345325502c, type: 3}
@@ -3053,7 +3053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6332650703628876985, guid: 01703ebca167dc644909cf345325502c, type: 3}
       propertyPath: clickFX
-      value: 
+      value: BackButtonClick
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
