@@ -5,17 +5,17 @@ using UnityEngine.Audio;
 
 public class SimpleButton : MonoBehaviour
 {
-    public AudioClip clickFX;
-    public AudioClip hoverFX;
+    public string clickFX = "ButtonClick";
+    public string hoverFX = "ButtonHover";
 
     public void OnClick()
     {
-        if (clickFX) AudioManager.instance.PlaySFX(clickFX);
+        if (clickFX != null) AudioManager.instance.Play(clickFX);
     }
 
     public void OnHover()
     {
-        if (hoverFX) AudioManager.instance.PlaySFX(hoverFX);
+        if (hoverFX != null) AudioManager.instance.Play(hoverFX);
     }
 
 }

@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioSource mainAudioSrc;
     public AudioSource sfxAudioSrc;
     public AudioSource announceAudioSrc;
+
+    public List<Sound> sounds;
 
     public static AudioManager instance = null;
 
@@ -28,19 +29,6 @@ public class AudioManager : MonoBehaviour
         announceAudioSrc.PlayOneShot(audio);
     }
 
-    public void StopMusic()
-    {
-        mainAudioSrc.Stop();
-    }
-
-    public void PlayMusic()
-    {
-        if (!mainAudioSrc.isPlaying)
-        {
-            mainAudioSrc.Play();
-        }
-    }
-
     public void StopSFX()
     {
         sfxAudioSrc.Stop();
@@ -48,23 +36,52 @@ public class AudioManager : MonoBehaviour
 
     public void PauseAudio()
     {
-        mainAudioSrc.Pause();
+        foreach (Sound s in sounds)
+        {
+            s.source.Pause();
+        }
         sfxAudioSrc.Pause();
         announceAudioSrc.Pause();
     }
 
     public void UnPauseAudio()
     {
-        mainAudioSrc.UnPause();
+        foreach (Sound s in sounds)
+        {
+            s.source.UnPause();
+        }
         sfxAudioSrc.UnPause();
         announceAudioSrc.UnPause();
     }
 
     public void ShutUp()
     {
-        StopMusic();
-        StopSFX();
-        announceAudioSrc.Stop();
+        foreach(Sound s in sounds)
+        {
+            s.source.Stop();
+        }
+        //StopMusic();
+        //StopSFX();
+        //announceAudioSrc.Stop();
+    }
+
+    public void Play(string name)
+    {
+        Sound s = FindAudioClip(name);
+        s.source.Play();
+    }
+
+    public void Stop(string name)
+    {
+        Sound s = FindAudioClip(name);
+        s.source.Stop();
+    }
+
+    public Sound FindAudioClip(string name)
+    {
+        Sound s = sounds.Find(sound => sound.name == name);
+        if (s == null) Debug.LogWarning("Sound: " + name + " not found!");
+        return s;
     }
 
     #endregion
@@ -80,8 +97,20 @@ public class AudioManager : MonoBehaviour
         else
         {
             instance = this;
-            GameObject.DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
+
+        foreach (Sound s in sounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
+        }
+
+        Play("MenuMusic");
     }
 
     #endregion

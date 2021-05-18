@@ -7443,7 +7443,6 @@ GameObject:
   - component: {fileID: 1881527573}
   - component: {fileID: 1881527576}
   - component: {fileID: 1881527575}
-  - component: {fileID: 1881527572}
   - component: {fileID: 1881527574}
   m_Layer: 0
   m_Name: AudioManager
@@ -7452,102 +7451,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!82 &1881527572
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1881527571}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 1309538115156545136, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 7133b6dc5b3717345b468ec0271b7b4c, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!4 &1881527573
 Transform:
   m_ObjectHideFlags: 0
@@ -7574,9 +7477,128 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9674034d7df8e30459501195bb7f7b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainAudioSrc: {fileID: 1881527572}
   sfxAudioSrc: {fileID: 1881527576}
   announceAudioSrc: {fileID: 1881527575}
+  sounds:
+  - name: MenuMusic
+    clip: {fileID: 8300000, guid: 7133b6dc5b3717345b468ec0271b7b4c, type: 3}
+    mixer: {fileID: 1309538115156545136, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ButtonClick
+    clip: {fileID: 8300000, guid: bfd856b6ff281a5469fbccf55bca7916, type: 3}
+    mixer: {fileID: 1560205838153445295, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ButtonHover
+    clip: {fileID: 8300000, guid: b6bab92de7dd37347a3d13889f86df8c, type: 3}
+    mixer: {fileID: 1560205838153445295, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BackButtonClick
+    clip: {fileID: 8300000, guid: fd2c6fdc557ce1e4a8555ace3e86b137, type: 3}
+    mixer: {fileID: 1560205838153445295, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PauseMenu
+    clip: {fileID: 8300000, guid: 1b6f36ac9f3390d4596996b12f44b7cd, type: 3}
+    mixer: {fileID: 1560205838153445295, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: 1Minutes
+    clip: {fileID: 8300000, guid: 3da2b5a7636cdee44a782ff4946b5116, type: 3}
+    mixer: {fileID: -6718932390981139559, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: 10Seconds
+    clip: {fileID: 8300000, guid: 90c20978508056c438fd4e6e5f91315e, type: 3}
+    mixer: {fileID: -6718932390981139559, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: 30Seconds
+    clip: {fileID: 8300000, guid: 90c20978508056c438fd4e6e5f91315e, type: 3}
+    mixer: {fileID: -6718932390981139559, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: StartCountdwon
+    clip: {fileID: 8300000, guid: a492a3c8c0c613c4fb0ab9814ebc9350, type: 3}
+    mixer: {fileID: -6718932390981139559, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Winner
+    clip: {fileID: 8300000, guid: 15119591145b3d0478ff5d334d08eb6c, type: 3}
+    mixer: {fileID: -6718932390981139559, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: TowerHit
+    clip: {fileID: 8300000, guid: 46675240e12f44841a190ae777a4b54d, type: 3}
+    mixer: {fileID: 105993785359059437, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: TowerHitWeakpoint
+    clip: {fileID: 8300000, guid: 741168af6ec5fc746b0bc0be7ec77a39, type: 3}
+    mixer: {fileID: 105993785359059437, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: TowerDestroy
+    clip: {fileID: 8300000, guid: 3bcab25d68ffa964795699ce155bc3fb, type: 3}
+    mixer: {fileID: 105993785359059437, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: RacquetFlick
+    clip: {fileID: 8300000, guid: 8e416b03bc6cf184489446d9183c1ac7, type: 3}
+    mixer: {fileID: 7020305397985817131, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: RacquetBlock
+    clip: {fileID: 8300000, guid: 0e4cb80bace236941ababcb50da280d1, type: 3}
+    mixer: {fileID: 7020305397985817131, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BallHitRacquet
+    clip: {fileID: 8300000, guid: 67b8903d0881420419faa1e99f4cd0ba, type: 3}
+    mixer: {fileID: 7020305397985817131, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BallHitWall
+    clip: {fileID: 8300000, guid: 6413a292e55e3e54c947005b8228297a, type: 3}
+    mixer: {fileID: 2239398270190951707, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!82 &1881527575
 AudioSource:
   m_ObjectHideFlags: 0

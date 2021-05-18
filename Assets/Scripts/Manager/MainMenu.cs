@@ -14,7 +14,6 @@ public class MainMenu : MonoBehaviour
     [Header("Audio")]
     public AudioMixer mainMix;
 
-    private AudioManager _audioManager;
 
     void Start()
     {
@@ -29,8 +28,7 @@ public class MainMenu : MonoBehaviour
         mainMix.SetFloat("sfxVol", Mathf.Log10(sfxVol) * 20);
         mainMix.SetFloat("annVol", Mathf.Log10(annVol) * 20);
 
-        _audioManager = AudioManager.instance;
-        _audioManager.PlayMusic();
+        AudioManager.instance.Play("MenuMusic");
 
         DisablePanels();
         ShowPanel(mainMenuPanel);

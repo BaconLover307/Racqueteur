@@ -147,9 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9fbd75b77dce34ca9050276f84d47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickFX: {fileID: 8300000, guid: bfd856b6ff281a5469fbccf55bca7916, type: 3}
-  hoverFX: {fileID: 8300000, guid: b6bab92de7dd37347a3d13889f86df8c, type: 3}
-  mixer: {fileID: 1560205838153445295, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
+  clickFX: ButtonClick
+  hoverFX: ButtonHover
 --- !u!114 &1557311997476305827
 MonoBehaviour:
   m_ObjectHideFlags: 0
