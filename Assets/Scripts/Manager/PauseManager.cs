@@ -6,19 +6,14 @@ namespace Manager
     public class PauseManager : MonoBehaviour
     {
         public GameObject pauseScreen;
-        public AudioClip pauseSFX;
-        public AudioClip unPauseSFX;
 
         private bool _isPaused;
         private float lastPaused = 0f;
-
-        private AudioManager _audioManager;
 
         public void Awake()
         {
             Time.timeScale = 1f;
             _isPaused = false;
-            _audioManager = AudioManager.instance;
         }
 
         #region public callback
@@ -37,8 +32,8 @@ namespace Manager
         {
             Debug.Log("Paused");
             _isPaused = true;
-            _audioManager.PauseAudio();
-            _audioManager.PlaySFX(pauseSFX);
+            AudioManager.instance.PauseAudio();
+            AudioManager.instance.Play("PauseMenu");
             Time.timeScale = 0f;
             pauseScreen.SetActive(true);
         }
@@ -47,8 +42,8 @@ namespace Manager
         {
             Debug.Log("UnPaused");
             _isPaused = false;
-            _audioManager.PlaySFX(unPauseSFX);
-            _audioManager.UnPauseAudio();
+            AudioManager.instance.Play("BackButtonClick");
+            AudioManager.instance.UnPauseAudio();
             Time.timeScale = 1f;
             pauseScreen.SetActive(false);
         }

@@ -1720,11 +1720,11 @@ PrefabInstance:
     - target: {fileID: 6332650703628876985, guid: 01703ebca167dc644909cf345325502c, type: 3}
       propertyPath: clickFX
       value: 
-      objectReference: {fileID: 8300000, guid: fd2c6fdc557ce1e4a8555ace3e86b137, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6332650703628876985, guid: 01703ebca167dc644909cf345325502c, type: 3}
       propertyPath: hoverFX
       value: 
-      objectReference: {fileID: 8300000, guid: b6bab92de7dd37347a3d13889f86df8c, type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01703ebca167dc644909cf345325502c, type: 3}
 --- !u!224 &649008016 stripped
@@ -2212,7 +2212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4675218888972515041, guid: 01703ebca167dc644909cf345325502c, type: 3}
       propertyPath: checkPaddingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4675218888972515041, guid: 01703ebca167dc644909cf345325502c, type: 3}
       propertyPath: m_enableExtraPadding
@@ -2961,7 +2961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2142220794924824555, guid: 01703ebca167dc644909cf345325502c, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2142220794924824555, guid: 01703ebca167dc644909cf345325502c, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3054,7 +3054,7 @@ PrefabInstance:
     - target: {fileID: 6332650703628876985, guid: 01703ebca167dc644909cf345325502c, type: 3}
       propertyPath: clickFX
       value: 
-      objectReference: {fileID: 8300000, guid: fd2c6fdc557ce1e4a8555ace3e86b137, type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 01703ebca167dc644909cf345325502c, type: 3}
@@ -7477,8 +7477,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9674034d7df8e30459501195bb7f7b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfxAudioSrc: {fileID: 1881527576}
-  announceAudioSrc: {fileID: 1881527575}
   sounds:
   - name: MenuMusic
     clip: {fileID: 8300000, guid: 7133b6dc5b3717345b468ec0271b7b4c, type: 3}
@@ -7495,7 +7493,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: ButtonHover
-    clip: {fileID: 8300000, guid: b6bab92de7dd37347a3d13889f86df8c, type: 3}
+    clip: {fileID: 8300000, guid: b4d222f87c4e2fa4aaa049ef78eec304, type: 3}
     mixer: {fileID: 1560205838153445295, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
     volume: 1
     pitch: 1
@@ -7515,7 +7513,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: 1Minutes
+  - name: 1Minute
     clip: {fileID: 8300000, guid: 3da2b5a7636cdee44a782ff4946b5116, type: 3}
     mixer: {fileID: -6718932390981139559, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
     volume: 1
@@ -7536,7 +7534,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: StartCountdwon
+  - name: StartCountdown
     clip: {fileID: 8300000, guid: a492a3c8c0c613c4fb0ab9814ebc9350, type: 3}
     mixer: {fileID: -6718932390981139559, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
     volume: 1
@@ -7572,7 +7570,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: RacquetFlick
-    clip: {fileID: 8300000, guid: 8e416b03bc6cf184489446d9183c1ac7, type: 3}
+    clip: {fileID: 8300000, guid: 9bf7b6d2becb14c46b4af833d9334adf, type: 3}
     mixer: {fileID: 7020305397985817131, guid: 779f253c46cd0974eb2637cfa2635fbc, type: 2}
     volume: 1
     pitch: 1
@@ -8470,7 +8468,7 @@ PrefabInstance:
     - target: {fileID: 6332650703628876985, guid: 01703ebca167dc644909cf345325502c, type: 3}
       propertyPath: clickFX
       value: 
-      objectReference: {fileID: 8300000, guid: fd2c6fdc557ce1e4a8555ace3e86b137, type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 01703ebca167dc644909cf345325502c, type: 3}

@@ -28,7 +28,7 @@ public class MainMenu : MonoBehaviour
         mainMix.SetFloat("sfxVol", Mathf.Log10(sfxVol) * 20);
         mainMix.SetFloat("annVol", Mathf.Log10(annVol) * 20);
 
-        AudioManager.instance.Play("MenuMusic");
+        AudioManager.instance.PlayMusic();
 
         DisablePanels();
         ShowPanel(mainMenuPanel);

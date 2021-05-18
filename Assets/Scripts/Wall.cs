@@ -4,25 +4,13 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-    public AudioClip ballHitSFX;
-    public AudioClip racquetHitSFX;
-
-    private AudioManager _audioManager;
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-        _audioManager = AudioManager.instance;
-    }
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ball")) {
-            _audioManager.PlaySFX(ballHitSFX);
+            AudioManager.instance.Play("BallHitWall");
         } else if (other.gameObject.CompareTag("Player"))
         {
-            //_audioManager.StopSFX();
-            //_audioManager.PlaySFX(racquetHitSFX);
+            //AudioManager.instance.Play("RacquetHitWall");
         }
     }
     

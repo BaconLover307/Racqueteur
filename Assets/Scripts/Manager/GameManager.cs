@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         SpawnRacquets();
         DisableControllers(true);
         _audioManager.ShutUp();
-        _audioManager.PlayAnnounce(countdownSFX);
+        _audioManager.Play("StartCountdown");
         StartCoroutine(Countdown(3, "GO!", false));
 
         P1Health.OnTowerDestroy += EndCondition;
@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
 
     private void CallLastCountdown()
     {
-        _audioManager.PlayAnnounce(ann10sSFX);
+        _audioManager.Play("10Seconds");
         StartCoroutine(Countdown(10, "Time's Up", true));
     }
 
@@ -158,12 +158,12 @@ public class GameManager : MonoBehaviour
 
         if (timeRemaining == 30)
         {
-            _audioManager.PlayAnnounce(ann30sSFX);
+            _audioManager.Play("30Seconds");
             notificationDisplay.text = "30 Seconds Remaining";
         }
         if (timeRemaining == 60)
         {
-            _audioManager.PlayAnnounce(ann60sSFX);
+            _audioManager.Play("1Minute");
             notificationDisplay.text = "1 Minute Remaining";
         }
 
@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator ShowEndGameScreen()
     {
         yield return new WaitForSeconds(3.0f);
-        _audioManager.PlayAnnounce(winnerSFX);
+        _audioManager.Play("Winner");
         notificationDisplay.gameObject.SetActive(false);
         countdownDisplay.SetActive(false);
         EndGameScreen.SetActive(true);

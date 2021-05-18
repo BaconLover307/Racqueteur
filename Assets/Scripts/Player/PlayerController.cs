@@ -26,11 +26,6 @@ namespace Player
         [Header("Input Settings")]
         public float doubleTapDelayThreshold = 0.3f;
 
-        [Header("Audio Settings")]
-        public AudioClip ballHitSFX;
-        public AudioClip flickSFX;
-        public AudioClip blockSFX;
-
         private AudioManager _audioManager;
         private SparkSpawner sparkSpawner;
         private RacketLight racketLight;
@@ -97,7 +92,7 @@ namespace Player
             {
                 if (!hasBlocked)
                 {
-                    _audioManager.PlaySFX(blockSFX);
+                    _audioManager.Play("RacquetBlock");
                     hasBlocked = true;
                 }
                 _rb.angularVelocity = 0;
@@ -114,7 +109,7 @@ namespace Player
         {
             isDoubleTap = false;
             _rb.angularVelocity = Mathf.Clamp(_rotationInput * flickSpeed, -flickSpeed, flickSpeed);
-            _audioManager.PlaySFX(flickSFX);
+            _audioManager.Play("RacquetFlick");
             StartCoroutine(sparkSpawner.ShowSparks());
         }
 
@@ -122,7 +117,7 @@ namespace Player
         {
             if (other.gameObject.CompareTag("Ball"))
             {
-                _audioManager.PlaySFX(ballHitSFX);
+                _audioManager.Play("BallHitRacquet");
             }
         }
 

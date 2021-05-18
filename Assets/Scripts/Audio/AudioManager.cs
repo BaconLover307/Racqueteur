@@ -5,34 +5,11 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioSource sfxAudioSrc;
-    public AudioSource announceAudioSrc;
-
     public List<Sound> sounds;
 
     public static AudioManager instance = null;
 
     #region public function
-
-    public void PlaySFX(AudioClip audio)
-    {
-        
-        sfxAudioSrc.PlayOneShot(audio);
-    }
-
-    public void PlayAnnounce(AudioClip audio)
-    {
-        if (announceAudioSrc.isPlaying)
-        {
-            announceAudioSrc.Stop();
-        }
-        announceAudioSrc.PlayOneShot(audio);
-    }
-
-    public void StopSFX()
-    {
-        sfxAudioSrc.Stop();
-    }
 
     public void PauseAudio()
     {
@@ -40,8 +17,6 @@ public class AudioManager : MonoBehaviour
         {
             s.source.Pause();
         }
-        sfxAudioSrc.Pause();
-        announceAudioSrc.Pause();
     }
 
     public void UnPauseAudio()
@@ -50,8 +25,6 @@ public class AudioManager : MonoBehaviour
         {
             s.source.UnPause();
         }
-        sfxAudioSrc.UnPause();
-        announceAudioSrc.UnPause();
     }
 
     public void ShutUp()
@@ -60,28 +33,37 @@ public class AudioManager : MonoBehaviour
         {
             s.source.Stop();
         }
-        //StopMusic();
-        //StopSFX();
-        //announceAudioSrc.Stop();
     }
 
     public void Play(string name)
     {
         Sound s = FindAudioClip(name);
-        s.source.Play();
+        if (s != null) s.source.PlayOneShot(s.clip);
     }
 
     public void Stop(string name)
     {
         Sound s = FindAudioClip(name);
-        s.source.Stop();
+        if (s != null) s.source.Stop();
     }
 
     public Sound FindAudioClip(string name)
     {
         Sound s = sounds.Find(sound => sound.name == name);
-        if (s == null) Debug.LogWarning("Sound: " + name + " not found!");
+        if (s == null)
+        {
+            Debug.Log("Sound: " + name + " not found!");
+        }
         return s;
+    }
+
+    public void PlayMusic()
+    {
+        Sound s = FindAudioClip("MenuMusic");
+        if (s != null && !s.source.isPlaying)
+        {
+            s.source.Play();
+        }
     }
 
     #endregion
@@ -108,9 +90,10 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            s.source.outputAudioMixerGroup = s.mixer;
         }
 
-        Play("MenuMusic");
+        PlayMusic();
     }
 
     #endregion
